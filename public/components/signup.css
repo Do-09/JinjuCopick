@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+    
+}
+
+html {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    width: 45%;
+    border: 1px solid black;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+input {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    line-height: 35px;
+}
+
+.container {
+    padding: 10px;
+}
+
+.title {
+    text-align: center;
+}
+
+div {
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+.email input, .password1 input, .password2 input, .name input {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+}

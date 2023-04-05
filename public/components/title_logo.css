@@ -1,0 +1,9 @@
+.title_logo {
+  font-family:'NanumBarunpen', sans-serif;
+    font-size: 27px;
+  }
+  
+  .title_logo a {
+    color: var(--main-color);
+    text-decoration: none;
+  }

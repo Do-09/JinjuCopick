@@ -1,0 +1,90 @@
+@font-face{
+    font-family:"NanumBarunpen";
+    src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff");
+    font-weight:normal;font-style:normal
+}
+
+* {
+    box-sizing: border-box;
+  }
+
+html,body {margin:0;padding:0;border:0;vertical-align:baseline}
+body{font-size:1rem;font-family:'NanumBarunpen';line-height:1;color:#212529;background-color:#fff}
+body{display:flex;flex-direction:column;min-height:100vh;-ms-overflow-style:none}
+body::-webkit-scrollbar{display:none}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.upload_section {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    margin-top: 50px;
+    width: 100%;
+    row-gap: 2rem;
+    padding: 2rem;
+}
+
+article {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.ch_all2, .del_btn {
+    display: inline-block;
+}
+
+#del_btn {
+    background-color: inherit;
+    border: 0px;
+    cursor: pointer;
+    margin-left:-5px;
+}
+
+#reset_btn, #upload_btn{
+    color: #444444;
+    background: #F3F3F3;
+    border: none;
+    padding: 5px 10px;
+    font-size: 9pt;
+    outline: none;
+    cursor: pointer;
+}
+    
+#reset_btn:hover, #upload_btn:hover, #gifticonImgLabel:hover {
+    border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #333333;
+    background: #F7F7F7;
+}
+
+#gifticonImg {
+    visibility: hidden;
+}
+
+#gifticonImgLabel {
+    background: #F3F3F3;
+    border: 1px rgba(0, 0, 0, 0.491) solid;
+    padding: 5px 5px;
+    margin-right: 5px;
+    border-radius: 2px;
+    font-size: 10pt;
+    cursor: pointer;
+}
+
+#inputContainer {
+    margin-top: 5px;
+}
+
+.fileInput {
+    display: inline-block;
+}
+
+#fileName {
+    border-bottom: solid 1px black;
+    width: 200px;
+    display: inline-block;
+}

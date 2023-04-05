@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>진주커Pick</title>
+        <link rel="stylesheet" type="text/css" href="public/components/top_bars.css">
+        <link rel="stylesheet" type="text/css" href="public/components/title_logo.css">
+        <link rel="stylesheet" type="text/css" href="public/components/side_bars.css">
+        <link rel="stylesheet"  type="text/css" href="public/components/gifticon_upload.css">
+        <link rel="stylesheet"  type="text/css" href="public/components/gifticon_lists.css">
+        <script src="https://kit.fontawesome.com/a064522756.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="top_bars">
+                <span class="side_bars">
+                    <button class="side_bars_btn_open">
+                        <i class="fa-solid fa-bars fa-lg"></i>
+                    </button>
+                </span>
+                <a href="/gifticon_upload" class="title link">진주커Pick</a>
+                <nav class="top_bars_menus">
+                    <input class="search-input" placeholder="Ctrl + K">
+                    <button class="top_bars_user" onclick="location.href='/signup'">
+                        <i class="fa-sharp fa-regular fa-user"></i>
+                    </button>
+                </nav>
+            </header>
+    
+            <nav class="side_bars_container invisible">
+                <button class="side_bars_btn_close">
+                    <i class="fa-solid fa-x"></i>
+                </button>
+                <section class="side_bars_items">
+                    <ul class="side_bars_lists">
+                        <li class="side_bars preparing"><span>홈</span></li>
+                        <a href="#"><li class="side_bar_item"><span>카페 리스트</span></li></a>
+                        <a href="#"><li class="side_bar_item"><span>게시판</span></li></a>
+                        <a href="#" target="_blank"><li class="side_bar_item"><span>기프티콘 관리</span></li></a>
+                    </ul>
+                </section>
+            </nav>
+        </div>
+        
+        <section class="upload_section">
+            <form id="myForm" method="post">
+                <div class="fileInput">
+                    <label for="gifticonImg" id="gifticonImgLabel">사진 불러오기</label>
+                    <span>FILE NAME: </span><span id="fileName">&nbsp;</span>
+                </div>
+                <input type="file" id="gifticonImg" name="gifticonImg" accept="image/*" aria-required="true" required oninvalid="this.setCustomValidity('기프티콘 이미지를 선택해주세요.')" oninput="this.setCustomValidity('')">
+                <table id="inputContainer">
+                    <tr>
+                        <td><label>카페명</td>
+                        <td><input type="text" id="cafeName" name="cafeName" required oninvalid="this.setCustomValidity('카페명을 입력해주세요.')" oninput="this.setCustomValidity('')"></label><br></td>
+                    </tr>
+                    <tr>
+                        <td><label>유효기간</td>
+                        <td><input type="date" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity('유효기간을 선택해주세요.')" oninput="this.setCustomValidity('')"></label><br></td>
+                    </tr>
+                </table>
+                <input type="reset" id="reset_btn" value="초기화" onclick="document.getElementById('fileName').textContent = '&nbsp;'">
+                <input type="submit" id="upload_btn" value="기프티콘 등록">
+            </form>
+            
+            <article>
+                <div class="ch_all2">
+                    <input type="checkbox" class="ch_all" id="ch_all">
+                    <label for="ch_all">전체선택 | </label>
+                </div>
+                <button class="del_btn" id="del_btn">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+                <div class="gifticon_lists" id="gifticon_lists">
+                </div>
+            </article>
+
+        </section>
+        <script src="sidebar_btn.js"></script>
+        <script src="gifticon_upload.js"></script>
+    </body>
+</html>

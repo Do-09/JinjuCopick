@@ -1,16 +1,14 @@
 const express = require('express');
 const app = express(); 
-const bodyParser = require('body-parser');
 const ejs = require('ejs')
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
+// app.engine('html',require('ejs').renderFile)
 app.use('/public', express.static(__dirname + '/public'));
 
 const mainRouter = require('./router/mainRouter')
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
 app.use("/", mainRouter)
 
 

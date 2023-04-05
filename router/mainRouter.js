@@ -6,6 +6,7 @@ const db = require('../model/db');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended:false}));
 
+
 router.get("/", function(req,res){
     res.render('main')
 })
@@ -14,7 +15,7 @@ router.get("/login", function(req,res){
     res.render('login')
 })
 
-router.post('/main', function(req, res) {
+router.post('/main', function(req, res) { //로그인
     var id = req.body.id;
     var password = req.body.password;
     if (id && password) {             // id와 pw가 입력되었는지 확인
@@ -38,16 +39,16 @@ router.post('/main', function(req, res) {
     }
 });
 
-router.get("/join", function(req,res){
-    res.render('join')
+router.get("/signup", function(req,res){
+    res.render('signup')
 })
 
 router.get("/main", function(req,res){
     res.render('afterLogin')
 })
 
-router.get("/gifticon", function(req,res){
-    res.render('gifticon')
+router.get("/gifticon_upload", function(req,res){
+    res.render('gifticon_upload')
 })
 
 router.get("/favorite", function(req,res){
