@@ -2,15 +2,30 @@ const express = require('express')
 const router = express.Router();
 const bodyParser = require('body-parser');
 const db = require('../model/db');
+const session = require('express-session')
+const FileStore = require('session-file-store')(session)
 
 var authCheck = require('../public/authCheck.js');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended:false}));
 
+router.use(session({
+    secret: "key",
+    resave: false,
+    saveUninitialized:true,
+    store:new FileStore(),
+}))
+
 
 router.get("/", function(req,res){
-    res.render('main')
+    if(authCheck.isOwner(req,res)){
+        res.redirect('/main');
+        return false;
+    } else{
+        res.render('main')
+        return false;
+    }
 })
 
 router.get("/login", function(req,res){
@@ -24,11 +39,12 @@ router.post('/login/result', function(req, res) { //로그인
         db.query('SELECT * FROM information WHERE id = ? AND password = ?', [id, password], function(error, results, fields) {
             if (error) throw error;
             if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공
-                // req.session.is_logined = true;      // 세션 정보 갱신
-                // req.session.save(function () {
-                //     res.redirect(`/main`);
-                // });
-                res.redirect('/main');
+                req.session.is_logined = true;      // 세션 정보 갱신
+                req.session.nickname = id;
+                req.session.save(function () {
+                    res.redirect(`/`);
+                    console.log("로그인");
+                });
             } else {              
                 res.send(`<script type="text/javascript">alert("로그인 정보가 일치하지 않습니다."); 
                 document.location.href="/login";</script>`);    
@@ -41,11 +57,12 @@ router.post('/login/result', function(req, res) { //로그인
     }
 });
 
-// router.get('/logout', function(req,res){
-//     req.session.destroy(function(err){
-//         res.redirect('/');
-//     });
-// });
+router.get('/logout', function(req,res){
+    req.session.destroy(function(err){
+        res.redirect('/');
+        console.log("로그아웃");
+    });
+});
 
 router.get("/signup", function(req,res){
     res.render('signup')
@@ -65,7 +82,7 @@ router.post("/signup/result", function(req,res){
                 db.query('INSERT INTO information (id, password, email) VALUES(?,?,?)', [id, password1, email], function (error, data) {
                     if (error) throw error2;
                     res.send(`<script type="text/javascript">alert("회원가입이 완료되었습니다!");
-                    document.location.href="/main";</script>`);
+                    document.location.href="/";</script>`);
                 });
             } else if (password != password2) {                     // 비밀번호가 올바르게 입력되지 않은 경우
                 res.send(`<script type="text/javascript">alert("입력된 비밀번호가 서로 다릅니다."); 
@@ -84,10 +101,10 @@ router.post("/signup/result", function(req,res){
 });
 
 router.get("/main", function(req,res){
-    // if(!authCheck.isOwner(req,res)){
-    //     res.redirect('/');
-    //     return false;
-    // }
+    if(!authCheck.isOwner(req,res)){
+        res.redirect('/');
+        return false;
+    }
     res.render('afterLogin')
 })
 
