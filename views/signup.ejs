@@ -10,21 +10,23 @@
             <div class="title">
                 <h1>진주커Pick 회원가입</h1>
             </div>
-            <div class="email">
-                <input id="email" type="text" placeholder="이메일을 입력해주세요.">
-            </div>
-            <div class="password1">
-                <input id="password1" type="password" placeholder="비밀번호를 입력해주세요.">
-            </div>
-            <div class="password2">
-                <input id="password2" type="password" placeholder="비밀번호를 다시 입력해주세요.">
-            </div>
-            <div class="name">
-                <input id="name" type="text" placeholder="닉네임을 입력해주세요.">
-            </div>
-            <div class="signup">
-                <button id="signup">가입하기</button>
-            </div>
+            <form action="/signup/result" method ="post">
+                <div class="email">
+                    <input name="email" type="text" placeholder="이메일을 입력해주세요.">
+                </div>
+                <div class="password1">
+                    <input name="password1" type="password" placeholder="비밀번호를 입력해주세요.">
+                </div>
+                <div class="password2">
+                    <input name="password2" type="password" placeholder="비밀번호를 다시 입력해주세요.">
+                </div>
+                <div class="name">
+                    <input name="name" type="text" placeholder="닉네임을 입력해주세요.">
+                </div>
+                <div class="signup">
+                    <button type ="submit" id="signup">가입하기</button>
+                </div>
+            </form>
         </div>
     </body>
 </html>
