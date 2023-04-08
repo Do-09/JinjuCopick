@@ -84,7 +84,7 @@ router.post("/signup/result", function(req,res){
                     res.send(`<script type="text/javascript">alert("회원가입이 완료되었습니다!");
                     document.location.href="/";</script>`);
                 });
-            } else if (password != password2) {                     // 비밀번호가 올바르게 입력되지 않은 경우
+            } else if (password1 != password2) {                     // 비밀번호가 올바르게 입력되지 않은 경우
                 res.send(`<script type="text/javascript">alert("입력된 비밀번호가 서로 다릅니다."); 
                 document.location.href="/signup";</script>`);    
             }
