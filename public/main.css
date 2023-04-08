@@ -1,0 +1,331 @@
+body {
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.logo_back {
+    text-align: center;
+    /* background-color: #B8CEFB; */
+    background-color: rgba(184, 206, 251, 0.8);
+    margin: -10px -10px 20px -10px;
+}
+
+.main_logo {
+    padding-top: 25px;
+}
+
+.side_menu {
+    float: left;
+    padding-left: 50px;
+    padding-top: 35px;
+    transition: .5s;
+}
+
+.map_area {
+    text-align: center;
+    width: 900px;
+    height: 600px;
+    margin: auto;
+    margin-bottom: 70px;
+}
+
+.map_area #map {
+    width: 900px;
+    height: 600px;
+}
+
+.bookmark-btt {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 3rem;
+}
+
+section {
+    background-color: #56789a;
+    color: #fff;
+    width: 200px;
+    height: 1200px;
+    padding-top: 300px;
+    /* padding-top:300px; */
+    padding-left: 30px;
+    position: absolute;
+    top: 0;
+    left: -200px;
+    bottom: 0;
+    transition: 1s ease;
+}
+
+.bookmark-lists a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+.info {
+    font-size: 12px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    top: 400px;
+    font-family: 'Gothic A1', sans-serif;
+
+}
+
+#info_1 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgb(43, 43, 43);
+}
+
+.bookmark-lists {
+    /* padding-left: 15px; */
+    padding: auto;
+}
+
+#name {
+    margin: 5px 70px;
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 16px;
+    text-align: left;
+    width: 80px;
+    font-weight: 500;
+}
+#main_name { 
+   font-family: 'Gothic A1', sans-serif;
+   font-size: 20px;
+   text-align: right;
+   margin-right: 30px;
+   font-weight: 700; 
+}
+a{
+   text-decoration:none;
+}
+
+.bookmark:nth-child(1) {
+    margin-top: 50px;
+}
+
+.bookmark a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#main_home {
+   list-style: none;
+}
+#login {
+    padding: 10px;
+    list-style: none;
+    background-image: url("login2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 23px;
+    background-position: 40px;
+}
+
+#gifticon {
+    padding: 10px;
+    list-style: none;
+    background-image: url("gifticon2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 40px;
+}
+
+#commu {
+    padding: 10px;
+    list-style: none;
+    background-image: url("commu.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 23px;
+    background-position: 40px;
+}
+
+.question {
+    /* background-color: #EAECEF;
+           width: 900px;
+           height: 200px;
+           text-align: center;
+           position:relative; 
+           left: 50%;
+           right:  50%; 
+           transform: translate(-50%, -50%);
+           top: 100px;
+           margin-bottom: 20px; */
+
+    text-align: center;
+    background-color: #EAECEF;
+    width: 900px;
+    padding-bottom: 40px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+
+.question .question_text {
+    padding-top: 40px;
+    font-size: 25px;
+    color: #6c6c6c;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-check {
+    display: none;
+}
+
+.btn-label {
+    cursor: pointer;
+    border-style: solid;
+    border-color: #B8CEFB;
+    border-width: 2px;
+    color: black;
+    padding: 5px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.btn-check:hover+.btn-label {
+    background: #B8CEFB;
+    border-color: white;
+    color: white;
+}
+
+.btn-check:checked+.btn-label {
+    background-color: #B8CEFB;
+    color: black;
+}
+
+#image1 {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+}
+
+
+/* .question .question_button {
+           margin-top:20px;
+           margin-left: 520px;
+           display:flex;
+           justify-content:center;
+           flex-wrap:wrap;
+           gap:20px;
+           max-width:650px;
+       } */
+.question .question_button {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 650px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.form-element {
+    position: relative;
+    width: 210px;
+}
+
+.material-icons.md-24 {
+    font-size: 40px;
+    position: absolute;
+    top: 45px;
+}
+
+.list_jinju {
+    font-weight: bold;
+    font-family: 'Gothic A1', sans-serif;
+}
+
+hr {
+    border: 0;
+    height: 1.5px;
+    background: #ccc;
+}
+
+
+@media screen and (max-width: 768px) {
+    .question_button {
+        padding: 1rem
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .form-element {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 0rem .8rem;
+        top: -50px;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .logo_back {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 0 .8rem
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .question .question_text {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 2rem 0rem;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .question {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 1rem .5rem;
+        width: 70%;
+        margin: 1rem 5rem;
+    }
+}
+
+
+@media screen and (max-width: 667px) {
+    .map_area {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 0 .8rem;
+        text-align: center;
+        width: 100%; 
+        margin-bottom: 100px;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .map_area #map {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 0 .8rem;
+        width: 100%;
+    }
+}

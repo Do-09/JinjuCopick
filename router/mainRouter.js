@@ -116,6 +116,10 @@ router.get("/favorite", function(req,res){
     res.render('favorite')
 })
 
+router.get("/community", function(req,res){
+    res.render('community')
+})
+
 
 
 module.exports = router
