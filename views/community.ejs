@@ -46,7 +46,7 @@
                 <ul class="bookmark-lists">
                     <!-- <h5 class="list_jinju">진주커Pick</h5> <hr> -->
                     <li class="bookmark" id="main_home"><a href="/main"><div id="main_name">진주커Pick</div></a></li><hr>
-                    <li class="bookmark" id="login"><a href="/login"><div id="name">로그인</div></a></li>
+                    <li class="bookmark" id="login"><a href="/login"><div id="name">마이페이지</div></a></li>
                     <li class="bookmark" id="gifticon"><a href="gifticon_upload"><div id="name">기프티콘</div></a></li>
                     <li class="bookmark" id="commu"><a href="/community"><div id="name">커뮤니티</div></a></li>
                 
@@ -69,11 +69,9 @@
 
     <div class="container">
         <div class="posting-box">
-            <form name="main_title" class="form-group" method="post">
+            <form class="form-group" action = "community/submit" method="post">
                 <input type="text" class="form-control" id="title" placeholder="제목" name="title" maxlength="50" required="required" pattern=".{1,50}">
-            </form>
 
-            <form name="details" class="details" method="post">
                 <div class="detail_1">
                     <label class="people">인원</label>
                     <input type="number" min="1" step="1" placeholder="인원" id="people_num" name="f">
@@ -116,19 +114,15 @@
                         name="date">
                     </input>
                 </div>
-            </form>
         
-            <form name="content" class="form-group" method="post">
                 <textarea class="form-control" id="content" rows="8" placeholder="내용" name="content"></textarea>
-            </form>
             <div class="final_bt">
-                <input type="submit" class="save" value="등록" href="https://www.naver.com/" onclick="alert('저장')">
+                <input type="submit" class="save" value="등록">
                 <input type="reset" class="reset" value="취소" href="#" onclick="alert('취소')">      
             </div>
+            </form>
         </div>
     </div>
-
     </div>
 </body>
-
 </html>

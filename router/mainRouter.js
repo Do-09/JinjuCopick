@@ -40,7 +40,7 @@ router.post('/login/result', function(req, res) { //로그인
             if (error) throw error;
             if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공
                 req.session.is_logined = true;      // 세션 정보 갱신
-                req.session.nickname = id;
+                req.session.username = id;
                 req.session.save(function () {
                     res.redirect(`/`);
                     console.log("로그인");
@@ -69,6 +69,7 @@ router.get("/signup", function(req,res){
 })
 
 router.post("/signup/result", function(req,res){
+
     var email = req.body.email;
     var password1 = req.body.password1;
     var password2 = req.body.password2;
@@ -109,7 +110,13 @@ router.get("/main", function(req,res){
 })
 
 router.get("/gifticon_upload", function(req,res){
-    res.render('gifticon_upload')
+    if(authCheck.isOwner(req,res)){
+        res.render('gifticon_upload')
+        return false;
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
 })
 
 router.get("/favorite", function(req,res){
@@ -117,7 +124,38 @@ router.get("/favorite", function(req,res){
 })
 
 router.get("/community", function(req,res){
-    res.render('community')
+    if(authCheck.isOwner(req,res)){
+        res.render('community')
+        return false;
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
+})
+
+router.post("/community/submit", function(req,res){
+    var id = req.session.username;
+    var title = req.body.title;
+    var people = req.body.f;
+    var purpose = req.body.purpose;
+    var gender = req.body.gender;
+    var date = req.body.date;
+    var content = req.body.content; 
+
+    if (id&&title&&people&&purpose&&gender&&date&&content) {
+
+        db.query('INSERT INTO community (id, title, people, purpose, gender, date, content) VALUES(?,?,?,?,?,?,?)', [id, title, people, purpose, gender, date, content], function (error, data) {
+            if (error) throw error;
+                res.send(`<script type="text/javascript">alert("글이 등록되었습니다");
+                document.location.href="/main";</script>`);
+            });
+
+    } else {        // 입력되지 않은 정보가 있는 경우
+        res.send(`<script type="text/javascript">alert("입력되지 않은 정보가 있습니다."); 
+        document.location.href="/community";</script>`);
+    }
+
+    
 })
 
 
