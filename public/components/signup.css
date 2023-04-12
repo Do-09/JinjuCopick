@@ -1,25 +1,9 @@
-* {
-    box-sizing: border-box;
-    
-}
-
-html {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-body {
-    width: 45%;
-    border: 1px solid black;
-}
-
 h1 {
     font-size: 22px;
 }
 
-input {
-    border: 1px solid black;
+.input {
+    border: 1px solid rgb(135, 141, 146);
     border-radius: 3px;
     padding-left: 10px;
     padding-right: 10px;
@@ -29,21 +13,44 @@ input {
 
 .container {
     padding: 10px;
+    width: 40%;
+    border: 1px solid rgba(156, 164, 170, 0.42);
+    background-color: #EAECEF;
+    border-radius: 5px;
+    margin-top: 30px;
 }
 
 .title {
     text-align: center;
+    font-weight: 700;
 }
 
-div {
+.container > div {
     padding-top: 5px;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
 }
 
-.email input, .password1 input, .password2 input, .name input {
-    width: 100%;
+.email input, .password1 input, .password2 input, .nickname input {
+    width: 95%;
+    display: block;
+    margin: auto;
 }
 
-button {
-    width: 100%;
+#signup {
+    width: 60%; height: 40px;
+    margin: auto;
+    display: block;
+    border: 1px solid rgb(135, 141, 146);
+    border-radius: 1px;
+    background-color: rgba(184, 206, 251, 0.8);
+    cursor: pointer;
+}
+
+.error {
+    font-size: 11px;
+    font-weight: 700;
+    color:red;
+    padding-left: 1px;
+    padding-top: 1px;
+    margin-left: 12px;
 }

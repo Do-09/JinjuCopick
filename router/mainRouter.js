@@ -33,14 +33,14 @@ router.get("/login", function(req,res){
 })
 
 router.post('/login/result', function(req, res) { //로그인
-    var id = req.body.id;
+    var email = req.body.email;
     var password = req.body.password;
-    if (id && password) {             // id와 pw가 입력되었는지 확인
-        db.query('SELECT * FROM information WHERE id = ? AND password = ?', [id, password], function(error, results, fields) {
+    if (email && password) {             // id와 pw가 입력되었는지 확인
+        db.query('SELECT * FROM information WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
             if (error) throw error;
             if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공
                 req.session.is_logined = true;      // 세션 정보 갱신
-                req.session.username = id;
+                req.session.username = email;
                 req.session.save(function () {
                     res.redirect(`/`);
                     console.log("로그인");
@@ -73,14 +73,14 @@ router.post("/signup/result", function(req,res){
     var email = req.body.email;
     var password1 = req.body.password1;
     var password2 = req.body.password2;
-    var id = req.body.name; //확인 후 수정 필요!!!
+    var nickname = req.body.nickname; //확인 후 수정 필요!!!
 
-    if (email && password1 && password2 && id) {
+    if (email && password1 && password2 && nickname) {
         
-        db.query('SELECT * FROM information WHERE id = ?', [id], function(error, results, fields) { // DB에 같은 이름의 회원아이디가 있는지 확인
+        db.query('SELECT * FROM information WHERE nickname = ?', [nickname], function(error, results, fields) { // DB에 같은 이름의 회원아이디가 있는지 확인
             if (error) throw error;
             if (results.length <= 0 && password1 == password2) {     // DB에 같은 이름의 회원아이디가 없고, 비밀번호가 올바르게 입력된 경우 
-                db.query('INSERT INTO information (id, password, email) VALUES(?,?,?)', [id, password1, email], function (error, data) {
+                db.query('INSERT INTO information (nickname, password, email) VALUES(?,?,?)', [nickname, password1, email], function (error, data) {
                     if (error) throw error2;
                     res.send(`<script type="text/javascript">alert("회원가입이 완료되었습니다!");
                     document.location.href="/";</script>`);

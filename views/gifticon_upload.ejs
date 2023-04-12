@@ -3,45 +3,46 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>진주커Pick</title>
-        <link rel="stylesheet" type="text/css" href="public/components/top_bars.css">
-        <link rel="stylesheet" type="text/css" href="public/components/title_logo.css">
-        <link rel="stylesheet" type="text/css" href="public/components/side_bars.css">
-        <link rel="stylesheet"  type="text/css" href="public/components/gifticon_upload.css">
-        <link rel="stylesheet"  type="text/css" href="public/components/gifticon_lists.css">
-        <script src="https://kit.fontawesome.com/a064522756.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet"  type="text/css" href="/public/components/gifticon_upload.css">
+        <link rel="stylesheet"  type="text/css" href="/public/components/gifticon_lists.css">
+        <link rel="stylesheet"  type="text/css" href="/public/header.css">
+        
     </head>
     <body>
-        <div class="wrapper">
-            <header class="top_bars">
-                <span class="side_bars">
-                    <button class="side_bars_btn_open">
-                        <i class="fa-solid fa-bars fa-lg"></i>
-                    </button>
-                </span>
-                <a href="/gifticon_upload" class="title link">진주커Pick</a>
-                <nav class="top_bars_menus">
-                    <input class="search-input" placeholder="Ctrl + K">
-                    <button class="top_bars_user" onclick="location.href='/signup'">
-                        <i class="fa-sharp fa-regular fa-user"></i>
-                    </button>
-                </nav>
-            </header>
-    
-            <nav class="side_bars_container invisible">
-                <button class="side_bars_btn_close">
-                    <i class="fa-solid fa-x"></i>
-                </button>
-                <section class="side_bars_items">
-                    <ul class="side_bars_lists">
-                        <li class="side_bars preparing"><span>홈</span></li>
-                        <a href="#"><li class="side_bar_item"><span>카페 리스트</span></li></a>
-                        <a href="#"><li class="side_bar_item"><span>게시판</span></li></a>
-                        <a href="#" target="_blank"><li class="side_bar_item"><span>기프티콘 관리</span></li></a>
+        <script src="https://kit.fontawesome.com/a064522756.js" crossorigin="anonymous"></script>
+        <label id="bookmark-label"><i class="fa-sharp fa-solid fa-bars"></i>
+            <input type="button" value="" class="bookmark-btt">
+        </label>
+        <div class="logo_back">
+            <div class="side_menu">
+                <section class="side_menu_container">
+                    <ul class="bookmark-lists">
+                        <li class="bookmark"><a href="/main">
+                            <div id="main_home"> 진주커Pick</div>
+                        </a></li>
+                        <hr>
+                        <li class="bookmark"><a href="/login">
+                            <div class="bookmark-list"><i class="fa-solid fa-circle-user" id="login"></i> 로그인</div>
+                        </a></li>
+                        <li class="bookmark"><a href="/gifticon_upload">
+                            <div class="bookmark-list"><i class="fa-solid fa-gift" id="gifticon"></i> 기프티콘</div>
+                        </a></li>
+                        <li class="bookmark"><a href="/community">
+                            <div class="bookmark-list"><i class="fa-solid fa-message" id="commu"></i> 커뮤니티</div>
+                        </a></li>
+                    
                     </ul>
+                    <div class="info"><hr>경상국립대학교 얼죽아
+                        <div id="info_1">수학과&emsp;&emsp;&emsp;&emsp;강수연<br>정보통계학과&emsp;정인영<br>정보통계학과&emsp;정혜주<br>컴퓨터과학과&emsp;서혜원<br>컴퓨터과학과&emsp;이도현<hr></div>
+                    </div>
                 </section>
-            </nav>
+            </div>
+            <script src="/public/index.js"></script>
+            <div class="main_logo" style="text-align: center;"> 
+                <img src="/public/static/jinju.textlogo.png" height= "110" alt="로고">
+            </div>
         </div>
-        
+
         <section class="upload_section">
             <form id="myForm" method="post">
                 <div class="fileInput">
@@ -64,7 +65,7 @@
             </form>
             
             <article>
-                <div class="ch_all2">
+                <div class="check_section">
                     <input type="checkbox" class="ch_all" id="ch_all">
                     <label for="ch_all">전체선택 | </label>
                 </div>
@@ -76,7 +77,6 @@
             </article>
 
         </section>
-        <script src="sidebar_btn.js"></script>
-        <script src="gifticon_upload.js"></script>
+        <script src="/public/gifticon_upload.js"></script>
     </body>
 </html>

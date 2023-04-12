@@ -1,0 +1,143 @@
+.logo_back {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Gothic A1', sans-serif;
+    text-align: center;
+    /* background-color: #B8CEFB; */
+    background-color: rgba(184, 206, 251, 0.8);
+    margin: -10px -10px 20px -10px;
+}
+
+.main_logo {
+    padding-top: 25px;
+    position: relative;
+}
+
+#bookmark-label {
+    position: absolute;
+    top: 45px;
+    left: 45px;
+    z-index: 10;
+}
+
+.side_menu {
+    float: left;
+    padding-left: 50px;
+    padding-top: 35px;
+    transition: .5s;
+}
+
+.fa-bars {
+    font-size: 40px;
+}
+
+.bookmark-btt {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.side_menu_container {
+    background-color: #56789a;
+    color: #fff;
+    width: 200px; 
+    height: 100vh;
+    /* padding-top: 300px; */
+    /* padding-top:300px; */
+    padding-left: 30px;
+    position: fixed;
+    top: 0;
+    left: -200px;
+    bottom: 0;
+    transition: 1s ease;
+    z-index: 9999;
+}
+
+.bookmark-lists a:hover {
+    color: #000000;
+    text-decoration: none;
+    
+}
+
+.info {
+    font-size: 12px;
+    color: black;
+    font-weight: bold;
+    text-align: center;  
+    padding-top: 60px;
+    font-family: 'Gothic A1', sans-serif;  
+}
+
+#info_1 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgb(43, 43, 43);
+}
+
+.bookmark-lists {
+    /* padding-left: 15px; */
+    padding-left: 0px;
+    margin-top: 300px;
+}
+
+.bookmark-list {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-align: left;
+    margin: 5px;
+    width: 150px;
+}
+
+#main_home {
+    font-size: 20px;
+    text-align: right;
+    margin-right: 30px;
+    font-weight: 700;
+}
+
+#login, #gifticon, #commu {
+    font-size: 23px;
+    color: white;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.bookmark:nth-child(1) {
+    margin-bottom: 30px;
+}
+
+.bookmark a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.bookmark {
+    list-style: none;
+    margin: 0; padding: 0;
+}
+
+#main_name {
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 20px;
+    text-align: right;
+    margin-right: 30px;
+    font-weight: 700;
+}
+
+hr {
+    border: 0;
+    height: 1.5px;
+    background: #ccc;
+}
+
+@media screen and (max-width: 667px) {
+    .logo_back {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 0 .8rem
+    }
+}

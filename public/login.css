@@ -1,0 +1,44 @@
+h1 {
+    font-size: 25px;
+    padding-bottom: 10px;
+}
+
+#loginForm {
+    width: 25%;
+    padding: 10px;
+    border: 1px solid rgba(156, 164, 170, 0.42);
+    background-color: #EAECEF;
+    text-align: center;
+    align-items : center;
+    display: table;
+    margin-left: auto; 
+    margin-right: auto;
+    margin-top: 70px;
+    border-radius: 5px;
+}
+
+.input {
+    width: 60%;
+    border: 1px solid rgb(161, 156, 156);
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px;
+    font-size: 13px;
+    line-height: 30px;
+}
+
+#loginButton {
+    cursor: pointer;
+    background-color: rgba(156, 164, 170, 0.42);
+    margin-top: 20px;
+    height: 50px;
+    font-size: 15px;
+}
+
+#signup {
+    color: rgb(81, 81, 81);
+    font-size: 13px;
+    text-decoration: underline;
+    
+}
