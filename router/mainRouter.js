@@ -141,24 +141,29 @@ router.post("/community/submit", function(req,res){ //게시판 글 작성하기
     var purpose = req.body.purpose;
     var date = req.body.date;
     var content = req.body.content; 
-    console.log(date);
 
-    if(date==""){
-        var date = new Date('1111,11,11');
-    }
-
-    if (id&&title&&people&&purpose&&date&&content) {
-
-        db.query('INSERT INTO community (id, title, people, purpose, date, content) VALUES(?,?,?,?,?,?)', [id, title, people, purpose, date, content], function (error, data) {
-            if (error) throw error;
-                res.send(`<script type="text/javascript">alert("글이 등록되었습니다");
-                document.location.href="/main";</script>`);
-            });
-
-    } else {      
-        res.send(`<script type="text/javascript">alert("입력되지 않은 정보가 있습니다."); 
+    if(date == ""){
+        res.send(`<script type="text/javascript">alert("날짜를 정해주세요"); 
         document.location.href="javascript:history.back();";</script>`);
+    }else{
+        if(date=="nodate"){
+            var date = new Date('1111,11,11');
+        }
+        if (id&&title&&people&&purpose&&date&&content) {
+
+            db.query('INSERT INTO community (id, title, people, purpose, date, content) VALUES(?,?,?,?,?,?)', [id, title, people, purpose, date, content], function (error, data) {
+                if (error) throw error;
+                    res.send(`<script type="text/javascript">alert("글이 등록되었습니다");
+                    document.location.href="/main";</script>`);
+                });
+    
+        } else {      
+            res.send(`<script type="text/javascript">alert("입력되지 않은 정보가 있습니다."); 
+            document.location.href="javascript:history.back();";</script>`);
+        }
     }
+
+   
 
     
 })
