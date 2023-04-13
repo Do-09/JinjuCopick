@@ -8,272 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
-    <style>
-        
-        * {
-            margin:0;
-            padding:0;
-            box-sizing: border-box;
-        }
+    
+    <link rel="stylesheet"  type="text/css" href="/public/css/main.css" />
 
-        .area {
-            position: absolute;
-            background: #fff;
-            border: 1px solid #888;
-            border-radius: 3px;
-            font-size: 12px;
-            top: -5px;
-            left: 15px;
-            padding:2px;
-        }
-
-        .info {
-            font-size: 12px;
-            padding: 5px;
-        }
-        .info .title {
-            font-weight: bold;
-        }
-
-        .logo_back {
-            text-align: center;
-            background-color: #B8CEFB;
-            margin: -10px -10px 20px -10px;
-        }
-
-        .main_logo {
-            padding-top: 25px;
-        }
-
-        .side_menu {
-            float: left;
-            padding-left: 50px;
-            padding-top: 35px;
-            transition: .5s;
-        }
-
-        .map_area {
-            text-align: center;
-            width: 900px;
-            height: 600px;
-            margin: auto;
-            margin-bottom: 20px;
-        }
-
-
-
-        /* label {
-            display:flex;
-            align-items: center;
-            position:relative;
-            top:30px;
-            left:30px;
-            transition: .5s;
-        } */
-
-        .material-icons {
-            font-size:3rem;
-            margin:auto;
-        }
-
-        .bookmark-btt{
-            border:none;
-            outline:none;
-            background-color: transparent;
-            font-size: 3rem;
-        }
-        section {
-            background-color: #56789a;
-            color:#fff;
-            width:200px;
-            height: 1200px;
-            padding-top:300px;
-            /* padding-top:300px; */
-            padding-left: 30px;
-            position: absolute;
-            top:0;
-            left: -200px;
-            bottom: 0;
-            transition: 1s ease;
-        }
-        .bookmark-lists a:hover{
-            color: #000000; 
-        }
-
-        .info {   
-            font-size: 12px;
-            color: black;
-            font-weight: bold;
-            text-align: center;
-            position: relative;
-            top: 400px;
-            font-family: 'Gothic A1', sans-serif;
-            
-        }
-
-        #info_1 {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 12px;
-            color: rgb(43, 43, 43);
-        }
-        .bookmark-lists {
-            /* padding-left: 15px; */
-            padding: auto;
-        }
-        #name {
-            margin:5px 70px;
-            font-family: 'Gothic A1', sans-serif;
-            font-size: 16px;
-            text-align: left;
-            width: 80px;
-            font-weight: 500;
-        }
-        .bookmark:nth-child(1) {
-            margin-top: 50px;
-        }
-        .bookmark a {
-            color: #fff;
-            text-decoration: none;           
-        }
-
-        #login {
-            padding: 10px;
-            list-style: none;
-            background-image: url("/public/login2.png");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size:23px;        
-            background-position: 40px;
-        }
-        #gifticon
-        {
-            padding: 10px;
-            list-style: none;
-            background-image: url("/public/gifticon2.png");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size:25px;
-            background-position: 40px;
-        }
-        #commu{
-            padding: 10px;
-            list-style: none;
-            background-image: url("/public/commu.png");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size:23px;
-            background-position: 40px;
-        }
-
-        .question {
-            /* background-color: #EAECEF;
-            width: 900px;
-            height: 200px;
-            text-align: center;
-            position:relative; 
-		    left: 50%;
-		    right:  50%; 
-		    transform: translate(-50%, -50%);
-            top: 100px;
-            margin-bottom: 20px; */
-
-            text-align: center;
-            background-color: #EAECEF;
-            width: 900px;
-            padding-bottom: 40px;
-            margin: auto;
-            margin-bottom: 20px;
-            
-        }
-
-
-        .question .question_text {
-            padding-top: 40px;
-            font-size:25px;
-            color:#6c6c6c;
-            text-align:center;
-            font-weight: bold;
-        }
-        
-		.btn-check {
-			display: none;
-		}
-
-        .btn-label {
-            cursor: pointer;
-            border-style: solid;
-            border-color: #B8CEFB;
-            border-width: 2px;
-			color: black;
-			padding: 5px;
-			border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            margin: 4px 2px; 
-            display: flex;
-            align-items: center;
-            justify-content: center;    
-            
-        }
-        .btn-check:hover + .btn-label{
-            background: #B8CEFB; 
-            border-color: white;
-            color: white;
-        }
-        .btn-check:checked + .btn-label {
-                background-color: #B8CEFB;
-                color:black;
-        }
-        #image1 {
-            height :30px;
-            width:30px;
-            margin-right: 10px;
-            margin-bottom: 3px;;
-        }
-
-
-        /* .question .question_button {
-            margin-top:20px;
-            margin-left: 520px;
-            display:flex;
-            justify-content:center;
-            flex-wrap:wrap;
-            gap:20px;
-            max-width:650px;
-        } */
-        .question .question_button {
-            margin-top:40px;
-            display:flex;
-            justify-content:center;
-            flex-wrap:wrap;
-            gap:20px;
-            max-width:650px;
-            margin: auto;
-            margin-top: 40px;
-        }
-        .form-element {
-            position:relative;
-            width:210px;
-
-        }
-        .material-icons.md-24 { 
-            font-size: 40px; 
-            position: absolute;
-            top:45px;
-        }
-        .list_jinju {
-            font-weight: bold;
-            font-family: 'Gothic A1', sans-serif;
-        }
-
-        hr { 
-            border: 0;
-            height: 1.5px;
-            background: #ccc;
-        }
-        
-</style>
 </head>
 <body>
     
@@ -287,9 +24,9 @@
             </label>
             <section>
                 <ul class="bookmark-lists">
-                    <h5 class="list_jinju">진주커Pick</h5> <hr>
-                    <li class="bookmark" id="login"><a href="login"><div id="name">마이페이지</div></a></li>
-                    <li class="bookmark" id="gifticon"><a href="gifticon_upload"><div id="name">기프티콘</div></a></li>
+                    <li class="bookmark" id="main_home"><a href="/"><div id="main_name">진주커Pick</div></a></li><hr>
+                    <li class="bookmark" id="login"><a href="/login"><div id="name">마이페이지</div></a></li>
+                    <li class="bookmark" id="gifticon"><a href="/gifticon_upload"><div id="name">기프티콘</div></a></li>
                     <li class="bookmark" id="commu"><a href="/community"><div id="name">커뮤니티</div></a></li>
                 
                 </ul>
@@ -298,9 +35,9 @@
                 </div>
             </section>
         </div>
-        <script src="/public/index.js"></script>
-        <div class="main_logo"></div>
-            <img src="/public/static/jinju.textlogo.png" height= "110" alt="로고">
+        <script src="/public/js/index.js"></script>
+        <div class="main_logo"> 
+            <img src="public/static/jinju.textlogo.png" height= "110" alt="로고">
         </div>
     </div>
 
@@ -310,47 +47,42 @@
         <div class="question_button">
             <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn1" >
-                <label class="btn-label" for="btn1"><img src="/public/static/study.png" id="image1"/>스터디</label>	
+                <label class="btn-label" for="btn1"><img src="public/static/study.png" id="image1"/>스터디</label>	
             </div>
             <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn2" >
-                <label class="btn-label" for="btn2"><img src="/public/static/pet2.png" id="image1"/>애견동반</label>
+                <label class="btn-label" for="btn2"><img src="public/static/pet2.png" id="image1"/>애견동반</label>
             </div>
             <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn3" >
-                <label class="btn-label" for="btn3"><img src="/public/static/nokids.png" id="image1"/>노키즈존</label>
+                <label class="btn-label" for="btn3"><img src="public/static/nokids.png" id="image1"/>노키즈존</label>
             </div>
             <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn4" >
-                <label class="btn-label" for="btn4"><img src="/public/static/takeout2.png" id="image1"/>테이크아웃</label>
+                <label class="btn-label" for="btn4"><img src="public/static/takeout2.png" id="image1"/>테이크아웃</label>
             </div>
             <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn5" >
-                <label class="btn-label" for="btn5"><img src="/public/static/24h3.png" id="image1"/>24시</label>
+                <label class="btn-label" for="btn5"><img src="public/static/24h3.png" id="image1"/>24시</label>
             </div>
             <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn6" >
-                <label class="btn-label" for="btn6"><img src="/public/static/meeting3.png" id="image1"/>단체석(6인 이상)</label>
+                <label class="btn-label" for="btn6"><img src="public/static/meeting3.png" id="image1"/>단체석(6인 이상)</label>
             </div>
             <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn7" >
-                <label class="btn-label" for="btn7"><img src="/public/static/franchise2.png" id="image1"/>프랜차이즈</label>
+                <label class="btn-label" for="btn7"><img src="public/static/franchise2.png" id="image1"/>프랜차이즈</label>
             </div>
             <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn8" >
-                <label class="btn-label" for="btn8"><img src="/public/static/parking.png" id="image1"/>주차</label>
+                <label class="btn-label" for="btn8"><img src="public/static/parking.png" id="image1"/>주차</label>
             </div>
         </div>
     </div>
 
 
-
-
-
-
-
     <div class="map_area">
-        <div id="map" style="width:900px;height:600px;"></div>
+        <div id="map"></div>
     </div>
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	9d1355c19666c5197b4f39cb9f886798"></script>

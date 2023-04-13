@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <title>진주커pick</title>
     
-        <link rel="stylesheet"  type="text/css" href="/public/header.css" />
-        <link rel="stylesheet"  type="text/css" href="/public/components/signup.css">
+        <link rel="stylesheet"  type="text/css" href="/public/css/header.css" />
+        <link rel="stylesheet"  type="text/css" href="/public/css/signup.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -35,20 +35,19 @@
                     </div>
                 </section>
             </div>
-            <script src="/public/index.js"></script>
+            <script src="/public/js/index.js"></script>
             <div class="main_logo"> 
                 <img src="/public/static/jinju.textlogo.png" height= "110" alt="로고">
             </div>  
         </div>
 
         <script>
-            src="/public/signup.js"
+            
             function check(){
                 let email = document.getElementById("email").value
                 let password1 = document.getElementById("password1").value
                 let password2 = document.getElementById("password2").value
                 let nickname = document.getElementById("nickname").value
-                let check = true;
 
                 // 이메일 확인
                 if(email.includes("@")){
@@ -56,40 +55,48 @@
                     let emailSBack = email.split("@")[1]
                     if(emailFront === "" || emailSBack === ""){
                         document.getElementById("emailError").innerHTML = "이메일 형식으로 입력해주세요."
-                        return false
+                        return false;
                     } else{
                         document.getElementById("emailError").innerHTML = "&nbsp"
                     }
                 } else{
                     document.getElementById("emailError").innerHTML = "이메일 형식으로 입력해주세요."
-                    return false
+                    return false;
                 }
 
-                // 비밀번호 확인
-                if(password1 !== password2){
-                    document.getElementById("password1Error").innerHTML = "&nbsp"
-                    document.getElementById("password2Error").innerHTML = "비밀번호가 동일하지 않습니다."
-                    return false
-
-                } else{
-                    document.getElementById("password1Error").innerHTML = "&nbsp"
-                    document.getElementById("password2Error").innerHTML = "&nbsp"
-                }
+                // 비밀번호 확인 (영문+숫자+특수문자 8~15자)
+                var pwCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=~])(?=.*[0-9]).{8,15}$/;
                 if(password1 === ""){
                     document.getElementById("password1Error").innerHTML = "비밀번호를 입력해주세요."
-                    check = false
-                    return false
-                } 
-                if(password2 === ""){
-                    document.getElementById("password2Error").innerHTML = "비밀번호를 입력해주세요."
-                    return false
-                } 
-
-                // 닉네임 확인
+                    return false;
+                } else if((password1.length < 8) || (password1.length > 15)) {
+                    document.getElementById("password1Error").innerHTML = "영문, 숫자, 특수문자를 포함하여 8~15자로 입력해주세요."
+                    return false;
+                } else if(!pwCheck.test(password1)) {
+                    document.getElementById("password1Error").innerHTML = "영문, 숫자, 특수문자를 포함하여 8~15자로 입력해주세요."
+                    return false;
+                } else {
+                    if (password2 === ""){
+                        document.getElementById("password1Error").innerHTML = "&nbsp"
+                        document.getElementById("password2Error").innerHTML = "비밀번호를 입력해주세요."
+                        return false;
+                    } else if (password1 !== password2){
+                        document.getElementById("password1Error").innerHTML = "&nbsp"
+                        document.getElementById("password2Error").innerHTML = "비밀번호가 일치하지 않습니다."
+                        return false;
+                    } else {
+                        document.getElementById("password2Error").innerHTML = "&nbsp"
+                    }
+                }
+                
+                // 닉네임 확인 (2~8자)
                 if(nickname === ""){
                     document.getElementById("nicknameError").innerHTML = "닉네임을 입력해주세요."
-                    return false
-                } else{
+                    return false;
+                } else if((nickname.length < 2) || (nickname.length > 8)) {
+                    document.getElementById("nicknameError").innerHTML = "2~8자로 입력해주세요."
+                    return false;
+                } else {
                     document.getElementById("nicknameError").innerHTML = "&nbsp"
                 }
 
@@ -97,7 +104,7 @@
             
         </script>
 
-        <form onsubmit="return check()" action="/signup/result" method="post">
+        <form onsubmit="return check()" action="/signup/submit" method="post">
             <div class="container">
                 <div class="title">
                     <h1><strong>회원가입</strong></h1>
