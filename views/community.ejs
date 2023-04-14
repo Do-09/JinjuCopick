@@ -74,7 +74,7 @@
 
                 <div class="detail_1">
                     <label class="people">인원</label>
-                    <input type="number" min="1" step="1" placeholder="인원" id="people_num" name="people">
+                    <input type="number" min="1" step="1" placeholder="인원" id="people_num" name="people" required="required">
                 </div>
                       
                 <div class="detail_2">
@@ -98,7 +98,7 @@
                     <div class="nodate_pick">
                         <input type="checkbox" 
                             id="no_date" 
-                            value="nodate"
+                            value=""
                             name="date"
                             onchange="toggleCalendar()" />
                         <label for="no_date">미정</label>
@@ -106,11 +106,10 @@
                     
                 </div>
             </div>
-            
-                <textarea class="form-control" id="content" rows="8" placeholder="내용" name="content"></textarea>
-            
+                <textarea class="form-control" id="content" rows="8" placeholder="내용" name="content" required="required"></textarea>
+                <span id="error_message" style="display: none; margin:-30px 0px 0px 10px;color:red">모든 값을 양식에 맞춰 입력하세요.</span>
             <div class="final_bt">
-                <input type="submit" class="save" value="등록">
+                <input type="submit" class="save" value="등록" id="submit_button">
                 <input type="reset" class="reset" value="취소" href="#" onclick="alert('취소')">      
             </div>
         </form>
