@@ -136,15 +136,93 @@ router.get("/community", function(req,res){ //커뮤니티 게시판 목록 화�
     }
 })
 
+// router.get("/community", function (req, res) {
+//     res.redirect('/community/' + 1)
+// });
+
+// router.get("/community/:cur", function (req, res) {
+
+//     //페이지당 게시물 수 : 한 페이지 당 10개 게시물
+//     var page_size = 10;
+//     //limit 변수
+//     var no = "";
+//     //전체 게시물의 숫자
+//     var totalPageCount = 0;
+
+//     db.query('select count(*) as cnt from community', function (error2, data) {
+
+//         //전체 게시물의 숫자
+//         totalPageCount = data[0].cnt
+
+//         //현재 페이지 
+//         var curPage = req.params.cur;
+
+//         //전체 페이지 갯수
+//         if (totalPageCount < 0) {
+//             totalPageCount = 0
+//         }
+
+//         //현재페이지가 0 보다 작으면
+//         if (curPage == 1) {
+//             no = 0
+//         } else {
+//             //0보다 크면 limit 함수에 들어갈 첫번째 인자 값 구하기
+//             no = (curPage - 1) * 10
+//         }
+
+//         var result2 = {
+//             "curPage": curPage,
+//             "page_size": page_size,
+//             "totalPageCount": totalPageCount,
+//         };
+
+//         if(authCheck.isOwner(req,res)){
+//                     db.query('select * from community order by writeTime desc limit ?,?',[no, page_size], function(err, result){ 
+//                         res.render('communityList',{data:result, community:result2})
+//                         return false;
+//                     });
+//                 } else{
+//                     res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+//                             document.location.href="/login";</script>`);
+//                 }
+
+//         // fs.readFile('list.html', 'utf-8', function (error, data) {
+
+
+//         //     var queryString = 'select * from products order by id desc limit ?,?';
+//         //     getConnection().query(queryString, [no, page_size], function (error, result) {
+//         //         if (error) {
+//         //             console.log("페이징 에러" + error);
+//         //             return
+//         //         }
+                    
+//         //         res.send(ejs.render(data, {
+//         //             data: result,
+//         //             pasing: result2
+//         //         }));
+//         //     });
+//         // }); 
+
+ 
+
+//     })
+
+// })
+
     
 router.get("/community/:nickname/:writeTime", function(req,res){ //커뮤니티 게시판 상세보기 화면
-    
+    var email = req.session.email;
+
     if(authCheck.isOwner(req,res)){
         db.query('select * from community where nickname = ? and writeTime = ?',[req.params.nickname,req.params.writeTime], function(err, result){ 
-            var re = result[0].content;
-            console.log(re);
-            res.render('communityRead',{data:result})
-            return false;   
+            if(email == result[0].email){
+                var result2 = {"edit":"1"};
+                res.render('communityRead',{data:result, data1:result2})
+            }else{
+                var result2 = {"edit":"0"};
+                res.render('communityRead',{data:result, data1:result2})
+                return false; 
+            }
         });
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
@@ -172,9 +250,9 @@ router.post("/community/write/submit", function(req,res){ //게시판 글 작성
     var content = req.body.content; 
     var writeTime = new Date();
       
-    if(date==""){ //date가 미정일 경우 '1111-11-11' 날짜 형식으로
-        date = '1111-11-11';
-    }
+    // if(date==""){ //date가 미정일 경우 '1111-11-11' 날짜 형식으로
+    //     date = '1111-11-11';
+    // }
 
     var nickname;    
     if (email&&title&&people&&purpose&&content&&date) {

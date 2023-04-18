@@ -22,8 +22,8 @@
 
     <title>커뮤니티</title>
 
-    <link rel="stylesheet"  type="text/css" href="/public/css/community.css" />
-    <link rel="stylesheet"  type="text/css" href="/public/css/header.css" />
+    <link rel="stylesheet"  type="text/css" href="/public\css\community.css" />
+    <link rel="stylesheet"  type="text/css" href="/public\css\header.css" />
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -41,12 +41,12 @@
             <label> <span class="material-symbols-outlined" id="menu">menu</span>
                 <input type="button" value="" class="bookmark-btt" style="background-color: pink";>
             </label>
-            <section>
+            <section class="side_section">
                 <ul class="bookmark-lists">
-                    <li class="bookmark" id="main_home"><a href="main.html"><div id="main_name">진주커Pick</div></a></li><hr>
-                    <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="https://www.naver.com/">로그인</span></a></li>
-                    <li class="material-symbols-outlined" id="gifticon">barcode<span id="name"><a href="#">기프티콘</span></a></li>
-                    <li class="material-symbols-outlined" id="commu">chat<span id="name"><a href="community.html">커뮤니티</span></a></li>
+                    <li class="bookmark" id="main_home"><a href="/"><div id="main_name">진주커Pick</div></a></li><hr>
+                    <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/login">로그인</span></a></li>
+                    <li class="material-symbols-outlined" id="gifticon">barcode<span id="name"><a href="/gifticon_upload">기프티콘</span></a></li>
+                    <li class="material-symbols-outlined" id="commu">chat<span id="name"><a href="/community">커뮤니티</span></a></li>
         
                 </ul>
                 <div class="info"><hr>경상국립대학교 얼죽아
@@ -54,9 +54,9 @@
                 </div>
             </section>
         </div>
-        <script src="/public/js/index.js"></script>
+        <script src="/public\js\index.js"></script>
         <div class="main_logo"> 
-            <img src="/public/static/jinju.textlogo.png" height= "110" alt="로고">
+            <img src="/public\static/jinju.textlogo.png" height= "110" alt="로고">
         </div>  
     </div>
 
@@ -98,7 +98,7 @@
                     <div class="nodate_pick">
                         <input type="checkbox" 
                             id="no_date" 
-                            value=""
+                            value="미정"
                             name="date"
                             onchange="toggleCalendar()" />
                         <label for="no_date">미정</label>
@@ -109,14 +109,15 @@
 
                 <textarea class="form-control" id="content" rows="8" placeholder="내용" name="content" required="required"></textarea>
                 <div id="error_message" style="display: none; margin:-30px 0px 0px 10px;color:red">모든 값을 양식에 맞춰 입력하세요.</div>
-            <div class="final_bt">
-                <input type="submit" class="save" value="등록" id="submit_button">
-                <input type="reset" class="reset" value="취소" href="#" onclick="alert('취소')">      
-            </div>
+                <div class="final_bt">
+                    <input type="submit" class="save" value="등록" id="submit_button">
+                    <!-- <input type="reset" class="reset" value="취소" href="/community" onclick="alert('취소')">       -->
+                    <a href="/community" class="reset">취소</a>
+                </div>
         </form>
         </div>
     </div>
 
-    <script src="/public/js/community.js"></script>
+    <script src="/public\js\community.js"></script>
 </body>
 </html>

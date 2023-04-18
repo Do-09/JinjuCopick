@@ -64,7 +64,9 @@
                     <th class="write_date">만남 날짜</th>
                     <th class="write_purpose">목적</th>
                 </tr>
-              
+
+
+                
                 <% for(let i =0; i<data.length;i++){%>
                     <% var list = data[i] %>  
                     <% var index = i + 1 %> 
@@ -80,11 +82,7 @@
                         <%= list.nickname %>
                     </td>
                     <td class="date" name="date">
-                        <% if(list.date === '1111-11-11') { %>
-                            미정
-                        <% } else { %>
                             <%= list.date %>
-                        <% } %>
                     </td>
                     <td class="purpose" name="purpose">
                         <% if(list.purpose === 'study') { %>

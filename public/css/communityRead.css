@@ -1,0 +1,216 @@
+.container{ 
+    padding: 50px;    
+    font-family: 'Nanum Gothic', sans-serif;
+}
+/* .write_box {
+    width: 100%;
+    padding: 50px 50px;
+    background-color: #EAECEF; 
+    border: solid 1px gray;
+    border-radius: 10px;
+} */
+.title_box {
+    background-color: rgb(234, 236, 239, 0.7);
+    padding: 10px 10px;
+    border-radius: 35px;
+    margin-top: -10px; 
+}
+
+.title_data{
+    margin: 15px;  
+}
+
+/* .change_bt { 
+    padding: 12px 10px;
+    width: 60px;
+    font-size: 15px;  
+    margin-left: 10px;
+    margin-top: -10px; 
+    background-color: rgba(184, 206, 251);
+    color: black;
+    border: none;
+    border-radius: 10px; 
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+} */
+
+.bt_group{    
+    float: right;
+}
+.change_bt,
+.del_bt, 
+.list_bt { 
+    padding: 8px;
+    width: 50px;
+    font-size: 13px;  
+    margin-left: 10px; 
+    background-color: rgba(184, 206, 251);
+    color: black;
+    border: none;
+    border-radius: 10px;  
+}
+.change_bt:hover,
+.del_bt:hover,
+.list_bt:hover {  
+    background-color: rgb(104, 152, 247);
+    color: black;
+    border: none;
+    border-radius: 10px; 
+}
+  
+.detail_box { 
+    padding: 10px 0px 0px 0px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.detail1, 
+.detail2, 
+.detail3 { 
+    width: 150px;
+    margin-left: 10px;
+    margin-right: 30px;
+}
+.people_box,
+.purpose_box,
+.date_box {
+    background-color: rgba(184, 206, 251, 0.4);
+    padding: 0px 10px; 
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: lighter;
+}
+.people_data,
+.purpose_data,
+.date_data { 
+    margin: 15px;
+    vertical-align: middle;
+}
+
+.detail4{
+    float: right;  
+}
+.nickname_data{ 
+    width: 200px;
+    margin-right: 10px;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: right;  
+}
+.writedate{
+    padding: 0px 10px; 
+    vertical-align: middle;
+    display: inline-block;  
+    color: rgb(102, 102, 102);
+}
+
+#detail_hr {
+    border: none;
+    height: 1.5px;
+    background: #b5b5b5;
+}
+
+.content_box {
+    background-color: rgb(234, 236, 239, 0.7);
+    height: 250px;
+    padding: 25px 10px;
+    border-radius: 35px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.content_data{
+    margin: 0px 15px; 
+    word-wrap: break-word;    
+}
+
+#center_hr {
+    border: none;
+    height: 1.5px;
+    background: #b5b5b5;
+    margin: 80px 0px 40px 0px;
+}
+
+.under_box {
+    width: 100%;
+    padding: 50px 50px;
+    background-color: #EAECEF;
+    margin-top: 50px;
+    margin-top: 20px;
+    border: solid 1px gray;
+    border-radius: 10px;
+}
+
+.comment_title { 
+    text-align: center;
+    margin: -30px 0px 30px 0px;
+    font-size: 20px; 
+}
+.comment_box {
+    background-color: white;
+    padding: 10px 10px;
+    border-radius: 12px; 
+    margin-top: -10px;
+}
+.comment_nickname{ 
+    margin: 0px 15px;
+    font-size: 13px;
+}
+.comment_date { 
+    font-size: 12px;
+    color: gray; 
+    vertical-align: middle;
+}
+.comment_data{
+    padding: 10px 0px;
+    margin: 0px 15px; 
+    word-wrap: break-word;  
+    font-size: 15px;  
+}
+.comment_delete_bt { 
+    padding: 5px 0px;
+    width: 40px;
+    font-size: 13px; 
+    margin: 10px 15px 0px; 
+    background-color: rgba(184, 206, 251);
+    color: black;
+    border: none;
+    border-radius: 10px; 
+}
+.comment_delete_bt:hover {  
+    background-color: rgb(104, 152, 247);
+    color: black;
+    border: none;
+    border-radius: 10px; 
+}
+
+.comment_plus {
+    background-color: white;
+    width: 930px;
+    padding: 10px 10px;
+    border-radius: 12px; 
+    border-width: 0px;
+    margin-top: 100px;
+    display: inline-block;  
+}
+
+.plus_bt { 
+    padding: 12px 10px;
+    width: 60px;
+    font-size: 15px;  
+    margin-left: 10px; 
+    background-color: rgba(184, 206, 251);
+    color: black;
+    border: none;
+    border-radius: 10px; 
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 100px;
+}
+.plus_bt:hover {  
+    background-color: rgb(104, 152, 247);
+    color: black;
+    border: none;
+    border-radius: 10px; 
+}

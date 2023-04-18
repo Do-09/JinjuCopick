@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>진주커pick</title>
+    <link rel="stylesheet"  type="text/css" href="/public\css\header.css" />
+    <link rel="stylesheet" type="text/css" href="/public\css\main.css"/>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     
-    <link rel="stylesheet"  type="text/css" href="/public/css/main.css" />
-
 </head>
 <body>
-    
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
     <div class="logo_back">
         <div class="side_menu">
-            <label> <span class="material-icons md-24">menu</span>
+            <label> <span class="material-symbols-outlined" id="menu">menu</span>
                 <input type="button" value="" class="bookmark-btt" style="background-color: pink";>
             </label>
-            <section>
+            <section class="side_section">
                 <ul class="bookmark-lists">
                     <li class="bookmark" id="main_home"><a href="/"><div id="main_name">진주커Pick</div></a></li><hr>
-                    <li class="bookmark" id="login"><a href="/login"><div id="name">로그인</div></a></li>
-                    <li class="bookmark" id="gifticon"><a href="/gifticon_upload"><div id="name">기프티콘</div></a></li>
-                    <li class="bookmark" id="commu"><a href="/community"><div id="name">커뮤니티</div></a></li>
-                
+                    <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/login">로그인</span></a></li>
+                    <li class="material-symbols-outlined" id="gifticon">barcode<span id="name"><a href="/gifticon_upload">기프티콘</span></a></li>
+                    <li class="material-symbols-outlined" id="commu">chat<span id="name"><a href="/community">커뮤니티</span></a></li>
+        
                 </ul>
                 <div class="info"><hr>경상국립대학교 얼죽아
                     <div id="info_1">수학과&emsp;&emsp;&emsp;&emsp;강수연<br>정보통계학과&emsp;정인영<br>정보통계학과&emsp;정혜주<br>컴퓨터과학과&emsp;서혜원<br>컴퓨터과학과&emsp;이도현<hr></div>
                 </div>
             </section>
         </div>
-        <script src="/public/js/index.js"></script>
+        <script src="public\js\index.js"></script>
         <div class="main_logo"> 
-            <img src="public/static/jinju.textlogo.png" height= "110" alt="로고">
-        </div>
+            <img src="/public\static/jinju.textlogo.png" height= "110" alt="로고">
+        </div>  
     </div>
+
 
     <div class="question">
         <!-- <h2 class="question_text">원하는 키워드를 선택하세요.</h2> -->

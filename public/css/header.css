@@ -33,7 +33,21 @@ body {
     font-size: 3rem;
 }
 
-section {
+/* section {
+    background-color: #56789a;
+    color: #fff;
+    width: 200px; 
+    height: 100vh;
+    padding-left: 30px;
+    position: fixed;
+    top: 0;
+    left: -200px;
+    bottom: 0;
+    transition: 1s ease;
+    z-index: 9999;
+} */
+
+.side_section {
     background-color: #56789a;
     color: #fff;
     width: 200px; 

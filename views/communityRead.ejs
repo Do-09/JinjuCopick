@@ -22,8 +22,8 @@
 
     <title>커뮤니티</title>
 
-    <link rel="stylesheet"  type="text/css" href="/public/css/community.css" />
-    <link rel="stylesheet"  type="text/css" href="/public/css/header.css" />
+    <link rel="stylesheet"  type="text/css" href="/public\css\communityRead.css" />
+    <link rel="stylesheet"  type="text/css" href="/public\css\header.css" />
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -41,12 +41,12 @@
             <label> <span class="material-symbols-outlined" id="menu">menu</span>
                 <input type="button" value="" class="bookmark-btt" style="background-color: pink";>
             </label>
-            <section>
+            <section class="side_section">
                 <ul class="bookmark-lists">
-                    <li class="bookmark" id="main_home"><a href="main.html"><div id="main_name">진주커Pick</div></a></li><hr>
-                    <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="https://www.naver.com/">로그인</span></a></li>
-                    <li class="material-symbols-outlined" id="gifticon">barcode<span id="name"><a href="#">기프티콘</span></a></li>
-                    <li class="material-symbols-outlined" id="commu">chat<span id="name"><a href="community.html">커뮤니티</span></a></li>
+                    <li class="bookmark" id="main_home"><a href="/"><div id="main_name">진주커Pick</div></a></li><hr>
+                    <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/login">로그인</span></a></li>
+                    <li class="material-symbols-outlined" id="gifticon">barcode<span id="name"><a href="/gifticon_upload">기프티콘</span></a></li>
+                    <li class="material-symbols-outlined" id="commu">chat<span id="name"><a href="/community">커뮤니티</span></a></li>
         
                 </ul>
                 <div class="info"><hr>경상국립대학교 얼죽아
@@ -54,65 +54,104 @@
                 </div>
             </section>
         </div>
-        <script src="/public/js/index.js"></script>
+        <script src="/public\js\index.js"></script>
         <div class="main_logo"> 
-            <img src="/public/static/jinju.textlogo.png" height= "110" alt="로고">
-        </div>  
+            <img src="/public\static/jinju.textlogo.png" height= "110" alt="로고">
+        </div> 
     </div>
 
-    <div class="community">
+    <!-- <div class="community">
         <i class="material-symbols-outlined" id="commu_icon">chat</i>
         커뮤니티
-    </div>
+    </div> -->
 
-        <% var list = data[0] %>
-        <!-- <%= list.nickname %> -->
 
+
+    <% var list = data[0] %>
     <div class="container">
-        <div class="posting-box">
-                <div class="form-control" maxlength="50" pattern=".{1,50}">
+        <div class="write_box">
+            <div class="title_box">
+                <span class="title_data">
                     <%= list.title %>
-                </div>
+                </span>
+            </div>
+            <!-- <input input type="submit" class="change_bt" value="수정" id="change_bt" style="display: none"> -->
 
-                <div class="details">
-
-                <div class="detail_1">
-                    <label class="people">인원</label>
-                    <%= list.people %>
-                </div>
-                      
-                <div class="detail_2">
-                    <label class="purpose" for="purpose_list">목적</label>
-                    <% if(list.purpose === 'study') { %>
-                        스터디
-                    <% } else if (list.purpose === 'friendship') { %>
-                        친목
-                    <% } else if (list.purpose === 'else'){ %>
-                        기타
-                    <% } %>
-                </div>
-                
-                <div class="detail_3">
-                    <label class="date">날짜</label> 
-                    <% if(list.date === '1111-11-11 00:00:00.000') { %>
-                        미정
-                    <% } else { %>
+            <div class="detail_box">
+                <span class="detail1">
+                    <span class="people_box">인원</span>
+                    <span class="people_data"><%= list.people %></span>
+                </span>
+                <span class="detail2">
+                    <span class="purpose_box">목적</span>
+                    <span class="purpose_data">
+                        <% if(list.purpose === 'study') { %>
+                            스터디
+                        <% } else if (list.purpose === 'friendship') { %>
+                            친목
+                        <% } else if (list.purpose === 'else'){ %>
+                            기타
+                        <% } %>
+                    </span>
+                </span>
+                <span class="detail3">
+                    <span class="date_box">만남 날짜</span>
+                    <span class="date_data">
                         <%= list.date %>
-                    <% } %>
-                    </div> 
-                    
-                </div>
+                    </span>
+                </span>
+                <span class="detail4"> 
+                    <span class="nickname_data"><%= list.nickname %></span>
+                    <span class="writedate"><%=  list.writeTime.substring(0, 10)%></span>
+                </span>
             </div>
-                <%= list.content %>
-                
-                <div id="error_message" style="display: none; margin:-30px 0px 0px 10px;color:red">모든 값을 양식에 맞춰 입력하세요.</div>
-            <div class="final_bt">
-                <input type="submit" class="save" value="등록" id="submit_button">
-                <input type="reset" class="reset" value="취소" href="#" onclick="alert('취소')">      
+            <hr id="detail_hr">
+            <div class="content_box">
+                <div class="content_data" style="white-space:pre-line;"><%= list.content %></div>
             </div>
-        </div>
-    </div> 
 
-    <script src="/public/js/community.js"></script>
+            <span class="bt_group">               
+                <% var edit = data1.edit %>
+                <%if(edit == '1'){%>
+                    <span><a href="/community/write"><button class="change_bt">수정</button></a></span>
+                <%}%>
+                <% var edit = data1.edit %>
+                <%if(edit == '1'){%>
+                    <span><a href="/community"><button class="del_bt" onclick="deleteData()">삭제</button></a></span>
+                <%}%>              
+                <span><a href="/community"><button class="list_bt">목록</button></a></span>
+            </span>
+
+
+        </div>
+
+        <hr id="center_hr">
+        
+        <div class="under_box">
+            <div class="comment_title">WITH&ensp;JINJUCOPICK</div>
+            <div class="comment_box">
+                <span class="comment_nickname">닉네임</span>
+                <span class="comment_date">댓글 작성 날짜</span>
+                <div class="comment_data">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세 </div>
+                <span><button class="comment_delete_bt">삭제</button></span>
+            </div>
+
+            
+
+            <!-- <form name="plus_comment" method="post">
+                <textarea class="comment_plus" id="comment" rows="1" placeholder="" name="comment"></textarea>
+                <input type="submit" class="plus_bt" value="댓글" id="plus_bt">
+            </form> -->
+            <form name="plus_comment" method="post">
+                <input type="text" class="comment_plus" id="comment" name="comment"></textarea>
+                <button onclick="plus_comment()" class="plus_bt" id="plus_bt">댓글</button>
+            </form>
+  
+        </div>
+    </div>
+    
+    <script src="/public\js\communityRead.js"></script>
+
+ 
 </body>
 </html>

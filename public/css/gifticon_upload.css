@@ -9,12 +9,17 @@
   }
 
 html,body {margin:0;padding:0;border:0;vertical-align:baseline}
-body{font-size:1rem;font-family:'NanumBarunpen';line-height:1;color:#212529;background-color:#fff}
-body{display:flex;flex-direction:column;min-height:100vh;-ms-overflow-style:none}
+body{
+    font-size:1rem;
+    font-family:'NanumBarunpen';
+    line-height:1;color:#212529;
+    background-color:#fff;
+    display:flex;flex-direction:column;
+    min-height:100vh;
+    -ms-overflow-style:none;}
 body::-webkit-scrollbar{display:none}
 
 .wrapper {
-  position: relative;
   width: 100%;
 }
 
@@ -29,11 +34,13 @@ body::-webkit-scrollbar{display:none}
 }
 
 article {
-    margin-top: 5px;
+    margin: 5px;
+    padding: 10px;
+    background-color: #EAECEF;
     width: 100%;
 }
 
-.ch_all2, .del_btn {
+.check_section, .del_btn {
     display: inline-block;
 }
 
