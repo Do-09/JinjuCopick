@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const db = require('../model/db');
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs')
 
 var authCheck = require('../public/js/authCheck.js');
 
@@ -116,12 +119,57 @@ router.get("/main", function(req,res){ //메인화면(로그인 후)
 
 router.get("/gifticon_upload", function(req,res){ //기프티콘 업로드 화면
     if(authCheck.isOwner(req,res)){
-        res.render('gifticon_upload')
+        var email = req.session.email;
+        db.query('select * from gifticon where email = ?',[email], function(err, result){ 
+            if (result.length > 0) {
+                res.render('gifticon_upload',{data:result})
+            } else{
+                var result1 = {"email":email};
+                res.render('gifticon_upload',{data:result1})
+            }
+        });
         return false;
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
                 document.location.href="/login";</script>`);
     }
+})
+
+try {
+    fs.readdirSync('public/uploads');
+} catch (err) {
+    console.log('폴더 생성');
+    fs.mkdirSync('public/uploads');
+}
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination(req, file, done) {
+            done(null, `public/uploads`);
+        },
+        filename(req, file, done) {
+            const ext = path.extname(file.originalname);
+            done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+        },
+    }),
+    // 용량 제한
+    limits: { fieldSize: 5 * 1024 * 1024 },
+});
+
+router.post("/gifticon_upload/submit", upload.single('gifticonImg'),(req,res,next)=>{ //기프티콘 사진 업로드
+    var email = req.session.email;
+    var cafeName = req.body.cafeName;
+    var expirationDate = req.body.expirationDate;
+    var gifticonImg = `/public/uploads/${req.file.filename}`;
+    console.log(req.file);
+    console.log(email, cafeName, expirationDate, gifticonImg);
+    
+    db.query('INSERT INTO gifticon (email, name, date, gifticon) VALUES(?,?,?,?)', [email, cafeName, expirationDate,
+        gifticonImg], function (error, data) {
+        if (error) throw error;
+            res.redirect("/gifticon_upload");
+        });
+
 })
 
 router.get("/community", function(req,res){ //커뮤니티 게시판 목록 화면

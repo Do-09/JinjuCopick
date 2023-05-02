@@ -40,7 +40,7 @@ document.getElementById('myForm').onsubmit = function(){
     div.appendChild(newImage);
   
     // 폼에서 기존 파일 이름 지우기
-    document.getElementById('gifticonImg').value = null; 
+    // document.getElementById('gifticonImg').value = null; 
   
     // div에 카페명과 유효기간 출력
     var newText = document.createElement("div");
@@ -48,8 +48,8 @@ document.getElementById('myForm').onsubmit = function(){
     div.appendChild(newText);
   
     // input에 쓰여있던 모든 데이터 초기화
-    this.cafeName.value = ""
-    this.expirationDate.value = ""
+    // this.cafeName.value = ""
+    // this.expirationDate.value = ""
     document.getElementById('fileName').textContent = "\u00A0";
     
     // 전체 체크
@@ -81,7 +81,7 @@ document.getElementById('myForm').onsubmit = function(){
         }
     }
   
-    return false;
+    return true;
 }
 
 document.getElementById('gifticonImg').onchange = function(){

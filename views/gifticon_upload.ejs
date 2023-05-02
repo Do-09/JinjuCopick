@@ -43,7 +43,7 @@
         </div>
 
         <section class="upload_section">
-            <form id="myForm" method="post">
+            <form action="/gifticon_upload/submit" id="myForm" method="post" enctype="multipart/form-data">
                 <div class="fileInput">
                     <label for="gifticonImg" id="gifticonImgLabel">사진 불러오기</label>
                     <span>FILE NAME: </span><span id="fileName">&nbsp;</span>
@@ -72,9 +72,14 @@
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
                 <div class="gifticon_lists" id="gifticon_lists">
+                    <% for(let i = 0; i<data.length;i++){%>
+                        <% var image = data[i] %>  
+                        <img src="<%= image.gifticon %>" width="100" height="150">
+                        <div>카페명 : <%= image.name %><br>유효기간 : <%=image.date%></div>
+                    <%}%>
                 </div>
             </article>
-
+            
         </section>
         <script src="/public/js/gifticon_upload.js"></script>
     </body>
