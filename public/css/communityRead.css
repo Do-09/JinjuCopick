@@ -37,6 +37,8 @@
 
 .bt_group{    
     float: right;
+    display: flex;
+    justify-content: flex-start;
 }
 .change_bt,
 .del_bt, 
@@ -152,6 +154,7 @@
     padding: 10px 10px;
     border-radius: 12px; 
     margin-top: -10px;
+    margin-bottom: 30px;
 }
 .comment_nickname{ 
     margin: 0px 15px;
@@ -172,7 +175,7 @@
     padding: 5px 0px;
     width: 40px;
     font-size: 13px; 
-    margin: 10px 15px 0px; 
+    margin: 5px 13px 0px; 
     background-color: rgba(184, 206, 251);
     color: black;
     border: none;
@@ -191,12 +194,13 @@
     padding: 10px 10px;
     border-radius: 12px; 
     border-width: 0px;
-    margin-top: 100px;
-    display: inline-block;  
+    margin-top: 50px;
+    display: inline-block;
+    font-size: 15px; 
 }
 
 .plus_bt { 
-    padding: 12px 10px;
+    padding: 11px 10px;
     width: 60px;
     font-size: 15px;  
     margin-left: 10px; 
@@ -206,11 +210,19 @@
     border-radius: 10px; 
     display: inline-block;
     vertical-align: top;
-    margin-top: 100px;
+    margin-top: 50px; 
 }
 .plus_bt:hover {  
     background-color: rgb(104, 152, 247);
     color: black;
     border: none;
     border-radius: 10px; 
+}
+
+#no_list {
+    padding: 20px 0px 0px;  
+    text-align: center;
+    font-size: medium;
+    background-color: rgba(234, 236, 239, 0.5);
+
 }

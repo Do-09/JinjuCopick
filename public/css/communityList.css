@@ -116,3 +116,44 @@ body::-webkit-scrollbar{display:none}
     text-align: center;
     margin-bottom: 20px;
 }
+
+#to_write {
+    background-color: pink;
+}
+
+
+.content_list:hover {
+    background-color: rgba(184, 206, 251, 0.3);
+    cursor: pointer;
+}
+
+.past-date {
+    color: rgb(159, 159, 159);
+    background-color: rgba(234, 236, 239, 0.6);
+  }
+
+
+@media screen and (max-width: 667px) {
+    .wrap {
+        flex-direction: column;
+        align-items: flex-start; 
+        padding: 0 1rem;
+        width: 40rem;
+    }
+}
+
+@media screen and (max-width: 667px) {
+ 
+  .board_list col:nth-child(2)   {
+    width: 30%;
+  }
+ 
+  .board_list {
+    flex-direction: column;
+    align-items: flex-start;  
+    width: 600px;
+  }
+}
+
+
+ 

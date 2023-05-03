@@ -117,6 +117,23 @@ router.get("/main", function(req,res){ //메인화면(로그인 후)
     res.render('afterLogin') //메인화면 연결(로그인 후)
 })
 
+router.get("/mypage", function(req,res){ //마이페이지
+    if(authCheck.isOwner(req,res)){
+        var email = req.session.email;
+        db.query('select * from information where email = ?',[email], function(err, result){ 
+            if (result.length > 0) {
+                res.render('mypage',{data:result})
+            } else{
+                res.redirect('/');
+            }
+        });
+        return false;
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
+})
+
 router.get("/gifticon_upload", function(req,res){ //기프티콘 업로드 화면
     if(authCheck.isOwner(req,res)){
         var email = req.session.email;
@@ -257,26 +274,38 @@ router.get("/community", function(req,res){ //커뮤니티 게시판 목록 화�
 
 // })
 
-    
-router.get("/community/:nickname/:writeTime", function(req,res){ //커뮤니티 게시판 상세보기 화면
+
+
+router.get("/community/:nickname/:writeTime/:num", function(req,res){ //커뮤니티 게시판 상세보기 화면
     var email = req.session.email;
 
     if(authCheck.isOwner(req,res)){
-        db.query('select * from community where nickname = ? and writeTime = ?',[req.params.nickname,req.params.writeTime], function(err, result){ 
-            if(email == result[0].email){
+        db.query('select * from community where nickname = ? and writeTime = ? and num = ?',[req.params.nickname,req.params.writeTime,req.params.num], function(err, result){ 
+            db.query('select * from information where email = ?',[email],function (error, results) { //로그인된 이메일 확인 
+                var nick = results[0].nickname; //닉네임 찾기
+                var nickname = {"nick":nick}
+            if(email == result[0].email){ 
                 var result2 = {"edit":"1"};
-                res.render('communityRead',{data:result, data1:result2})
+                db.query('select * from comment where num = ?', [req.params.num], function(err, comm) { 
+                    res.render('communityRead',{data:result, data1:result2, comm:comm, nickname:nickname})  
+                });
             }else{
                 var result2 = {"edit":"0"};
-                res.render('communityRead',{data:result, data1:result2})
+                db.query('select * from comment where num = ?', [req.params.num], function(err, comm) { 
+                    res.render('communityRead',{data:result, data1:result2, comm:comm, nickname:nickname})   
+                });
                 return false; 
             }
+        })
         });
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
                 document.location.href="/login";</script>`);
     }
+
 })
+
+
 
 
 router.get("/community/write", function(req,res){ //커뮤니티 게시판 작성 화면
@@ -297,7 +326,7 @@ router.post("/community/write/submit", function(req,res){ //게시판 글 작성
     var date = req.body.date;
     var content = req.body.content; 
     var writeTime = new Date();
-      
+       
     // if(date==""){ //date가 미정일 경우 '1111-11-11' 날짜 형식으로
     //     date = '1111-11-11';
     // }
@@ -316,5 +345,100 @@ router.post("/community/write/submit", function(req,res){ //게시판 글 작성
         
     } 
 })
+
+router.get("/community/:nickname/:writeTime/:num/modify", function(req,res){ //커뮤니티 글 수정 화면
+    var email = req.session.email;
+
+    if(authCheck.isOwner(req,res)){
+        db.query('select * from community where nickname = ? and writeTime = ? and num = ?',[req.params.nickname,req.params.writeTime,req.params.num], function(err, result){ 
+            if(email == result[0].email){
+                var result2 = {"edit":"1"};
+                res.render('communityModify',{data:result, data1:result2})
+            }else{
+                var result2 = {"edit":"0"};
+                res.render('communityModify',{data:result, data1:result2})
+                return false; 
+            }
+        });
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
+    
+})
+
+router.post("/community/modify/submit", function(req, res) { //게시판 글 수정
+    var email = req.session.email; // 로그인된 세션에서 이메일 정보 불러오기  
+    var title = req.body.title;
+    var people = req.body.people;
+    var purpose = req.body.purpose;
+    var date = req.body.date;
+    var content = req.body.content;
+
+    if (email&&title&&people&&purpose&&content&&date) {
+        db.query('select * from community where num = ?',[req.body.num], function (err, result) {
+            
+          db.query('UPDATE community SET title=?, people=?, purpose=?, date=?, content=? WHERE num=?', [title, people, purpose, date, content, req.body.num], function (error, data) {
+          if (error) throw error;
+              res.send(`<script type="text/javascript">alert("수정이 완료되었습니다.");
+              document.location.href="/community";</script>`);
+          });
+      });
+    }
+  })
+
+ 
+
+  router.post("/community/:nickname/:writeTime/:num", function(req, res) { //댓글 작성
+    var email = req.session.email; // 로그인된 세션에서 이메일 정보 불러오기  
+    var num = req.params.num;
+    var commentdata = req.body.commentdata;
+    var writeTime = new Date();
+  
+    if (commentdata) {
+        db.query('SELECT nickname FROM information WHERE email = ?', [email], function (err, result) {
+            if (err) throw err;
+            var nickname = result[0].nickname; // 결과에서 nickname 값을 가져옴
+
+            db.query('SELECT * FROM community WHERE num=?', [num], function (err, result) {
+                if (err) throw err;
+                
+                db.query('INSERT INTO comment (num, email, nickname, commentdata, writeTime) VALUES(?,?,?,?,?)',[num, email, nickname, commentdata, writeTime], function (error, result) {
+                    if (error) throw error;
+                    res.send(`<script type="text/javascript">alert("댓글이 등록되었습니다.");
+                    location.href = location.href;</script>`);             
+                });
+
+                
+            });
+        });
+    }
+});
+
+
+router.post("/community/:num/:no", function(req, res) { //선택 댓글 삭제하기
+    var num = req.params.num;
+
+    db.query('SELECT * FROM community WHERE num=?', [num], function (err, result) {
+        if (err) throw err; 
+
+        db.query('DELETE FROM comment WHERE num=? and no =?', [num, req.params.no], function (error, comm) {
+          if (error) throw error; 
+          res.send(`<script type="text/javascript">alert("댓글이 삭제되었습니다.");
+          document.location.href="/community/${result[0].nickname}/${result[0].writeTime}/${num}";</script>`);  
+        });
+    });
+});
+
+router.post("/community/:nickname/:writeTime/:num/delete", function(req, res) { //선택 글 삭제하기
+    var num = req.params.num;
+
+    db.query('DELETE FROM community WHERE num=?', [num], function (err, result) {
+        if (err) throw err; 
+        res.send(`<script type="text/javascript">alert("글이 삭제되었습니다.");
+        document.location.href="/community";</script>`); 
+    });
+});
+
 
 module.exports = router

@@ -204,7 +204,7 @@ hr {
         flex-direction: column;
         align-items: flex-start;
         row-gap: 1rem;
-        text-align: center;
+        text-align: center; 
     }
 }
 
@@ -236,5 +236,14 @@ hr {
         align-items: flex-start;
         row-gap: 1rem; 
         margin-bottom: 10rem;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .posting-box {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem; 
+        margin-bottom: 2rem;
     }
 }

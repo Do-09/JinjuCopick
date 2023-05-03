@@ -64,25 +64,27 @@
                     <th class="write_date">만남 날짜</th>
                     <th class="write_purpose">목적</th>
                 </tr>
-
-
-                
+ 
                 <% for(let i =0; i<data.length;i++){%>
                     <% var list = data[i] %>  
                     <% var index = i + 1 %> 
                     
-                <tr class="content_list" onclick="location.href='/community/<%= list.nickname %>/<%= list.writeTime %>'">
+
+                    <% var today = new Date() %>
+                    <% var date = new Date(list.date) %>
+                    
+                    <tr class="content_list <%= (date < today) ? 'past-date' : '' %>" onclick= "location.href='/community/<%= list.nickname %>/<%= list.writeTime %>/<%= list.num %>'"> 
                     <td class="no">
                         <%= index %>
                     </td>
                     <td class="title" name="title">
-                        <%= list.title %>
+                        <%= list.title %> 
                     </td>
                     <td class="nickname" name="nickname">
                         <%= list.nickname %>
                     </td>
                     <td class="date" name="date">
-                            <%= list.date %>
+                        <%= list.date %>
                     </td>
                     <td class="purpose" name="purpose">
                         <% if(list.purpose === 'study') { %>
@@ -95,17 +97,11 @@
                     </td>
                 </tr>
                 <%}%>
- 
-
             </table>
 
             <div id="no_list" <% if (data.length > 0) { %>style="display:none"<% } %>>작성된 글이 없습니다.</div>
-
-
         </div>
         <a href="/community/write"><button class="write_bt">글 쓰기</button></a> 
-    </div>
-
-      
+    </div>   
 </body>
 </html>

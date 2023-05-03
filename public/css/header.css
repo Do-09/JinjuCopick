@@ -109,7 +109,7 @@ body {
     padding-bottom: 3px;
     text-decoration-line: none;
 }
-#login, #gifticon, #commu {
+#login, #gifticon, #commu, #logout{
     display: flex;
     align-items: center;
     width: 100px;

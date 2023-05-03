@@ -12,32 +12,45 @@ html,body {margin:0;padding:0;border:0;vertical-align:baseline}
 body{
     font-size:1rem;
     font-family:'NanumBarunpen';
-    line-height:1;color:#212529;
+    line-height:1;
+    color:#212529;
     background-color:#fff;
-    display:flex;flex-direction:column;
+    display:flex;
+    flex-direction:column;
     min-height:100vh;
     -ms-overflow-style:none;}
 body::-webkit-scrollbar{display:none}
 
-.wrapper {
-  width: 100%;
+.form_items {
+    background-color: #A9E2F3;
+    padding: 5px;
+    width: 20%;
+}
+
+.form_input {
+    background-color: #E6E6E6;
+    border: 0px;
+    border-radius: 15px;
+    padding: 3px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
 }
 
 .upload_section {
     display: flex;
+    text-align: center;
     box-sizing: border-box;
     flex-direction: column;
-    margin-top: 50px;
     width: 100%;
     row-gap: 2rem;
-    padding: 2rem;
+    margin: 5px;
 }
 
-article {
-    margin: 5px;
-    padding: 10px;
+.list_section {
+    margin : 20px;
+    padding: 20px;
     background-color: #EAECEF;
-    width: 100%;
 }
 
 .check_section, .del_btn {
@@ -69,29 +82,24 @@ article {
 }
 
 #gifticonImg {
-    visibility: hidden;
-}
-
-#gifticonImgLabel {
-    background: #F3F3F3;
-    border: 1px rgba(0, 0, 0, 0.491) solid;
-    padding: 5px 5px;
-    margin-right: 5px;
-    border-radius: 2px;
-    font-size: 10pt;
-    cursor: pointer;
+    display: none;
 }
 
 #inputContainer {
-    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 500px;
 }
 
-.fileInput {
-    display: inline-block;
+table {
+  border-collapse: separate;
+  border-spacing: 0 5px;
 }
 
-#fileName {
-    border-bottom: solid 1px black;
-    width: 200px;
-    display: inline-block;
+@media screen and (max-width: 667px) {
+    #inputContainer  {
+        width:100%
+    }
 }

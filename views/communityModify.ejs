@@ -65,52 +65,78 @@
         커뮤니티
     </div>
 
+
+    <% var list = data[0] %>
     <div class="container">
         <div class="posting-box">
-            <form name="main_title" class="form-group" action = "/community/write/submit" method="post">
-                <input type="text" class="form-control" id="title" placeholder="제목" name="title" maxlength="50" required="required" pattern=".{1,50}">
+            <form name="main_title" class="form-group" action = "/community/modify/submit" method="post">
+                <input type="hidden" name="num" value="<%= list.num %>">
+                
+                <input type="text" class="form-control" id="title" value="<%= list.title %>" name="title" maxlength="50" required="required" pattern=".{1,50}">
 
                 <div class="details">
 
                 <div class="detail_1">
                     <label class="people">인원</label>
-                    <input type="number" min="1" step="1" placeholder="인원" id="people_num" name="people" required="required">
+                    <input type="number" min="1" step="1" placeholder="인원" id="people_num" name="people" value="<%= list.people %>" required="required">
                 </div>
                       
                 <div class="detail_2">
                     <label class="purpose" for="purpose_list">목적</label>
                     <select class="form-control" id="purpose_list" name="purpose"> 
-                        <option value="study">스터디</option>
-                        <option value="friendship">친목</option>
-                        <option value="else">기타</option>
-                    </select>
+                        <option value="study" <%= (list.purpose === 'study') ? 'selected' : '' %>>스터디</option>
+                        <option value="friendship" <%= (list.purpose === 'friendship') ? 'selected' : '' %>>친목</option>
+                        <option value="else" <%= (list.purpose === 'else') ? 'selected' : '' %>>기타</option>
+                      </select>
                 </div>
                 
                 <div class="detail_3">
                     <label class="date">날짜</label> 
-                    <input type="date" class="date_pick"
-                        id="date_input" 
-                        value={startDateValue}
-                        name="date"
-                        onchange="toggleCheckbox()" 
-                        required="required"/>
 
-                    <div class="nodate_pick">
-                        <input type="checkbox" 
-                            id="no_date" 
-                            value="미정"
+                    <% if (list.date === '미정') { %>
+                        <input type="date" class="date_pick"
+                            id="date_input" 
+                            value="<%= list.date %>"
                             name="date"
-                            onchange="toggleCalendar()" />
-                        <label for="no_date">미정</label>
-                    </div> 
-                    
+                            disabled
+                            onchange="toggleCheckbox()" 
+                            required="required"/>
+
+                        <div class="nodate_pick">
+                            <input type="checkbox" 
+                                id="no_date" 
+                                value="미정"
+                                name="date"
+                                checked
+                                onchange="toggleCalendar()" />
+                            <label for="no_date">미정</label>
+                        </div>              
+                    <% } else { %>
+                        <input type="date" class="date_pick"
+                            id="date_input" 
+                            value="<%= list.date %>"
+                            name="date"
+                            onchange="toggleCheckbox()" 
+                            required="required"/>
+
+                        <div class="nodate_pick">
+                            <input type="checkbox" 
+                                id="no_date" 
+                                value="미정"
+                                name="date"
+                                disabled
+                                onchange="toggleCalendar()" />
+                            <label for="no_date">미정</label>
+                        </div>              
+                    <% } %>
                 </div>
             </div>
 
-                <textarea class="form-control" id="content" rows="8" placeholder="내용" name="content" required="required"></textarea>
+            <textarea class="form-control" id="content" rows="8" name="content" required="required"><%= list.content %></textarea>
                 <div id="error_message" style="display: none; margin:-30px 0px 0px 10px;color:red">모든 값을 양식에 맞춰 입력하세요.</div>
             <div class="final_bt">
-                <input type="submit" class="save" value="등록" id="submit_button"> 
+                <input type="submit" class="save" value="수정" id="submit_button">
+                <!-- <input type="reset" class="reset" value="취소" href="/community" onclick="alert('취소')">       -->
                 <a href="/community" class="reset">취소</a>
             </div>
             
