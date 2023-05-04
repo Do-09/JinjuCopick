@@ -35,13 +35,16 @@ router.get("/login", function(req,res){
     res.render('login')
 })
 
+var notice; // 유효기간 만료 팝업창 1회 안내
+
 router.post('/login/result', function(req, res) { //로그인
     var email = req.body.email;
     var password = req.body.password;
     if (email && password) {             // email과 pw가 입력되었는지 확인
         db.query('SELECT * FROM information WHERE email = ? AND password = ?', [email, password], function(error, results, fields) { // 이메일 및 패스워드 확인
             if (error) throw error;
-            if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공    
+            if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공  
+                notice = 1  // 유효기간 만료 팝업창 1회 안내
                 req.session.is_logined = true; // 세션 정보 갱신(세션 저장)
                 req.session.email = email; 
                 req.session.save(function () {
@@ -114,7 +117,31 @@ router.get("/main", function(req,res){ //메인화면(로그인 후)
         res.redirect('/'); //메인화면 이동(로그인 전)
         return false;
     }
-    res.render('afterLogin') //메인화면 연결(로그인 후)
+    var email = req.session.email;
+    db.query('select * from gifticon where email = ?',[email], function(err, result){ 
+        var today = new Date();
+        var expiringCount = 0;
+        for(let i =0; i<result.length;i++){
+            var gifticon = result[i];
+            var date = new Date(gifticon.date);
+            if(date<=new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)){
+                expiringCount++;
+            }
+        }
+        if(expiringCount>=1 && notice == 1){
+            notice = 0;
+            res.send(`<script type="text/javascript">
+            res = confirm("일주일 안에 만료되는 기프티콘이 "+ ${expiringCount} + "개 있습니다. 확인하시겠습니까?");
+            if(res){
+                document.location.href="/gifticon_upload";
+            }else{
+                document.location.href="/";
+            }
+            </script>`);
+        }else{
+            res.render('afterLogin',{data:result}) //메인화면 연결(로그인 후)
+        }
+    })
 })
 
 router.get("/mypage", function(req,res){ //마이페이지
@@ -128,6 +155,118 @@ router.get("/mypage", function(req,res){ //마이페이지
             }
         });
         return false;
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
+})
+
+router.get("/mypage/nickname", function(req,res){ //마이페이지 닉네임 변경 선택 시 -> password_check1
+    if(authCheck.isOwner(req,res)){
+        res.render('password_check1')
+        return false;
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
+})
+
+router.post("/mypage/nickname", function(req,res){ // 닉네임 password_check1 화면 submit
+    var email = req.session.email;
+    var password = req.body.password;
+    if(authCheck.isOwner(req,res)){
+        db.query('SELECT * FROM information where email = ? and password = ?', [email, password], function (error, result) {
+            if (error) throw error;
+            if (result.length > 0) {
+                res.render('nickname_change',{data:result})
+            }else{
+                res.send(`<script type="text/javascript">alert("비밀번호를 다시 확인하세요");
+                document.location.href="/mypage/nickname";</script>`);
+            }
+            });
+        return false;
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
+})
+
+router.post('/mypage/nickname/change', function(req,res){ //마이페이지 닉네임 변경 submit
+    var email = req.session.email;
+    var nickname = req.body.nickname;
+    if(authCheck.isOwner(req,res)){
+        db.query('SELECT * FROM information where nickname = ?', [nickname], function (error, result) {
+            if (error) throw error;
+            if (result.length > 0) {
+                res.send(`<script type="text/javascript">alert("다른 닉네임을 입력해주세요");
+                document.location.href="javascript:history.back();";</script>`);
+            } else{
+                db.query('UPDATE information SET nickname = ? where email = ?', [nickname, email], function (error, result) {
+                    db.query('UPDATE community SET nickname = ? where email = ?', [nickname, email], function (error, result) {
+                        db.query('UPDATE comment SET nickname = ? where email = ?', [nickname, email], function (error, result) {
+                            res.send(`<script type="text/javascript">alert("변경되었습니다");
+                            window.close();window.opener.location.reload();</script>`);
+                        })
+                    })
+                })
+            }
+        })
+        return false; 
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
+})
+
+
+router.get("/mypage/password", function(req,res){ //마이페이지 패스워드 변경 버튼 선택 시 -> password_check2
+    if(authCheck.isOwner(req,res)){
+        res.render('password_check2')
+        return false;
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
+})
+
+router.post("/mypage/password", function(req,res){ //마이페이지 패스워드 password_check2 submit
+    var email = req.session.email;
+    var password = req.body.password;
+    if(authCheck.isOwner(req,res)){
+        
+        db.query('SELECT * FROM information where email = ? and password = ?', [email, password], function (error, result) {
+            if (error) throw error;
+            if (result.length > 0) {
+                res.render('password_change',{data:result})
+            }else{
+                res.send(`<script type="text/javascript">alert("비밀번호를 다시 확인하세요");
+                document.location.href="/mypage/password";</script>`);
+            }
+            });
+        return false;
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
+})
+
+router.post('/mypage/password/change', function(req,res){ //마이페이지 패스워드 변경 submit
+    var email = req.session.email;
+    var password1 = req.body.password1;
+    var password2 = req.body.password2;
+
+    if(authCheck.isOwner(req,res)){
+        if(password1 == password2){
+            db.query('UPDATE information SET password = ? where email = ?', [password1, email], function (error, result) {
+                if (error) throw error;
+                res.send(`<script type="text/javascript">alert("변경되었습니다");
+                window.close();</script>`);
+            })
+        } else{
+            res.send(`<script type="text/javascript">alert("비밀번호가 다릅니다."); 
+            document.location.href="javascript:history.back();";</script>`); 
+        }
+        return false; 
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
                 document.location.href="/login";</script>`);
@@ -177,103 +316,75 @@ router.post("/gifticon_upload/submit", upload.single('gifticonImg'),(req,res,nex
     var email = req.session.email;
     var cafeName = req.body.cafeName;
     var expirationDate = req.body.expirationDate;
-    var gifticonImg = `/public/uploads/${req.file.filename}`;
-    console.log(req.file);
-    console.log(email, cafeName, expirationDate, gifticonImg);
+    var gifticonImg = `public/uploads/${req.file.filename}`;
     
     db.query('INSERT INTO gifticon (email, name, date, gifticon) VALUES(?,?,?,?)', [email, cafeName, expirationDate,
         gifticonImg], function (error, data) {
         if (error) throw error;
             res.redirect("/gifticon_upload");
         });
-
 })
 
-router.get("/community", function(req,res){ //커뮤니티 게시판 목록 화면
+router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
+    var del = req.body.check;
     if(authCheck.isOwner(req,res)){
-        db.query('select * from community', function(err, result){ //게시판 데이터베이스(community) 정보 전달
-            res.render('communityList',{data:result})
-            return false;
-        });
+            if(!del){
+            } else if(del[0]!='p'){ // 
+                for(i=0; i<del.length; i++){
+                    if (fs.existsSync(del[i])) {
+                        try {
+                            fs.unlinkSync(del[i]);
+                        } catch (error) {
+                            console.log(error);
+                        }
+                        }
+                    db.query('delete from gifticon where gifticon = ?',[del[i]], function(err, result){})
+                }
+            } else{
+                if (fs.existsSync(del)) {
+                    try {
+                        fs.unlinkSync(del);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                    }
+                db.query('delete from gifticon where gifticon = ?',[del], function(err, result){})
+        }
+        res.redirect('/gifticon_upload');
+        return false;
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
                 document.location.href="/login";</script>`);
     }
 })
 
-// router.get("/community", function (req, res) {
-//     res.redirect('/community/' + 1)
-// });
+router.get("/community", function(req,res){ //커뮤니티 게시판 목록 화면 페이징
+    if(authCheck.isOwner(req,res)){
+        const perPage = 5; // 한 페이지에 보여질 게시물 수
 
-// router.get("/community/:cur", function (req, res) {
+        const page = req.query.page ? parseInt(req.query.page) : 1; // 요청 페이지 번호
 
-//     //페이지당 게시물 수 : 한 페이지 당 10개 게시물
-//     var page_size = 10;
-//     //limit 변수
-//     var no = "";
-//     //전체 게시물의 숫자
-//     var totalPageCount = 0;
+        // 해당 페이지에 표시할 게시물
+        const offset = (page - 1) * perPage;
+        const query = `SELECT * FROM community ORDER BY writeTime DESC LIMIT ${perPage} OFFSET ${offset}`;
 
-//     db.query('select count(*) as cnt from community', function (error2, data) {
+        // 전체 게시물 수 
+        db.query('SELECT COUNT(*) as count FROM community', function(err, result){
+            if(err) throw err;
+            const totalCount = result[0].count;
 
-//         //전체 게시물의 숫자
-//         totalPageCount = data[0].cnt
+            const pageCount = Math.ceil(totalCount / perPage); // 총 페이지 수 
 
-//         //현재 페이지 
-//         var curPage = req.params.cur;
-
-//         //전체 페이지 갯수
-//         if (totalPageCount < 0) {
-//             totalPageCount = 0
-//         }
-
-//         //현재페이지가 0 보다 작으면
-//         if (curPage == 1) {
-//             no = 0
-//         } else {
-//             //0보다 크면 limit 함수에 들어갈 첫번째 인자 값 구하기
-//             no = (curPage - 1) * 10
-//         }
-
-//         var result2 = {
-//             "curPage": curPage,
-//             "page_size": page_size,
-//             "totalPageCount": totalPageCount,
-//         };
-
-//         if(authCheck.isOwner(req,res)){
-//                     db.query('select * from community order by writeTime desc limit ?,?',[no, page_size], function(err, result){ 
-//                         res.render('communityList',{data:result, community:result2})
-//                         return false;
-//                     });
-//                 } else{
-//                     res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
-//                             document.location.href="/login";</script>`);
-//                 }
-
-//         // fs.readFile('list.html', 'utf-8', function (error, data) {
-
-
-//         //     var queryString = 'select * from products order by id desc limit ?,?';
-//         //     getConnection().query(queryString, [no, page_size], function (error, result) {
-//         //         if (error) {
-//         //             console.log("페이징 에러" + error);
-//         //             return
-//         //         }
-                    
-//         //         res.send(ejs.render(data, {
-//         //             data: result,
-//         //             pasing: result2
-//         //         }));
-//         //     });
-//         // }); 
-
- 
-
-//     })
-
-// })
-
+            db.query(query, function(err, result){
+                if(err) throw err;
+                res.render('communityList', { data: result, pageCount, currentPage: page, totalCount });
+            });
+        });
+    } else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/login";</script>`);
+    }
+});
 
 
 router.get("/community/:nickname/:writeTime/:num", function(req,res){ //커뮤니티 게시판 상세보기 화면
@@ -304,8 +415,6 @@ router.get("/community/:nickname/:writeTime/:num", function(req,res){ //커뮤�
     }
 
 })
-
-
 
 
 router.get("/community/write", function(req,res){ //커뮤니티 게시판 작성 화면
