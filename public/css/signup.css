@@ -40,9 +40,9 @@ h1 {
     width: 60%; height: 40px;
     margin: auto;
     display: block;
-    border: 1px solid rgb(135, 141, 146);
+    border: 1px solid rgba(156, 164, 170, 0.42);
     border-radius: 1px;
-    background-color: rgba(184, 206, 251, 0.8);
+    background-color: rgba(156, 164, 170, 0.42);
     cursor: pointer;
 }
 
