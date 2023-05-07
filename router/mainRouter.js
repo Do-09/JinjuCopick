@@ -21,14 +21,37 @@ router.use(session({
 }))
 
 
-router.get("/", function(req,res){
-    if(authCheck.isOwner(req,res)){
-        res.redirect('/main');
-        return false;
-    } else{
-        res.render('main')
-        return false;
+router.get("/", function(req,res){ //메인화면
+    var email = req.session.email;
+    if(email){
+        result1={"login":1}
+    }else{
+        result1={"login":0}
     }
+    db.query('select * from gifticon where email = ?',[email], function(err, result){ 
+        var today = new Date();
+        var expiringCount = 0;
+        for(let i =0; i<result.length;i++){
+            var gifticon = result[i];
+            var date = new Date(gifticon.date);
+            if(date<=new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)){
+                expiringCount++;
+            }
+        }
+        if(expiringCount>=1 && notice == 1){
+            notice = 0;
+            res.send(`<script type="text/javascript">
+            res = confirm("일주일 안에 만료되는 기프티콘이 "+ ${expiringCount} + "개 있습니다. 확인하시겠습니까?");
+            if(res){
+                document.location.href="/gifticon_upload";
+            }else{
+                document.location.href="/";
+            }
+            </script>`);
+        }else{
+            res.render('main',{data:result, data1:result1}) //메인화면 연결(로그인 후)
+        }
+    })
 })
 
 router.get("/login", function(req,res){
@@ -111,38 +134,6 @@ router.post("/signup/submit", function(req,res){ //회원가입 제출
         document.location.href="javascript:history.back();";</script>`);
     }
 });
-
-router.get("/main", function(req,res){ //메인화면(로그인 후)
-    if(!authCheck.isOwner(req,res)){ //로그인 세션 확인 후 로그인 안 되어 있을 경우
-        res.redirect('/'); //메인화면 이동(로그인 전)
-        return false;
-    }
-    var email = req.session.email;
-    db.query('select * from gifticon where email = ?',[email], function(err, result){ 
-        var today = new Date();
-        var expiringCount = 0;
-        for(let i =0; i<result.length;i++){
-            var gifticon = result[i];
-            var date = new Date(gifticon.date);
-            if(date<=new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)){
-                expiringCount++;
-            }
-        }
-        if(expiringCount>=1 && notice == 1){
-            notice = 0;
-            res.send(`<script type="text/javascript">
-            res = confirm("일주일 안에 만료되는 기프티콘이 "+ ${expiringCount} + "개 있습니다. 확인하시겠습니까?");
-            if(res){
-                document.location.href="/gifticon_upload";
-            }else{
-                document.location.href="/";
-            }
-            </script>`);
-        }else{
-            res.render('afterLogin',{data:result}) //메인화면 연결(로그인 후)
-        }
-    })
-})
 
 router.get("/mypage", function(req,res){ //마이페이지
     if(authCheck.isOwner(req,res)){
@@ -549,5 +540,57 @@ router.post("/community/:nickname/:writeTime/:num/delete", function(req, res) { 
     });
 });
 
+router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아아 가격
+    var study = req.body.study ? 1 : 0;
+    var pet = req.body.pet ? 1 : 0;
+    var nokids = req.body.nokids ? 1 : 0;
+    var takeout = req.body.takeout ? 1 : 0;
+    var hours = req.body.hours ? 1 : 0;
+    var meeting = req.body.meeting ? 1 : 0;
+    var franchise = req.body.franchise ? 1 : 0;
+    var parking = req.body.parking ? 1 : 0;
+
+    var area1 = req.body.selectMap1;
+    var area2 = req.body.selectMap2;
+    var area3 = req.body.selectMap3;
+
+    if (area2 === 'undefined' && area3 === 'undefined') {
+        area2 = null;
+        area3 = null;
+    }
+    else if (area3 === 'undefined') {
+        area3 = null;
+    }
+
+    var price = req.body.price ? req.body.price : 0;  
+    var sum = study + pet + nokids + takeout + hours + meeting + franchise + parking;
+
+    if(sum === 0) {// 필터가 선택되지 않은 경우
+        res.send(`<script type="text/javascript">alert("찾으시는 조건을 1개 이상 선택해주세요."); history.back();</script>`);
+    }
+    else if(area1=="" || area1 === 'undefined') { //지도 선택되지 않은 경우
+        res.send(`<script type="text/javascript">alert("지도에서 위치를 1개 이상 선택해주세요."); history.back();</script>`);
+    }
+    else if (price == 0) { // range값이 선택되지 않은 경우
+        res.send(`<script type="text/javascript">alert("가격대를 선택해주세요."); history.back();</script>`);
+    }  
+    else { // 필터, 지역, 가격대 선택된 경우
+        db.query('INSERT INTO filtering (study, pet, nokids, takeout, hours, meeting, franchise, parking, price, area1, area2, area3) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)', [study, pet, nokids, takeout, hours, meeting, franchise, parking,price,area1,area2,area3], function (error, filter) {
+            if (error) throw error;
+            res.send(`<script type="text/javascript">alert("필터링 성공");  
+            document.location.href="/cafe";</script>`); //최종본에서 alert 삭제
+        });
+    }
+});
+
+router.get("/cafe", function(req,res){ //카페 페이지
+    var email = req.session.email;
+    if(email){
+        result={"login":1}
+    }else{
+        result={"login":0}
+    }
+    res.render('cafe_list',{data:result})
+})
 
 module.exports = router

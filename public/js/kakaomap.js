@@ -1,3 +1,4 @@
+var selectedAreas = []; // 선택한 영역 정보를 저장하는 배열
 // 지도에 폴리곤으로 표시할 영역데이터 배열입니다 
 var areas = [
     {
@@ -25735,7 +25736,7 @@ function displayArea(area) {
     // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
     // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
     kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) {
-        polygon.setOptions({fillColor: '#09f'});
+        // polygon.setOptions({fillColor: '#09f'});
 
         customOverlay.setContent('<div class="area">' + area.name + '</div>');
         
@@ -25752,19 +25753,94 @@ function displayArea(area) {
     // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
     // 커스텀 오버레이를 지도에서 제거합니다 
     kakao.maps.event.addListener(polygon, 'mouseout', function() {
-        polygon.setOptions({fillColor: '#fff'});
+        // polygon.setOptions({fillColor: '#fff'});
         customOverlay.setMap(null);
     }); 
+ 
+    // // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다 
+    // kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
+    //   polygon.setOptions({fillColor: '#17d123'});
+    
+    //   var content = '<div class="title">' + area.name + '</div>';
+    
+    //   infowindow.setContent(content); 
+    //   infowindow.setPosition(mouseEvent.latLng); 
+    //   infowindow.setMap(map); 
+    
+    //   var areaName = area.name;
+    
+    //   // 선택한 영역의 수가 3개 이하인 경우에만 처리
+    //   if (document.querySelectorAll('.area_name div').length < 3) {
+    //     // 이전에 선택한 영역 정보와 비교하여 중복 여부를 확인
+    //     if (!selectedAreas.includes(areaName)) {
+    //       selectedAreas.push(areaName);
+    //     }
+    //     else {// 이미 선택된 영역일 경우 해당 영역을 가지는 div 삭제
+    //         var areaNameDivs = document.querySelectorAll('.area_name div');
+    //         areaNameDivs.forEach(function(areaNameDiv) {
+    //           if (areaNameDiv.textContent === areaName) {
+    //             areaNameDiv.parentNode.removeChild(areaNameDiv);
+    //           }
+    //         }); 
+    //          // 배열에서 해당 영역 제거
+    //          var index = selectedAreas.indexOf(areaName);
+    //          if (index > -1) {
+    //            selectedAreas.splice(index, 1);
+    //          }
+    //     }
+    //   } else {
+    //     // 선택한 영역의 수가 3개 이상인 경우 alert 출력
+    //     alert('최대 3개 선택 가능합니다.');
+    //   }
+      
+           
 
-    // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다 
+    // });
+
     kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
-        var content = '<div class="info">' + 
-                    '   <div class="title">' + area.name + '</div>' +
-                    '   <div class="size">총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></div>' +
-                    '</div>';
-
+        polygon.setOptions({fillColor: '#17d123'});
+      
+        var content = '<div class="title">' + area.name + '</div>';
+      
         infowindow.setContent(content); 
         infowindow.setPosition(mouseEvent.latLng); 
-        infowindow.setMap(map);
-    });
+        infowindow.setMap(map); 
+      
+        var areaName = area.name;
+      
+        // 선택한 영역의 수가 3개 이하인 경우에만 처리
+        if (document.querySelectorAll('.area_name div').length < 3) {
+          // 이전에 선택한 영역 정보와 비교하여 중복 여부를 확인
+          if (!selectedAreas.includes(areaName)) {
+            selectedAreas.push(areaName);
+      
+            // 새로운 div를 생성하여 선택한 영역 정보를 출력
+            var areaNamesDiv = document.querySelector('.area_name');
+            var newAreaNameDiv = document.createElement('div');
+            //newAreaNameDiv.textContent = areaName;
+            areaNamesDiv.appendChild(newAreaNameDiv);
+          }
+          else {// 이미 선택된 영역일 경우 해당 영역을 가지는 div 삭제
+              var areaNameDivs = document.querySelectorAll('.area_name div');
+              areaNameDivs.forEach(function(areaNameDiv) {
+                if (areaNameDiv.textContent === areaName) {
+                  areaNameDiv.parentNode.removeChild(areaNameDiv);
+                }
+              }); 
+               // 배열에서 해당 영역 제거
+               var index = selectedAreas.indexOf(areaName);
+               if (index > -1) {
+                 selectedAreas.splice(index, 1);
+               }
+          }
+        } else {
+          // 선택한 영역의 수가 3개 이상인 경우 alert 출력
+          alert('최대 3개 선택 가능합니다.');
+        }
+            document.filtering.selectMap1.value=selectedAreas[0];  
+            document.filtering.selectMap2.value=selectedAreas[1];  
+            document.filtering.selectMap3.value=selectedAreas[2];
+      });
+  
 }
+

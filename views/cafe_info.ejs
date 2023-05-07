@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>진주커Pick</title>
+        <link rel="stylesheet"  type="text/css" href="css/cafe_info.css">
+        <link rel="stylesheet"  type="text/css" href="css/header.css">
+        <script src="js/text_load.js"></script>
+    </head>
+    <body>
+        <script src="https://kit.fontawesome.com/a064522756.js" crossorigin="anonymous"></script>
+        <label id="bookmark-label"><i class="fa-sharp fa-solid fa-bars"></i>
+            <input type="button" value="" class="bookmark-btt">
+        </label>
+        <div class="logo_back">
+            <div class="side_menu">
+                <section class="side_menu_container">
+                    <ul class="bookmark-lists">
+                        <li class="bookmark"><a href="main.html">
+                            <div id="main_home"> 진주커Pick</div>
+                        </a></li>
+                        <hr>
+                        <li class="bookmark"><a href="signup.html">
+                            <div class="bookmark-list"><i class="fa-solid fa-circle-user" id="login"></i> 로그인</div>
+                        </a></li>
+                        <li class="bookmark"><a href="gifticon_upload.html">
+                            <div class="bookmark-list"><i class="fa-solid fa-gift" id="gifticon"></i> 기프티콘</div>
+                        </a></li>
+                        <li class="bookmark"><a href="community.html">
+                            <div class="bookmark-list"><i class="fa-solid fa-message" id="commu"></i> 커뮤니티</div>
+                        </a></li>
+                    
+                    </ul>
+                    <div class="info"><hr>경상국립대학교 얼죽아
+                        <div id="info_1">수학과&emsp;&emsp;&emsp;&emsp;강수연<br>정보통계학과&emsp;정인영<br>정보통계학과&emsp;정혜주<br>컴퓨터과학과&emsp;서혜원<br>컴퓨터과학과&emsp;이도현<hr></div>
+                    </div>
+                </section>
+            </div>
+            <script src="js/index.js"></script>
+            <div class="main_logo" style="text-align: center;"> 
+                <img src="static\jinju.textlogo.png" height= "110" alt="로고">
+            </div>
+        </div>
+
+        <div id="info_section">
+            <div id="simple_info">
+                <img src="">
+                <div class="info_items"><i class="fa fa-map-marker" aria-hidden="true"></i> 카페명</div>
+                <div class="info_tag">#디저트 #스터디</div>
+                <br>
+                <!--<div class="star-ratings-fill space-x-2 text-lg":style="{ width: ratingToPercent + '%' }">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>-->
+                <div class="star-ratings-base space-x-2 text-lg">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <div class="info_items"><i class="fa-solid fa-clock"></i> 영업시간</div>
+                <div class="info_items"><i class="fa-solid fa-dollar-sign"></i> 가격</div>
+                <div class="info_items"><i class="fas fa-parking"></i> 주차장 여부</div>
+            </div>
+            <div id="review">
+                <ul id="review_lists">
+                </ul>
+                <p><i class="fa fa-plus-circle" aria-hidden="true"></i> 매장에 대한 후기를 남겨주세요.</p>
+                <form>
+                    <textarea id="text_area"></textarea>
+                    <input type="button" class="text_button" value="콘센트가 있어요" onclick="text_load(this)">
+                    <input type="button" class="text_button" value="시그니처 메뉴가 있어요" onclick="text_load(this)">
+                    <input type="button" class="text_button" value="매장이 넓어요" onclick="text_load(this)">
+                    <input type="button" class="text_button" value="사진 찍기 좋아요" onclick="text_load(this)">
+                    <input type="button" id="review_submit" value="등록" onclick="comment_write()"><br>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

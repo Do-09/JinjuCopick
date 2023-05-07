@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>진주커pick</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <link rel="stylesheet"  type="text/css" href="css/header.css" />
+    <link rel="stylesheet"  type="text/css" href="css/cafe_list.css" />
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/a064522756.js" crossorigin="anonymous"></script>
+    <label id="bookmark-label">
+        <i class="fa-sharp fa-solid fa-bars"></i>
+        <input type="button" value="" class="bookmark-btt">
+    </label>
+    <div class="logo_back">
+        <div class="side_menu">
+            <section class="side_menu_container">
+                <ul class="bookmark-lists">
+                    <!-- <h5 class="list_jinju">진주커Pick</h5> <hr> -->
+                    <li class="bookmark"><a href="main.html">
+                        <div id="main_home"> 진주커Pick</div>
+                    </a></li>
+                    <hr>
+                    <% var login = data%>
+                    <% if(login.login==1){%>
+                        <li class="bookmark"><a href="/login">
+                            <div class="bookmark-list"><i class="fa-solid fa-circle-user" id="login"></i> 마이페이지</div>
+                        </a></li>
+                    <%} else {%>
+                        <li class="bookmark"><a href="login.html">
+                            <div class="bookmark-list"><i class="fa-solid fa-circle-user" id="login"></i> 로그인</div>
+                        </a></li>
+                    <%}%>
+                    <li class="bookmark"><a href="gifticon_upload.html">
+                        <div class="bookmark-list"><i class="fa-solid fa-gift" id="gifticon"></i> 기프티콘</div>
+                    </a></li>
+                    <li class="bookmark"><a href="community.html">
+                        <div class="bookmark-list"><i class="fa-solid fa-message" id="commu"></i> 커뮤니티</div>
+                    </a></li>
+                
+                </ul>
+                <div class="info"><hr>경상국립대학교 얼죽아
+                    <div id="info_1">수학과&emsp;&emsp;&emsp;&emsp;강수연<br>정보통계학과&emsp;정인영<br>정보통계학과&emsp;정혜주<br>컴퓨터과학과&emsp;서혜원<br>컴퓨터과학과&emsp;이도현<hr></div>
+                </div>
+            </section>
+        </div>
+        <script src="/publicjs/index.js"></script>
+        <div class="main_logo" style="text-align: center;"> 
+            <img src="/public/static\jinju.textlogo.png" height= "110" alt="로고">
+        </div>
+    </div>
+
+
+    <div id="list_container">
+        <div id="map">
+        </div>
+
+        <div id="cafe_lists">
+            <div class="cafe_list">
+                <div>베이커리925</div>
+                <div>경남 진주시 진주대로 544</div>
+            </div>
+            <div class="cafe_list">
+                <div>센트럴베이크샵</div>
+                <div>경남 진주시 진주대로 506-1 1층</div>
+            </div>
+            <div class="cafe_list">
+                <div>스타벅스 진주 경상대점</div>
+                <div>경남 진주시 진주대로 510</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9d1355c19666c5197b4f39cb9f886798"></script>
+    <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = { 
+                center: new kakao.maps.LatLng(35.1550,128.1074), // 지도의 중심좌표
+                level: 4 // 지도의 확대 레벨
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        // 마커가 표시될 위치입니다 
+        var markerPosition1  = new kakao.maps.LatLng(35.1550,128.1074); 
+        // 마커를 생성합니다
+        var marker1 = new kakao.maps.Marker({
+            position: markerPosition1
+        });
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker1.setMap(map);
+
+        // 마커2
+        var markerPosition2  = new kakao.maps.LatLng(35.1519,128.1056); 
+        var marker2 = new kakao.maps.Marker({
+            position: markerPosition2
+        });
+        marker2.setMap(map);
+        
+        // 마커3
+        var markerPosition2  = new kakao.maps.LatLng(35.1523,128.1056); 
+        var marker2 = new kakao.maps.Marker({
+            position: markerPosition2
+        });
+        marker2.setMap(map);
+    </script>
+</body>
+</html>

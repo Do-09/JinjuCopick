@@ -1,0 +1,95 @@
+@font-face{
+    font-family:"NanumBarunpen";
+    src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff") format("woff");
+    font-weight:normal;font-style:normal
+}
+
+* {
+    box-sizing: border-box;
+    margin:0px;padding:0px;border:0px;vertical-align:baseline;
+}
+
+body::-webkit-scrollbar{display:none}
+
+#info_section {
+    background-color: #EAECEF;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    opacity: 1;
+    transition: all ease-out 0.3s;
+    margin: 20px;
+    padding: 10px;
+}
+
+#simple_info {
+    /*float:left;*/
+    margin: 10px;
+    padding: 10px;
+}
+
+.info_items {
+    display: block;
+}
+
+.star-ratings {
+    color: #aaa9a9; 
+    position: relative;
+    unicode-bidi: bidi-override;
+    width: max-content;
+    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1.3px;
+    -webkit-text-stroke-color: #2b2a29;
+}
+   
+.star-ratings-fill {
+    color: #fff58c;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    -webkit-text-fill-color: gold;
+}
+   
+.star-ratings-base {
+    z-index: 0;
+    padding: 0;
+}
+
+#review {
+    /*float:right;
+    width: 70%;
+    display: flex;*/
+    background-color: #fff;
+    align-items: end;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#text_area {
+    background-color: #EAECEF;
+    width: 100%;
+}
+
+#review_submit {
+    background-color: inherit;
+    float: right;
+    color: lightgray;
+    font-weight: bold;
+}
+
+.text_button {
+    background-color: #b8e4ff;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.comments {
+    list-style: none;
+}
