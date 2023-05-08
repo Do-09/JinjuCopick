@@ -115,17 +115,8 @@
             
         <script>
             let dateElement = document.getElementById('expirationDate');
-            let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -5);
-            dateElement.value = date;
+            let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -14);
             dateElement.setAttribute("min", date);
-                                
-            function setMinValue() {
-                if(dateElement.value < date) {
-                    alert('유효기간이 지난 기프티콘은 등록할 수 없습니다.');
-                    dateElement.value = date;
-                }
-            }
-
         </script>
 
         <script>
