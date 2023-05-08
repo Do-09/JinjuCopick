@@ -54,15 +54,15 @@
                                 <label for="gifticonImg">사진 등록</label>
                             </span>
                         </td>
-                        <td class="form_input"><span id="fileName"></span></td>
+                        <td><input type="text" class="upload_input" id="fileName" value="" placeholder="사진을 등록하세요." required disabled></td>
                     </tr>
                     <tr>
                         <td class="form_items"><label>카페명</td>
-                        <td><input type="text" class="form_input" id="cafeName" name="cafeName" required oninvalid="this.setCustomValidity('카페명을 입력해주세요.')" oninput="this.setCustomValidity('')"></label><br></td>
+                        <td><input type="text" class="upload_input" id="cafeName" name="cafeName" maxlength="30" required oninvalid="this.setCustomValidity('카페명을 입력해주세요.')" oninput="this.setCustomValidity('')" placeholder="카페명을 입력하세요." required></td>
                     </tr>
                     <tr>
                         <td class="form_items"><label>유효기간</td>
-                        <td><input type="date" class="form_input" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity('유효기간을 선택해주세요.')" oninput="this.setCustomValidity('')" onchange="setMinValue()"></label><br></td>
+                        <td><input type="date" class="upload_input" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity('유효기간을 선택해주세요.')" oninput="this.setCustomValidity('')" onchange="setMinValue()"></label></td>
                         
                         <!--오늘 이전 날짜는 선택 불가능-->
                     </tr>
