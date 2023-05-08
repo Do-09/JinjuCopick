@@ -104,10 +104,9 @@
 
         <script>
             document.getElementById('gifticonImg').onchange = function(){
-            // 만들어둔 div에 text(파일 이름) 추가
+            // 만들어둔 text input에 파일명 출력
             var file = this.files[0];
-            var name = document.getElementById('fileName');
-            name.textContent = file.name;
+            document.getElementById('fileName').value = file.name;
         }
         </script>
             
