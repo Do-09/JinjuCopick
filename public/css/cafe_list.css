@@ -1,3 +1,5 @@
+body::-webkit-scrollbar{display:none}
+
 #list_container {
     display: flex;
     justify-content: center;
@@ -30,3 +32,4 @@
     background-color: transparent;
     color: black;
 }
+
