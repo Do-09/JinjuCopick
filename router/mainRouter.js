@@ -325,8 +325,6 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
     var del = req.body.check;
     if(authCheck.isOwner(req,res)){
             if(!del){
-                res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
-                document.location.href="/gifticon_upload";</script>`);
             } else if(del[0]!='p'){ 
                 for(i=0; i<del.length; i++){
                     if (fs.existsSync(del[i])) {
@@ -348,6 +346,7 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
                     }
                 db.query('delete from gifticon where gifticon = ?',[del], function(err, result){})
         }
+        res.redirect('/gifticon_upload');
         return false;
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
@@ -606,7 +605,7 @@ router.get("/cafe_info", function(req,res){ //카페 페이지
     }else{
         result={"login":0}
     }
-    res.render('cafe_info',{data:result})
+    res.render('cafe_list',{data:result})
 })
 
 module.exports = router
