@@ -1,59 +1,68 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
         <title>진주커Pick</title>
-        <link rel="stylesheet"  type="text/css" href="css/cafe_info.css">
-        <link rel="stylesheet"  type="text/css" href="css/header.css">
-        <script src="js/text_load.js"></script>
+        <link rel="stylesheet"  type="text/css" href="/public/css/header.css">
+        <link rel="stylesheet"  type="text/css" href="/public/css/cafe_info.css">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        
+        <script src="https://kit.fontawesome.com/a064522756.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <script src="https://kit.fontawesome.com/a064522756.js" crossorigin="anonymous"></script>
-        <label id="bookmark-label"><i class="fa-sharp fa-solid fa-bars"></i>
-            <input type="button" value="" class="bookmark-btt">
-        </label>
         <div class="logo_back">
             <div class="side_menu">
-                <section class="side_menu_container">
+                <label> <span class="material-symbols-outlined" id="menu">menu</span>
+                    <input type="button" value="" class="bookmark-btt" style="background-color: pink";>
+                </label>
+                <section class="side_section">
                     <ul class="bookmark-lists">
-                        <li class="bookmark"><a href="main.html">
-                            <div id="main_home"> 진주커Pick</div>
-                        </a></li>
-                        <hr>
-                        <li class="bookmark"><a href="signup.html">
-                            <div class="bookmark-list"><i class="fa-solid fa-circle-user" id="login"></i> 로그인</div>
-                        </a></li>
-                        <li class="bookmark"><a href="gifticon_upload.html">
-                            <div class="bookmark-list"><i class="fa-solid fa-gift" id="gifticon"></i> 기프티콘</div>
-                        </a></li>
-                        <li class="bookmark"><a href="community.html">
-                            <div class="bookmark-list"><i class="fa-solid fa-message" id="commu"></i> 커뮤니티</div>
-                        </a></li>
-                    
+                        <li class="bookmark" id="main_home"><a href="/"><div id="main_name">진주커Pick</div></a></li><hr>
+                        <% var login = data1%>
+                        <% if(login.login==1){%>
+                            <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/mypage">마이페이지</span></a></li>
+                        <%} else {%>
+                            <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/login">로그인</span></a></li>
+                        <%}%>
+                        <li class="material-symbols-outlined" id="gifticon">barcode<span id="name"><a href="/gifticon_upload">기프티콘</span></a></li>
+                        <li class="material-symbols-outlined" id="commu">chat<span id="name"><a href="/community">커뮤니티</span></a></li>
+                        <% if(login.login==1){%>
+                            <li class="material-symbols-outlined" id="out">logout<span id="name"><a href="/logout">로그아웃</span></a></li> 
+                        <%}%>
                     </ul>
                     <div class="info"><hr>경상국립대학교 얼죽아
                         <div id="info_1">수학과&emsp;&emsp;&emsp;&emsp;강수연<br>정보통계학과&emsp;정인영<br>정보통계학과&emsp;정혜주<br>컴퓨터과학과&emsp;서혜원<br>컴퓨터과학과&emsp;이도현<hr></div>
                     </div>
                 </section>
             </div>
-            <script src="js/index.js"></script>
+            <script src="/public/js/index.js"></script>
             <div class="main_logo" style="text-align: center;"> 
-                <img src="static\jinju.textlogo.png" height= "110" alt="로고">
+                <img src="/public/static\jinju.textlogo.png" height= "110" alt="로고">
             </div>
         </div>
 
         <div id="info_section">
             <div id="simple_info">
-                <img src="">
+                <img id="cafe_image" src="https://cdn.imweb.me/upload/S20200612353b27175d2aa/abac55427ef44.png">
                 <div class="info_items"><i class="fa fa-map-marker" aria-hidden="true"></i> 카페명</div>
                 <div class="info_tag">#디저트 #스터디</div>
-                <br>
-                <!--<div class="star-ratings-fill space-x-2 text-lg":style="{ width: ratingToPercent + '%' }">
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                </div>-->
+
                 <div class="star-ratings-base space-x-2 text-lg">
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    <span>★★★★★</span>
+                    <span>(4.5)</span>
                 </div>
+                <!--<div class="star-ratings-fill space-x-2 text-lg" style="width: calc(4/5 * 80px);">
+                평균 별점을 계산해서 넣어야함!!
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+
+                </div>-->
+                
                 <div class="info_items"><i class="fa-solid fa-clock"></i> 영업시간</div>
                 <div class="info_items"><i class="fa-solid fa-dollar-sign"></i> 가격</div>
                 <div class="info_items"><i class="fas fa-parking"></i> 주차장 여부</div>
@@ -62,15 +71,59 @@
                 <ul id="review_lists">
                 </ul>
                 <p><i class="fa fa-plus-circle" aria-hidden="true"></i> 매장에 대한 후기를 남겨주세요.</p>
-                <form>
-                    <textarea id="text_area"></textarea>
-                    <input type="button" class="text_button" value="콘센트가 있어요" onclick="text_load(this)">
-                    <input type="button" class="text_button" value="시그니처 메뉴가 있어요" onclick="text_load(this)">
-                    <input type="button" class="text_button" value="매장이 넓어요" onclick="text_load(this)">
-                    <input type="button" class="text_button" value="사진 찍기 좋아요" onclick="text_load(this)">
-                    <input type="button" id="review_submit" value="등록" onclick="comment_write()"><br>
-                </form>
+                <div id="review_input">
+                    <span class="star">
+                        ★★★★★
+                        <span>★★★★★</span>
+                        <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+                    </span>
+                    <form>
+                        <textarea id="text_area" rows="4" placeholder="매장에 대한 후기를 남겨주세요."></textarea>
+                        <input type="button" id="review_submit" value="등록" onclick="comment_write()">
+                        <input type="button" class="text_button" value="콘센트가 있어요" onclick="text_load(this)">
+                        <input type="button" class="text_button" value="시그니처 메뉴가 있어요" onclick="text_load(this)">
+                        <input type="button" class="text_button" value="매장이 넓어요" onclick="text_load(this)">
+                        <input type="button" class="text_button" value="사진 찍기 좋아요" onclick="text_load(this)">
+                    </form>
+                </div>
             </div>
         </div>
+        <script>
+            const drawStar = (target) => {
+                document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+            }
+        </script>
+
+        <script>
+            function text_load(btn) {
+                const text = btn.value;
+                document.getElementById("text_area").innerText = text;
+            }
+
+            function comment_write() {
+                // textarea에서 값을 가져옴
+                var text = document.getElementById("text_area").value;
+                
+                if (text == "") {
+                    alert('내용을 입력하세요!');
+                }
+                else {
+                    // 별점 초기화
+                    document.querySelector('.star span').style.width = '0%';
+                    document.getElementById('text_area').innerHTML = '';
+                    // text 창 초기화
+
+                    // 새로운 li 엘리먼트 생성 및 내용 삽입
+                    var li = document.createElement("li");
+                    li.innerHTML = '<i class="fas fa-comment" style="color: #b8e4ff;"></i> ' + text;
+                    li.style.listStyle = "none";
+                    
+                    // ul 엘리먼트에 li 엘리먼트 추가
+                    var ul = document.getElementById("review_lists");
+                    ul.appendChild(li);
+                }
+                
+            }
+        </script>
     </body>
 </html>

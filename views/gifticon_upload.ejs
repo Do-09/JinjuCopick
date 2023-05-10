@@ -13,6 +13,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
         <script src="https://kit.fontawesome.com/a064522756.js" crossorigin="anonymous"></script>
         
@@ -42,53 +43,89 @@
             </div>  
         </div>
 
-        <section class="upload_section">
+
+        <div class="upload">
+            <h2>기프티콘</h2>
             <form action="/gifticon_upload/submit" id="myForm" method="post" enctype="multipart/form-data">
-                <h2>기프티콘</h2>
-                <input type="file" id="gifticonImg" name="gifticonImg" accept="image/*" aria-required="true" required oninvalid="this.setCustomValidity('기프티콘 이미지를 선택해주세요.')" oninput="this.setCustomValidity('')">
                 <table id="inputContainer">
+                <input type="file" id="gifticonImg" name="gifticonImg" accept="image/*" aria-required="true" required oninvalid="this.setCustomValidity('기프티콘 이미지를 선택해주세요.')" oninput="this.setCustomValidity('')">
                     <tr>
                         <td class="form_items">
                             <span class="fileInput">
                                 <label for="gifticonImg">사진 등록</label>
                             </span>
                         </td>
-                        <td class="form_input"><span id="fileName"></span></td>
+                        <td><input type="text" class="upload_input" id="fileName" value="" placeholder="사진을 등록하세요." required disabled></td>
                     </tr>
                     <tr>
                         <td class="form_items"><label>카페명</td>
-                        <td><input type="text" class="form_input" id="cafeName" name="cafeName" required oninvalid="this.setCustomValidity('카페명을 입력해주세요.')" oninput="this.setCustomValidity('')"></label><br></td>
+                        <td><input type="text" class="upload_input" id="cafeName" name="cafeName" maxlength="30" required oninvalid="this.setCustomValidity('카페명을 입력해주세요.')" oninput="this.setCustomValidity('')" placeholder="카페명을 입력하세요." required></td>
                     </tr>
                     <tr>
                         <td class="form_items"><label>유효기간</td>
-                        <td><input type="date" class="form_input" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity('유효기간을 선택해주세요.')" oninput="this.setCustomValidity('')" onchange="setMinValue()"></label><br></td>
+                        <td><input type="date" class="upload_input" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity('유효기간을 선택해주세요.')" oninput="this.setCustomValidity('')"></label></td>
                         
                         <!--오늘 이전 날짜는 선택 불가능-->
                     </tr>
                 </table>
-                <input type="reset" id="reset_btn" value="초기화" onclick="document.getElementById('fileName').textContent = '&nbsp;'">
-                <input type="submit" id="upload_btn" value="기프티콘 등록">
+                <input type="reset" class="form_btn" id="reset_btn" value="초기화" onclick="document.getElementById('fileName').textContent = '&nbsp;'">
+                <input type="submit" class="form_btn" id="upload_btn" value="기프티콘 등록">
             </form>
-        </section>
-        <section class="list_section">
-            <form action="/gifticon_upload/delete" method="post" onsubmit="return confirm('기프티콘을 삭제하시겠습니까?');">
-            <div class="check_section">
-                <input type="checkbox" class="ch_all" id="ch_all" name="check" value="selectAll(this)">
-                <label for="ch_all">전체선택 | </label>
-            </div>
-                <button type="submit" class="del_btn" id="del_btn">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-                <div class="gifticon_lists" id="gifticon_lists">
-                    <% for(let i = 0; i<data.length;i++){%>
-                        <% var image = data[i] %>  
-                        <input type="checkbox" name="check" value="<%=image.gifticon%>">
-                        <img src="<%= image.gifticon %>" width="100" height="150">
-                        <div>카페명 : <%= image.name %><br>유효기간 : <%=image.date%></div>
-                    <%}%>
-                </div>
+        </div>
+
+        <div class="list_section">
+            <form action="/gifticon_upload/delete" method="post" onsubmit="return nocheck()">
+                <% if(data.length > 0){ %>
+                    <div class="check_section">
+                        <input type="checkbox" class="ch_all" id="ch_all" name="select" value="selectAll(this)">
+                        <label for="ch_all">전체선택&ensp;|&ensp;</label>
+                    </div>
+                        <button type="submit" class="del_btn" id="del_btn">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+
+                        <div class="gifticon_lists" id="gifticon_lists">
+                            <% for(let i = 0; i<data.length;i++){%>
+                                <div class="gifticons">
+                                    <% var image = data[i] %>  
+                                    <p><input type="checkbox" name="check" value="<%=image.gifticon%>" onclick="checkSelectAll()"></p>
+                                    <img src="<%= image.gifticon %>" width="100" height="150" onclick="window.open(this.src)">
+                                    <div>카페명 : <%= image.name %></div>
+                                    <div>유효기간 : <span class="newDate"><%=image.date%></span></div>
+                                </div>
+                            <%}%>
+                        </div>
+                    <% } else { %>
+                        <div class="no_upload">등록된 기프티콘이 없습니다.</div>
+                    <% } %>
             </form>
-        </section>
+        </div>
+
+        <script>
+            function nocheck(){
+                const checkedBoxes = document.querySelectorAll('input[name="check"]:checked');
+                if (checkedBoxes.length == 0 ) {
+                    alert("선택된 기프티콘이 없습니다.");
+                    return false;
+                } else {
+                    confirm('기프티콘을 삭제하시겠습니까?'); 
+                } 
+            }
+        </script>
+
+        <script>
+            function checkSelectAll()  {
+                const boxes = document.querySelectorAll('input[name="check"]').length;// 전체 체크박스
+                const checked = document.querySelectorAll('input[name="check"]:checked').length;// 선택된 체크박스
+                const selectAll  = document.querySelector('input[name="select"]');// select all 체크박스
+                
+                if(boxes == checked)  {
+                    selectAll.checked = true;
+                }else {
+                    selectAll.checked = false;
+                }
+            }
+        </script>
 
         <script>
             const checkAll = document.querySelector('#ch_all')
@@ -102,27 +139,17 @@
 
         <script>
             document.getElementById('gifticonImg').onchange = function(){
-            // 만들어둔 div에 text(파일 이름) 추가
+            // 만들어둔 text input에 파일명 출력
             var file = this.files[0];
-            var name = document.getElementById('fileName');
-            name.textContent = file.name;
+            document.getElementById('fileName').value = file.name;
         }
         </script>
             
         <script>
             let dateElement = document.getElementById('expirationDate');
-            let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -5);
-            dateElement.value = date;
+            let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -14);
             dateElement.setAttribute("min", date);
-                                
-            function setMinValue() {
-                if(dateElement.value < date) {
-                    alert('유효기간이 지난 기프티콘은 등록할 수 없습니다.');
-                    dateElement.value = date;
-                }
-            }
         </script>
 
-        </script>
     </body>
 </html>
