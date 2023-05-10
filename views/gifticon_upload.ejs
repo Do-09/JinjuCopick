@@ -71,26 +71,61 @@
                 <input type="reset" class="form_btn" id="reset_btn" value="초기화" onclick="document.getElementById('fileName').textContent = '&nbsp;'">
                 <input type="submit" class="form_btn" id="upload_btn" value="기프티콘 등록">
             </form>
-        </section>
-        <section class="list_section">
-            <form action="/gifticon_upload/delete" method="post" onsubmit="return confirm('기프티콘을 삭제하시겠습니까?');">
-            <div class="check_section">
-                <input type="checkbox" class="ch_all" id="ch_all" name="check" value="selectAll(this)">
-                <label for="ch_all">전체선택 | </label>
-            </div>
-                <button type="submit" class="del_btn" id="del_btn">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-                <div class="gifticon_lists" id="gifticon_lists">
-                    <% for(let i = 0; i<data.length;i++){%>
-                        <% var image = data[i] %>  
-                        <input type="checkbox" name="check" value="<%=image.gifticon%>">
-                        <img src="<%= image.gifticon %>" width="100" height="150">
-                        <div>카페명 : <%= image.name %><br>유효기간 : <%=image.date%></div>
-                    <%}%>
-                </div>
+        </div>
+
+        <div class="list_section">
+            <form action="/gifticon_upload/delete" method="post" onsubmit="return nocheck()">
+                <% if(data.length > 0){ %>
+                    <div class="check_section">
+                        <input type="checkbox" class="ch_all" id="ch_all" name="select" value="selectAll(this)">
+                        <label for="ch_all">전체선택&ensp;|&ensp;</label>
+                    </div>
+                        <button type="submit" class="del_btn" id="del_btn">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+
+                        <div class="gifticon_lists" id="gifticon_lists">
+                            <% for(let i = 0; i<data.length;i++){%>
+                                <div class="gifticons">
+                                    <% var image = data[i] %>  
+                                    <p><input type="checkbox" name="check" value="<%=image.gifticon%>" onclick="checkSelectAll()"></p>
+                                    <img src="<%= image.gifticon %>" width="100" height="150" onclick="window.open(this.src)">
+                                    <div>카페명 : <%= image.name %></div>
+                                    <div>유효기간 : <span class="newDate"><%=image.date%></span></div>
+                                </div>
+                            <%}%>
+                        </div>
+                    <% } else { %>
+                        <div class="no_upload">등록된 기프티콘이 없습니다.</div>
+                    <% } %>
             </form>
-        </section>
+        </div>
+
+        <script>
+            function nocheck(){
+                const checkedBoxes = document.querySelectorAll('input[name="check"]:checked');
+                if (checkedBoxes.length == 0 ) {
+                    alert("선택된 기프티콘이 없습니다.");
+                    return false;
+                } else {
+                    return confirm('기프티콘을 삭제하시겠습니까?'); 
+                } 
+            }
+        </script>
+
+        <script>
+            function checkSelectAll()  {
+                const boxes = document.querySelectorAll('input[name="check"]').length;// 전체 체크박스
+                const checked = document.querySelectorAll('input[name="check"]:checked').length;// 선택된 체크박스
+                const selectAll  = document.querySelector('input[name="select"]');// select all 체크박스
+                
+                if(boxes == checked)  {
+                    selectAll.checked = true;
+                }else {
+                    selectAll.checked = false;
+                }
+            }
+        </script>
 
         <script>
             const checkAll = document.querySelector('#ch_all')
@@ -118,4 +153,3 @@
 
     </body>
 </html>
-

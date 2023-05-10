@@ -224,6 +224,7 @@ router.post("/mypage/password", function(req,res){ //마이페이지 패스워�
     var email = req.session.email;
     var password = req.body.password;
     if(authCheck.isOwner(req,res)){
+        
         db.query('SELECT * FROM information where email = ? and password = ?', [email, password], function (error, result) {
             if (error) throw error;
             if (result.length > 0) {
@@ -325,9 +326,7 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
     var del = req.body.check;
     if(authCheck.isOwner(req,res)){
             if(!del){
-                res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
-                document.location.href="/gifticon_upload";</script>`);
-            } else if(del[0]!='p'){ 
+            } else if(del[0]!='p'){ // 
                 for(i=0; i<del.length; i++){
                     if (fs.existsSync(del[i])) {
                         try {
@@ -355,7 +354,6 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
                 document.location.href="/login";</script>`);
     }
 })
-
 
 router.get("/community", function(req,res){ //커뮤니티 게시판 목록 화면 페이징
     if(authCheck.isOwner(req,res)){
