@@ -17,9 +17,14 @@
   body::-webkit-scrollbar{display:none}
   
   .list_section {
-      margin : 20px;
-      padding: 20px;
+      width: 1200px; 
+      padding: 20px;  
+      margin: auto;
       background-color: #EAECEF;
+      margin-top: 20px;
+      margin-bottom: 40px; 
+      display: flex;
+      flex-wrap: wrap; 
   }
   
   .check_section, .del_btn {
@@ -44,15 +49,16 @@
   }
   
   .upload h2 {
-      text-align: center;
-      color: #6690E3;
-      margin-bottom: 20px;
+      text-align: center; 
+      color: black; 
+      font-size: 25px;
+      font-weight: bold;
+      margin: 10px 0px; 
   }
   
   #inputContainer {
-      margin-left:auto;
-      margin-right:auto; 
-      width: 90%;
+      width: 700px; 
+      margin: auto; 
   }
   
   #upload_form {
@@ -62,7 +68,7 @@
       flex-direction: column;
       columns: 1;
       padding: 2vw 4vw;
-      border: 1px solid royalblue;
+      border: 1px solid royalblue; 
   }
   
   .upload_input {
@@ -75,7 +81,7 @@
       font-size: 16px;
       border-radius: 10px;
       resize: none;
-      width: 100%;
+      width: 80%;
   }
   
   .form_btn {
@@ -86,11 +92,11 @@
       font-size: 1rem;
       outline: none;
       cursor: pointer;
-      width: 15%;
+      width: 10%;
       font-weight: bold;
-      margin: 20px auto 0;
+      margin: 20px 15px;
       border-radius: 30px;
-      transition: all .5s ease-in;
+      transition: all .5s ease-in; 
   }
   
   .form_btn:hover {
@@ -99,6 +105,8 @@
       color: white;
   }
   
+  
+
   @media screen and (max-width: 667px) {
       #upload_form {
           width:100%
@@ -107,9 +115,17 @@
           width: 30%;
       }
   }
-
+  
   .no_upload { 
-    margin: 100px 0px;
-    text-align: center;
+    margin: 100px 0px;  
+    margin-left: 500px;  
   }
 
+  .form_items {
+    width: 140px;   
+  }
+ 
+  .gifticons {
+    margin-left: 30px;
+    margin-bottom: 10px;    
+  } 
