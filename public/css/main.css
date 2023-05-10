@@ -10,13 +10,12 @@ body {
     width: 900px;
     height: 600px;
     margin: auto;
-    margin-bottom: 60px;
+    margin-bottom: 120px; 
 }
 
 .map_area #map {
     width: 900px;
-    height: 600px;
-    margin-top: 10px;
+    height: 600px; 
 }
 
 .question {
@@ -121,11 +120,23 @@ body {
     padding: 2px;
 }
 
-.area_name {
-    background-color: pink;
-    width:110px;
-    margin-left: 500px; 
+.area_name { 
+    width: 900px;
+    margin-left: 475px;  
+    display: flex;
+    margin-top: -100px;
+    margin-bottom: 40px;
 }
+
+.area_name > div {
+    background-color: rgb(135, 135, 135, 0.2);
+    margin-right: 200px;
+    padding: 5px 20px; 
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
 
 @media screen and (max-width: 768px) {
     .question_button {
@@ -174,7 +185,7 @@ body {
 
 
 @media screen and (max-width: 667px) {
-    .map_area {
+    .map_area{
         flex-direction: column;
         align-items: flex-start;
         row-gap: 1rem;
@@ -186,7 +197,7 @@ body {
 }
 
 @media screen and (max-width: 667px) {
-    .map_area #map {
+    .map_area #map{
         flex-direction: column;
         align-items: flex-start;
         row-gap: 1rem;
