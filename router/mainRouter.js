@@ -224,6 +224,7 @@ router.post("/mypage/password", function(req,res){ //마이페이지 패스워�
     var email = req.session.email;
     var password = req.body.password;
     if(authCheck.isOwner(req,res)){
+        
         db.query('SELECT * FROM information where email = ? and password = ?', [email, password], function (error, result) {
             if (error) throw error;
             if (result.length > 0) {
@@ -325,9 +326,7 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
     var del = req.body.check;
     if(authCheck.isOwner(req,res)){
             if(!del){
-                res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
-                document.location.href="/gifticon_upload";</script>`);
-            } else if(del[0]!='p'){ 
+            } else if(del[0]!='p'){ // 
                 for(i=0; i<del.length; i++){
                     if (fs.existsSync(del[i])) {
                         try {
@@ -348,6 +347,7 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
                     }
                 db.query('delete from gifticon where gifticon = ?',[del], function(err, result){})
         }
+        res.redirect('/gifticon_upload');
         return false;
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
@@ -592,21 +592,21 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
 router.get("/cafe", function(req,res){ //카페 페이지
     var email = req.session.email;
     if(email){
-        result={"login":1}
+        result1={"login":1}
     }else{
-        result={"login":0}
+        result1={"login":0}
     }
-    res.render('cafe_list',{data:result})
+    res.render('cafe_list',{data1:result1})
 })
 
 router.get("/cafe_info", function(req,res){ //카페 페이지
     var email = req.session.email;
     if(email){
-        result={"login":1}
+        result1={"login":1}
     }else{
-        result={"login":0}
+        result1={"login":0}
     }
-    res.render('cafe_info',{data:result})
+    res.render('cafe_info',{data1:result1})
 })
 
 module.exports = router
