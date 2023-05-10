@@ -224,7 +224,6 @@ router.post("/mypage/password", function(req,res){ //마이페이지 패스워�
     var email = req.session.email;
     var password = req.body.password;
     if(authCheck.isOwner(req,res)){
-        
         db.query('SELECT * FROM information where email = ? and password = ?', [email, password], function (error, result) {
             if (error) throw error;
             if (result.length > 0) {
@@ -247,16 +246,22 @@ router.post('/mypage/password/change', function(req,res){ //마이페이지 패�
     var password2 = req.body.password2;
 
     if(authCheck.isOwner(req,res)){
-        if(password1 == password2){
-            db.query('UPDATE information SET password = ? where email = ?', [password1, email], function (error, result) {
-                if (error) throw error;
-                res.send(`<script type="text/javascript">alert("변경되었습니다");
-                window.close();</script>`);
-            })
+        if(password1&&password2){
+            if(password1 == password2){
+                db.query('UPDATE information SET password = ? where email = ?', [password1, email], function (error, result) {
+                    if (error) throw error;
+                    res.send(`<script type="text/javascript">alert("변경되었습니다");
+                    window.close();</script>`);
+                })
+            } else{
+                res.send(`<script type="text/javascript">alert("비밀번호가 다릅니다."); 
+                document.location.href="javascript:history.back();";</script>`); 
+            }
         } else{
-            res.send(`<script type="text/javascript">alert("비밀번호가 다릅니다."); 
-            document.location.href="javascript:history.back();";</script>`); 
+            res.send(`<script type="text/javascript">alert("비밀번호를 입력해주세요."); 
+                document.location.href="javascript:history.back();";</script>`); 
         }
+
         return false; 
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
@@ -320,7 +325,9 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
     var del = req.body.check;
     if(authCheck.isOwner(req,res)){
             if(!del){
-            } else if(del[0]!='p'){ // 
+                res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+                document.location.href="/gifticon_upload";</script>`);
+            } else if(del[0]!='p'){ 
                 for(i=0; i<del.length; i++){
                     if (fs.existsSync(del[i])) {
                         try {
@@ -341,7 +348,6 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
                     }
                 db.query('delete from gifticon where gifticon = ?',[del], function(err, result){})
         }
-        res.redirect('/gifticon_upload');
         return false;
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
@@ -591,6 +597,16 @@ router.get("/cafe", function(req,res){ //카페 페이지
         result={"login":0}
     }
     res.render('cafe_list',{data:result})
+})
+
+router.get("/cafe_info", function(req,res){ //카페 페이지
+    var email = req.session.email;
+    if(email){
+        result={"login":1}
+    }else{
+        result={"login":0}
+    }
+    res.render('cafe_info',{data:result})
 })
 
 module.exports = router
