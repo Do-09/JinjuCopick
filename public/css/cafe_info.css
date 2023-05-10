@@ -13,35 +13,24 @@ body::-webkit-scrollbar{display:none}
 
 #info_section {
     background-color: #EAECEF;
-    /*display: flex;*/
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 40px;
-    opacity: 1;
+    display: flex;
     transition: all ease-out 0.3s;
     margin: 20px;
     padding: 10px;
 }
 
 #simple_info {
-    /*float:left;*/
-    margin: 10px;
-    padding: 10px;
-}
-
-.info_items {
-    display: block;
-}
-
-.star-ratings {
-    color: #aaa9a9; 
     position: relative;
-    unicode-bidi: bidi-override;
-    width: max-content;
-    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 1.3px;
-    -webkit-text-stroke-color: #2b2a29;
+    display: inline-block;
+    margin: 10px 10px;
+    padding: 10px 10px;
+    display: inline;
+    width: 50%;
+}
+
+#cafe_image {
+    width: 60%;
+    overflow: hidden;
 }
    
 .star-ratings-fill {
@@ -49,32 +38,66 @@ body::-webkit-scrollbar{display:none}
     padding: 0;
     position: absolute;
     z-index: 1;
+    top: 75.5px;
+    left: 10px;
     display: flex;
-    top: 0;
-    left: 0;
     overflow: hidden;
     -webkit-text-fill-color: gold;
 }
    
 .star-ratings-base {
+    color: #fff;
     z-index: 0;
     padding: 0;
 }
 
 #review {
-    /*float:right;
-    width: 70%;
-    display: flex;*/
     background-color: #fff;
+    display: inline;
     align-items: end;
     margin: 10px;
     padding: 20px;
     border-radius: 10px;
+    width: 50%;
+}
+
+#review_input {
+    border: 2px solid lightgray;
+    padding: 5px;
+}
+
+.star {
+    position: relative;
+    font-size: 1.5rem;
+    color: #ddd;
+}
+  
+.star input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: gold;
+    overflow: hidden;
+    pointer-events: none;
 }
 
 #text_area {
-    background-color: #EAECEF;
     width: 100%;
+    background: #f5f5f5;
+    font-size: 16px;
+    border-radius: 10px;
+    margin: 10px 0px;
+    padding: 20px;
+
 }
 
 #review_submit {
@@ -88,8 +111,32 @@ body::-webkit-scrollbar{display:none}
     background-color: #b8e4ff;
     border-radius: 15px;
     padding: 5px;
+    margin: 3px;
 }
 
 .comments {
     list-style: none;
+}
+
+@media screen and (max-width: 667px) {
+    #info_section {
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        opacity: 1;
+        transition: all ease-out 0.3s;
+    }
+
+    #simple_info {
+        width: 100%;
+    }
+
+    #review {
+        width: 100%;
+    }
+
+    #cafe_image {
+        width: 100%;
+    }
 }

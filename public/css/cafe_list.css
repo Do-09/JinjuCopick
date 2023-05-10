@@ -1,3 +1,5 @@
+body::-webkit-scrollbar{display:none}
+
 #list_container {
     display: flex;
     justify-content: center;
@@ -22,4 +24,11 @@
     background-color: rgba(194, 194, 194, 0.865);
     margin: 20px;
     padding: 10px;
+    cursor: pointer;
+}
+
+.cafe_list > input {
+    border: 0;
+    background-color: transparent;
+    color: black;
 }

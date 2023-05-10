@@ -591,21 +591,21 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
 router.get("/cafe", function(req,res){ //카페 페이지
     var email = req.session.email;
     if(email){
-        result={"login":1}
+        result1={"login":1}
     }else{
-        result={"login":0}
+        result1={"login":0}
     }
-    res.render('cafe_list',{data:result})
+    res.render('cafe_list',{data1:result1})
 })
 
 router.get("/cafe_info", function(req,res){ //카페 페이지
     var email = req.session.email;
     if(email){
-        result={"login":1}
+        result1={"login":1}
     }else{
-        result={"login":0}
+        result1={"login":0}
     }
-    res.render('cafe_list',{data:result})
+    res.render('cafe_info',{data1:result1})
 })
 
 module.exports = router
