@@ -1,7 +1,7 @@
 .gifticon_lists {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 40px;
@@ -21,7 +21,6 @@
     align-items: center;
     margin-bottom: 80px;
 }
-
 @media screen and (max-width: 768px){
     .gifticon_lists .gifticon_list{padding:1rem}
 }
