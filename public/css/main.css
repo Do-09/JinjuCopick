@@ -10,13 +10,12 @@ body {
     width: 900px;
     height: 600px;
     margin: auto;
-    margin-bottom: 60px;
+    margin-bottom: 120px; 
 }
 
 .map_area #map {
     width: 900px;
-    height: 600px;
-    margin-top: 10px;
+    height: 600px; 
 }
 
 .question {
@@ -121,11 +120,25 @@ body {
     padding: 2px;
 }
 
-.area_name {
-    background-color: pink;
-    width:110px;
-    margin-left: 500px; 
+.area_name {  
+    width: 900px;
+    /* margin-left: 475px;  */
+    display: flex;
+    margin: auto; 
+    margin-top: -100px;  
+    margin-bottom: 40px;  
+    text-align: center;
 }
+ 
+.area_name > div {
+    background-color: rgb(135, 135, 135, 0.2);
+    margin-left: 150px;
+    padding: 5px 20px; 
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
 
 @media screen and (max-width: 768px) {
     .question_button {
@@ -172,9 +185,8 @@ body {
     }
 }
 
-
 @media screen and (max-width: 667px) {
-    .map_area {
+    .map_area{
         flex-direction: column;
         align-items: flex-start;
         row-gap: 1rem;
@@ -186,7 +198,7 @@ body {
 }
 
 @media screen and (max-width: 667px) {
-    .map_area #map {
+    .map_area #map{
         flex-direction: column;
         align-items: flex-start;
         row-gap: 1rem;
@@ -194,6 +206,16 @@ body {
         width: 100%;
     }
 }
+
+@media screen and (max-width: 667px) {
+    .area_name{
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 2rem 2rem; 
+        width: 80%; 
+    }
+} 
 
 .range {
     width: 400px; 
@@ -225,7 +247,7 @@ body {
     color: #6c6c6c;
     font-weight: bold; 
     text-align: center; 
-    font-size: 20px; 
+    font-size: 18px; 
     margin-left: 15px;
 }
 

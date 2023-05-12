@@ -89,16 +89,18 @@
             </div>           
     </div>   
 
+    <div class="map_areas">
     <span class="notice_text">지도에서 구역을 최대 3개 선택해주세요.</span>
 
             <div class="map_area">
                 <div id="map"></div>
             </div>
+
             <div class="area_name"></div>
             <input type="hidden" name="selectMap1" value="">
             <input type="hidden" name="selectMap2" value="">
             <input type="hidden" name="selectMap3" value="">
-
+    </div>
     <span class="notice_text">아이스 아메리카노의 최대 가격을 선택해주세요.</span>        
         <div class="range_box">
             <span class="ice">아이스 아메리카노</span>
@@ -113,6 +115,7 @@
     
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9d1355c19666c5197b4f39cb9f886798"></script>
     <script src="/public\js\kakaomap.js"></script>
+    <script src="/public\js\map_filter.js"></script>
     <script>
         function rangeSlider(value){
             document.getElementById("rangeValue").innerHTML = value;

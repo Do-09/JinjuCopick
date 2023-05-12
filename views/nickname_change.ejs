@@ -7,11 +7,36 @@
 </head>
 
 <body>
+    <script>
+        function checkNickname(){
+            let nickname = document.getElementById("nickname").value
+
+            // 닉네임 확인 (2~8자)
+            if(nickname === ""){
+                    document.getElementById("nicknameError").innerHTML = "닉네임을 입력해주세요."
+                    return false;
+                } else if((nickname.length < 2) || (nickname.length > 8)) {
+                    document.getElementById("nicknameError").innerHTML = "2~8자로 입력해주세요."
+                    return false;
+                } else {
+                    document.getElementById("nicknameError").innerHTML = "&nbsp"
+                }
+
+        }
+    </script>
+
     <div class="top"><strong>닉네임 변경</strong></div>
     <div class="middle">
-        <form action='/mypage/nickname/change' method="post">
-            <p><input type="text" id="nickname" name="nickname" placeholder="새 닉네임"></p>
-            <p><input type="submit" id="check" value="변경"></p>
+        <form onsubmit="return checkNickname()" action='/mypage/nickname/change' method="post">
+        <div>
+            <div class="nickname">
+                <input type="text" id="nickname" name="nickname" placeholder="새 닉네임">
+                <div id="nicknameError" class="error">&nbsp</div>
+            </div>
+            <div class="check">
+                <input type="submit" id="check" value="변경">
+            </div>
+        </div>
         </form>
     </div>
 </body>

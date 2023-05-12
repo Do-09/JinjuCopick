@@ -161,10 +161,21 @@
             </form>
           </div>
           
-  
+  <script>
+var cafes = [
+'<% for(let i = 0; i < cafe.length; i++) { %>'
+  '<% var cafelist = cafe[i] %>'
+  {
+    cafename: "<%= cafelist.cafename %>",
+    location: "<%= cafelist.location %>"
+  },
+'<% } %>'
+];
+  </script>
         </div>
     </div>
 
 
 </body>
 </html>
+
