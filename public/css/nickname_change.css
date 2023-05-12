@@ -30,6 +30,14 @@ body{
     border-bottom: 1px solid black;
 }
 
+#nicknameError {
+    font-size: 13px;
+    font-weight: 700;
+    color:red;
+    padding: 3px;
+    margin-bottom: 8px;
+}
+
 #check {
     background-color: rgba(184, 206, 251, 0.8);
     border-radius: 5px;
