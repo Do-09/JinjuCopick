@@ -13,8 +13,7 @@
 
             // 닉네임 확인 (2~8자)
             if(nickname === ""){
-                    //document.getElementById("nicknameError").innerHTML = "닉네임을 입력해주세요."
-                    alert("닉네임을 입력해주세요.")
+                    document.getElementById("nicknameError").innerHTML = "닉네임을 입력해주세요."
                     return false;
                 } else if((nickname.length < 2) || (nickname.length > 8)) {
                     document.getElementById("nicknameError").innerHTML = "2~8자로 입력해주세요."
