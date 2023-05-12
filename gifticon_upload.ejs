@@ -89,7 +89,7 @@
                                 <div class="gifticons">
                                     <% var image = data[i] %>  
                                     <p><input type="checkbox" name="check" value="<%=image.gifticon%>" onclick="checkSelectAll()"></p>
-                                    <img src="<%= image.gifticon %>" width="100" height="150" onclick="window.open(this.src)">
+                                    <img src="<%= image.gifticon %>" width="100" height="150" onclick="window.open(this.src, '_blank', 'width=800, height=600')">
                                     <div>카페명 : <%= image.name %></div>
                                     <div>유효기간 : <span class="newDate"><%=image.date%></span></div>
                                 </div>
