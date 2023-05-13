@@ -37,11 +37,12 @@
                     </div>
                 </section>
             </div>
-            <script src="/public\js\index.js"></script>
+            <script src="public\js\index.js"></script>
             <div class="main_logo"> 
                 <a href="/"><img src="/public/static/jinju.textlogo.png" height= "110" alt="로고"></a>
             </div>  
         </div>
+
 
         <div class="upload">
             <h2>기프티콘</h2>
@@ -88,7 +89,7 @@
                                 <div class="gifticons">
                                     <% var image = data[i] %>  
                                     <p><input type="checkbox" name="check" value="<%=image.gifticon%>" onclick="checkSelectAll()"></p>
-                                    <img src="<%= image.gifticon %>" width="100" height="150" onclick="window.open(this.src)">
+                                    <img src="<%= image.gifticon %>" width="100" height="150" onclick="window.open(this.src, '_blank', 'width=800, height=600')">
                                     <div>카페명 : <%= image.name %></div>
                                     <div>유효기간 : <span class="newDate"><%=image.date%></span></div>
                                 </div>
@@ -107,7 +108,7 @@
                     alert("선택된 기프티콘이 없습니다.");
                     return false;
                 } else {
-                    return confirm('기프티콘을 삭제하시겠습니까?'); 
+                    confirm('기프티콘을 삭제하시겠습니까?'); 
                 } 
             }
         </script>
@@ -149,7 +150,6 @@
             let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -14);
             dateElement.setAttribute("min", date);
         </script>
-
 
     </body>
 </html>

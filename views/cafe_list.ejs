@@ -24,174 +24,85 @@
             <section class="side_section">
                 <ul class="bookmark-lists">
                     <li class="bookmark" id="main_home"><a href="/"><div id="main_name">진주커Pick</div></a></li><hr>
-                    <% var login = data1%>
-                    <% if(login.login==1){%>
-                        <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/mypage">마이페이지</span></a></li>
-                    <%} else {%>
-                        <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/login">로그인</span></a></li>
-                    <%}%>
+                    <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/login">로그인</span></a></li>
                     <li class="material-symbols-outlined" id="gifticon">barcode<span id="name"><a href="/gifticon_upload">기프티콘</span></a></li>
                     <li class="material-symbols-outlined" id="commu">chat<span id="name"><a href="/community">커뮤니티</span></a></li>
-                    <% if(login.login==1){%>
-                        <li class="material-symbols-outlined" id="out">logout<span id="name"><a href="/logout">로그아웃</span></a></li> 
-                    <%}%>
-                
+        
                 </ul>
                 <div class="info"><hr>경상국립대학교 얼죽아
                     <div id="info_1">수학과&emsp;&emsp;&emsp;&emsp;강수연<br>정보통계학과&emsp;정인영<br>정보통계학과&emsp;정혜주<br>컴퓨터과학과&emsp;서혜원<br>컴퓨터과학과&emsp;이도현<hr></div>
                 </div>
             </section>
         </div>
-        <script src="/public\js\index.js"></script>
+        <script src="public\js\index.js"></script>
         <div class="main_logo"> 
             <a href="/"><img src="/public/static/jinju.textlogo.png" height= "110" alt="로고"></a>
         </div>  
     </div>
 
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9d1355c19666c5197b4f39cb9f886798"></script>
+
+
+
     <form id="list_container">
         <div id="map">
         </div>
 
-        <div id="cafe_lists">
-            <div class="cafe_list">
-                <input type="text" class="cafeName" id="cafeName1" name="cafeName1" value="베이커리925" disabled><br>
-                <input type="text" class="cafeAddress" id="cafeAddress1" name="cafeAddress1" value="경남 진주시 진주대로 544" disabled>
-            </div>
-            <div class="cafe_list">
-                <input type="text" class="cafeName" id="cafeName2" name="cafeName2" value="센트럴베이크샵" disabled><br>
-                <input type="text" class="cafeAddress" id="cafeAddress2" name="cafeAddress2" value="경남 진주시 진주대로 506-1 1층" disabled>
-            </div>
-            <div class="cafe_list">
-                <input type="text" class="cafeName" id="cafeName3" name="cafeName3" value="스타벅스 진주 경상대점" disabled><br>
-                <input type="text" class="cafeAddress" id="cafeAddress3" name="cafeAddress3" value="경남 진주시 진주대로 510" disabled>
-            </div>
-            <div class="cafe_list">
-                <input type="text" class="cafeName" id="cafeName4" name="cafeName4" value="" disabled><br>
-                <input type="text" class="cafeAddress" id="cafeAddress4" name="cafeAddress4" value="" disabled>
-            </div>
-            <div class="cafe_list">
-                <input type="text" class="cafeName" id="cafeName5" name="cafeName5" value="" disabled><br>
-                <input type="text" class="cafeAddress" id="cafeAddress5" name="cafeAddress5" value="" disabled>
-            </div>
-            <div class="cafe_list">
-                <input type="text" class="cafeName" id="cafeName6" name="cafeName6" value="" disabled><br>
-                <input type="text" class="cafeAddress" id="cafeAddress6" name="cafeAddress6" value="" disabled>
-            </div>
-        </div>
+        <div id="list_box">
 
-        <div class="latlng">
-            <div class="latlng1">
-                <input type="hidden" class="latlng_front" id="latlng1_front" name="latlng1_front" value="35.1550">
-                <input type="hidden" class="latlng_back" id="latlng1_back" name="latlng1_back" value="128.1074">
-            </div>
-            <div class="latlng2">
-                <input type="hidden" class="latlng_front" id="latlng2_front" name="latlng2_front" value="35.1519">
-                <input type="hidden" class="latlng_back" id="latlng2_back" name="latlng2_back" value="128.1056">
-            </div>
-            <div class="latlng3">
-                <input type="hidden" class="latlng_front" id="latlng3_front" name="latlng3_front" value="35.1523">
-                <input type="hidden" class="latlng_back" id="latlng3_back" name="latlng3_back" value="128.1056">
-            </div>
-            <div class="latlng4">
-                <input type="hidden" class="latlng_front" id="latlng4_front" name="latlng4_front" value="">
-                <input type="hidden" class="latlng_back" id="latlng4_back" name="latlng4_back" value="">
-            </div>
-            <div class="latlng5">
-                <input type="hidden" class="latlng_front" id="latlng5_front" name="latlng5_front" value="">
-                <input type="hidden" class="latlng_back" id="latlng5_back" name="latlng5_back" value="">
-            </div>
-            <div class="latlng6">
-                <input type="hidden" class="latlng_front" id="latlng6_front" name="latlng6_front" value="">
-                <input type="hidden" class="latlng_back" id="latlng6_back" name="latlng6_back" value="">
-            </div>
-        </div>
-    </form>
+            <script>
+                const positions = []
+            </script>
+            <% var map = [] %>
+            <% for(var i = 0; i<cafe.length; i++){%>
+                <% map.push(cafe[i]) %>
+            <%}%>    
+                    
+            <% for(let i = 0; i < cafe.length; i++) { %>
+                <% var cafelist = cafe[i] %>
+                <table class="cafe_list">
+                  <div class="cafe_area"><%= cafelist.area %></div>
+                  <tr onclick="location.href='/cafe_info/<%= cafelist.cafename %>'">
+                    <td class="info_box">
+                      <div class="cafeName"><%= cafelist.cafename %></div> 
+                      <div class="cafeAddress"><%= cafelist.location %></div>
+                    </td>
+                  </tr>
+                </table>
+              
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9d1355c19666c5197b4f39cb9f886798"></script>
-    
-    <script>
-        // 위도 평균 구하기
-        var latlng_front = document.getElementsByClassName("latlng_front");
-        var latlng_front_avg = 0
-        var n = 0
-        for (var i = 0; i < latlng_front.length; i++) {
-            if (latlng_front[i].value !== "") {
-                latlng_front_avg += Number(latlng_front[i].value);
-                n += 1
-            }
-        }
-        latlng_front_avg = latlng_front_avg / n
-
-        // 경도 평균 구하기
-        var latlng_back = document.getElementsByClassName("latlng_back")
-        var latlng_back_avg = 0
-        for (var i = 0; i < latlng_back.length; i++) {
-            if (latlng_back[i].value !== "") {
-                latlng_back_avg += Number(latlng_back[i].value);
-            }
-        }
-        latlng_back_avg = latlng_back_avg / n
-
-
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            <script>
+                positions.push({latlng: new kakao.maps.LatLng("<%= cafelist.xlocation %>","<%= cafelist.ylocation %>")});
+                console.log(positions.length)
+                
+                for (var i = 0; i < positions.length; i++) {
+                    var markerPosition = new kakao.maps.LatLng(positions[i].latlng.getLat(), positions[i].latlng.getLng());
+                    console.log(positions[i].latlng.getLat(), positions[i].latlng.getLng());
+                    // alert(markerPosition); 
+                    // alert(positions[i].latlng);
+                }
+        </script>
+      
+      <% } %>
+            
+      <script>
+        var mapContainer = document.getElementById('map'),
             mapOption = { 
-                center: new kakao.maps.LatLng(latlng_front_avg, latlng_back_avg), // 지도의 중심좌표
-                level: 5 // 지도의 확대 레벨
+                center: new kakao.maps.LatLng(positions[0].latlng.getLat(), positions[0].latlng.getLng()), // 지도의 중심좌표
+                level: 4 // 지도의 확대 레벨
             };
 
-        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-        
+        var kakaomap = new kakao.maps.Map(mapContainer, mapOption);
 
-        // 마커를 표시할 위치와 title 객체 배열입니다 
-        var cafeName = document.getElementsByClassName("cafeName");
-        var positions = [
-            {
-                title: cafeName[0].value, 
-                latlng: new kakao.maps.LatLng(latlng_front[0].value, latlng_back[0].value)
-            },
-            {
-                title: cafeName[1].value, 
-                latlng: new kakao.maps.LatLng(latlng_front[1].value, latlng_back[1].value)
-            },
-            {
-                title: cafeName[2].value, 
-                latlng: new kakao.maps.LatLng(latlng_front[2].value, latlng_back[2].value)
-            },
-            {
-                title: cafeName[3].value, 
-                latlng: new kakao.maps.LatLng(latlng_front[3].value, latlng_back[3].value)
-            },
-            {
-                title: cafeName[4].value,
-                latlng: new kakao.maps.LatLng(latlng_front[4].value, latlng_back[4].value)
-            },
-            {
-                title: cafeName[5].value, 
-                latlng: new kakao.maps.LatLng(latlng_front[5].value, latlng_back[5].value)
-            }
-        ];
-
-        for (var i = 0; i < positions.length; i ++) {
-            // 마커를 생성합니다
+        // 마커 추가
+        for (var i = 0; i < positions.length; i++) {  
             var marker = new kakao.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: positions[i].latlng, // 마커를 표시할 위치
-                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            });
+                map: kakaomap,
+                position: positions[i].latlng
+            });  
         }
-
-
-        // 카페 정보 없을 시 영역 없애기
-        var cafeName = document.getElementsByClassName("cafeName")
-        for (var i = 0; i < cafeName.length; i++) {
-            if (cafeName[i].value === "") {
-                cafeName[i].parentNode.style.backgroundColor = "transparent";
-                //cafeName[i].style.cursor = "default";
-                //cafeName[i].nextElementSibling.style.cursor = "default";
-                cafeName[i].parentNode.style.cursor = "default";
-            }
-        }
-    </script>
-
+      </script>
+    </div>
+    </form>
     </body>
-</html>
+</h

@@ -71,21 +71,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 48px;
 
 }
 
 .btn-check:hover+.btn-label {
     background: #B8CEFB;
     border-color: white;
-    color: white;
+    color: white; 
 }
 
 .btn-check:checked+.btn-label {
     background-color: #B8CEFB;
     color: black;
 }
-
-
+ 
 #image1 {
     height: 30px;
     width: 30px;
@@ -286,5 +286,5 @@ body {
 .area_title {  
     margin-left: 50px;
     font-weight: bold;
-    font-size: 15px; 
-} 
+    font-size: 15px;
+}

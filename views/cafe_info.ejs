@@ -150,10 +150,12 @@
                     <%=rev.nickname%>
                     <%=rev.review%>
                     <%=rev.writeTime%>
-                    <form name="review_delete" action = "/review/<%=rev.num%>" method="post" onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
-                        <% if (rev.nickname == check.nickname) { %>
+                    <form name="review_delete" action = "/review/<%=info.cafe%>/<%=rev.num%>" method="post" onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
+                        <% if(login.login==1){%>
+                            <% if (rev.nickname == check.nickname) { %>
                             <span><button type="submit">삭제</button></span>
-                        <% } %>    
+                            <% } %> 
+                        <%}%>   
                     </form>
                 <%}%>
             </div>

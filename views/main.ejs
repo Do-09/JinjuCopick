@@ -55,36 +55,40 @@
         <form name="filtering" class="filter-group" action="/filter" method="post">
             <div class="question_button">
               <div class="form-element"> 
-                <input type="checkbox" class="btn-check" id="btn1" name="study" value="1">
-                <label class="btn-label" for="btn1"><img src="public\static\study.png" id="image1"/>스터디</label> 
+                <input type="checkbox" class="btn-check" id="btn1" name="dessert" value="1" onchange="togglefilter()" >
+                <label class="btn-label" for="btn1"><img src="public\static\dessert.png" id="image1"/>디저트</label> 
               </div>
               <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn2" name="pet" value="1">
                 <label class="btn-label" for="btn2"><img src="public\static\pet2.png" id="image1"/>애견동반</label>
-            </div>
-            <div class="form-element"> 
+              </div>
+              <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn3" name="nokids" value="1">
                 <label class="btn-label" for="btn3"><img src="public\static\nokids.png" id="image1"/>노키즈존</label>
-            </div>
-            <div class="form-element"> 
+              </div>
+              <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn4" name="takeout" value="1">
                 <label class="btn-label" for="btn4"><img src="public\static\takeout2.png" id="image1"/>테이크아웃</label>
-            </div>
-            <div class="form-element"> 
+              </div>
+              <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn5" name="hours" value="1">
                 <label class="btn-label" for="btn5"><img src="public\static\24h3.png" id="image1"/>24시</label>
-            </div>
-            <div class="form-element"> 
+              </div>
+              <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn6" name="meeting" value="1">
                 <label class="btn-label" for="btn6"><img src="public\static\meeting3.png" id="image1"/>단체석(6인 이상)</label>
-            </div>
-            <div class="form-element"> 
+              </div>
+              <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn7" name="franchise" value="1">
                 <label class="btn-label" for="btn7"><img src="public\static\franchise2.png" id="image1"/>프랜차이즈</label>
-            </div>
-            <div class="form-element"> 
+              </div>
+              <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn8" name="parking" value="1">
                 <label class="btn-label" for="btn8"><img src="public\static\parking.png" id="image1"/>주차장</label>
+            </div>
+            <div class="form-element"> 
+                <input type="checkbox" class="btn-check" id="btn9" name="nothing" value="1" onchange="togglenofilter()">
+                <label class="btn-label" for="btn9">원하는 조건이 없어요.</label>
             </div>
             </div>           
     </div>   
@@ -123,5 +127,7 @@
         }
 
     </script>
+
+     
 </body>
 </html>
