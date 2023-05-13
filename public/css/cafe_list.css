@@ -1,5 +1,9 @@
 body::-webkit-scrollbar{display:none}
 
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
 #list_container {
     display: flex;
     justify-content: center;
@@ -12,16 +16,18 @@ body::-webkit-scrollbar{display:none}
     
 }
 
-#cafe_lists {
+#list_box {
     width:600px; height:600px;
-    background-color: rgba(186, 193, 198, 0.42);
+    /* background-color: rgba(186, 193, 198, 0.42);  */
+    background-color: palegoldenrod;
     float: left;
     margin: 30px;
 }
 
 .cafe_list {
     width:560px; height:70px;
-    background-color: rgba(194, 194, 194, 0.865);
+    /* background-color: rgba(194, 194, 194, 0.865); */
+    background-color: aqua;
     margin: 20px;
     padding: 10px;
     cursor: pointer;
@@ -31,4 +37,31 @@ body::-webkit-scrollbar{display:none}
     border: 0;
     background-color: transparent;
     color: black;
+}
+
+.info_box {
+    background-color: blue;
+    padding: 0px 10px;
+}
+
+.cafeName {
+    background-color: pink;
+    font-weight: bold;
+    margin-bottom: 7px;
+    font-size: 17px;
+}
+
+.cafeAddress {
+    background-color: green;
+    font-size: 15px; 
+}
+
+.cafe_title { 
+    width: 200px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 8px 10px 5px 10px;
+    text-align: center;
+    font-weight: bold; 
 }
