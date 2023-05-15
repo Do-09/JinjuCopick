@@ -139,10 +139,16 @@
 
         <script>
             document.getElementById('gifticonImg').onchange = function(){
-            // 만들어둔 text input에 파일명 출력
-            var file = this.files[0];
-            document.getElementById('fileName').value = file.name;
-        }
+                // 만들어둔 text input에 파일명 출력
+                var file = this.files[0];
+
+                if (file) {
+                    document.getElementById('fileName').value = file.name;
+                    document.getElementById('fileName').oninvalid = "";
+                } else {
+                    document.getElementById('fileName').value = "";
+                }
+            }
         </script>
             
         <script>
