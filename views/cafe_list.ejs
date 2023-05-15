@@ -116,15 +116,15 @@
 
         kakao.maps.event.addListener(marker, 'click', (function(marker, infowindow) {
             return function() {
-            // 열려있는 인포윈도우가 있으면 닫습니다.
+            // 열려있는 인포윈도우 닫음
             if (currentInfowindow) {
                 currentInfowindow.close();
             }
 
-            // 클릭한 마커의 인포윈도우를 엽니다.
+            // 클릭한 마커의 인포윈도우 열기
             infowindow.open(kakaomap, marker);
 
-            // 현재 열려있는 인포윈도우를 업데이트합니다.
+            // 현재 열려있는 인포윈도우 업데이트
             currentInfowindow = infowindow;
             };
         })(marker, infowindow));
