@@ -92,6 +92,10 @@
     width: 92%;
     color:gray;
   }*/
+
+  .fileInput {
+    cursor: pointer;
+  }
   
   .form_btn {
       background: white;
