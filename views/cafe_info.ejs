@@ -104,6 +104,7 @@
                         <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(3.5/5 * 80px);">
                     <%}else if(score==4){%>
                         <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(4/5 * 80px);">
+                    <%}else if(score==4.5){%>
                         <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(4.5/5 * 80px);">
                     <%}else if(score==5){%>
                         <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(5/5 * 80px);">
@@ -140,36 +141,53 @@
                     <span class="star">
                         ★★★★★
                         <span>★★★★★</span>
-                        <input type="range" id = "score" name = "score" oninput="drawStar(this)" value="0" step="1" min="0" max="10">
+                        <input type="range" id = "score" name ="score" oninput="drawStar(this)" value="" step="1" min="0" max="10">
                     </span>
-                        <textarea id="text_area" rows="4" name = review placeholder="매장에 대한 후기를 남겨주세요."></textarea>
+                        <textarea id="text_area" rows="4" name ="review" maxlength="45" placeholder="매장에 대한 후기를 남겨주세요."></textarea>
                         <input type="submit" id="review_submit" value="등록" >
                         <input type="button" class="text_button" value="콘센트가 있어요" onclick="text_load(this)">
                         <input type="button" class="text_button" value="시그니처 메뉴가 있어요" onclick="text_load(this)">
+                        <input type="button" class="text_button" value="디저트가 맜있어요" onclick="text_load(this)">
                         <input type="button" class="text_button" value="매장이 넓어요" onclick="text_load(this)">
                         <input type="button" class="text_button" value="사진 찍기 좋아요" onclick="text_load(this)">
+                        <input type="button" class="text_button" value="가성비가 좋아요" onclick="text_load(this)">
+                        <input type="button" class="text_button" value="화장실이 깨끗해요" onclick="text_load(this)">
                     </form> 
 
                 </div>
-                <% var check = data3[0] %> <!--리뷰(닉네임, 글, 작성 시간)-->
-
-                <% for(var i = 0; i<data2.length; i++){%>
-                    <% var rev = data2[i] %>
-                    <i class="fas fa-comment" style="color: #b8e4ff;"></i>
-                    <%=rev.nickname%>
-                    <%=rev.review%>
-                    <%=rev.writeTime%>
-                    <form style="display:inline" name="review_delete" action = "/review/<%=info.cafe%>/<%=rev.num%>" method="post" onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
-                        <% if(login.login==1){%>
-                            <% if (rev.nickname == check.nickname) { %>
-                            <span><button type="submit">삭제</button></span>
-                            <% } %> 
-                        <%}%>   
-                    </form>
-                    <br>
-                <%}%>
             </div>
         </div>
+        <ul id="review_lists">
+            <% var check = data3[0] %> <!--리뷰(닉네임, 글, 작성 시간)-->
+
+                <% for(var i = 0; i<data2.length; i++){%>
+                    <li class="reviews">
+                        <% var rev = data2[i] %>
+                        <i class="fas fa-comment" style="color: #b8e4ff;"></i>
+                        <%=rev.nickname%>
+                        <span class="user-star-ratings">
+                            <span class="user-star-ratings-fill" style="width: calc(3/5 * 80px);">
+                                <span>★★★★★</span> 
+                            </span>
+                            <span class="user-star-ratings-base">
+                                <span>★★★★★</span> 
+                            </span>
+                        </span>
+                        <%=rev.writeTime%>
+                        <form style="display:inline" name="review_delete" action = "/review/<%=info.cafe%>/<%=rev.num%>" method="post" onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
+                            <% if(login.login==1){%>
+                                <% if (rev.nickname == check.nickname) { %>
+                                <span><button type="submit" id="review_del_btn">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button></span>
+                                <% } %> 
+                            <%}%>   
+                        </form>
+                        <div><%=rev.review%></div>
+                    </li>
+                <%}%>
+        </ul>
+
         <script>
             const drawStar = (target) => {
                 document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
@@ -185,6 +203,7 @@
             function comment_write() {
                 // textarea에서 값을 가져옴
                 var text = document.getElementById("text_area").value;
+                
                 
                 if (text == "") {
                     alert('내용을 입력하세요!');

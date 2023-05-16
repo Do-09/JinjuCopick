@@ -15,8 +15,9 @@ body::-webkit-scrollbar{display:none}
     background-color: #EAECEF;
     display: flex;
     transition: all ease-out 0.3s;
-    margin: 20px;
-    padding: 10px;
+    margin : auto;
+    padding: 20px;
+    width: 90%;
 }
 
 #simple_info {
@@ -29,7 +30,7 @@ body::-webkit-scrollbar{display:none}
 }
 
 #cafe_image {
-    width: 60%;
+    width: 100%;
     overflow: hidden;
 }
 
@@ -115,8 +116,41 @@ body::-webkit-scrollbar{display:none}
     margin: 3px;
 }
 
-.comments {
+#review_lists {
     list-style: none;
+    margin: auto;
+    padding-top: 10px;
+    width: 90%;
+}
+
+.reviews {
+    border: 1px solid skyblue;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.user-star-ratings {
+    position: relative;
+}
+
+.user-star-ratings-fill {
+    position:absolute;
+    top:0;
+    color:gold;
+    z-index: 1; 
+    margin:0; 
+    overflow:hidden;
+}
+
+.user-star-ratings-base {
+    z-index: 0; 
+    color: white;
+}
+
+#review_del_btn {
+    background-color: inherit;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 667px) {
