@@ -117,6 +117,10 @@ body::-webkit-scrollbar{display:none}
     cursor: pointer;
 }
 
+.text_button:hover {
+    background: #72CBFF;
+}
+
 #review_lists {
     list-style: none;
     margin: auto;
