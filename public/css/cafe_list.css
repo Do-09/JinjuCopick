@@ -18,51 +18,77 @@ body::-webkit-scrollbar{display:none}
 
 #list_box {
     width:600px; height:600px;
-    /* background-color: rgba(186, 193, 198, 0.42);  */
-    background-color: palegoldenrod;
+    background-color: rgba(186, 193, 198, 0.42);
     float: left;
     margin: 30px;
     overflow: scroll;
 }
 
 .cafe_list {
-    width:560px; height:70px;
-    /* background-color: rgba(194, 194, 194, 0.865); */
-    background-color: aqua;
-    margin: 20px;
-    padding: 10px;
+    width:550px; height:70px;
+    background-color: rgba(194, 194, 194, 0.865);
+    margin: 15px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
-.cafe_list > input {
-    border: 0;
-    background-color: transparent;
-    color: black;
-}
-
 .info_box {
-    background-color: blue;
-    padding: 0px 10px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
 }
 
 .cafeName {
-    background-color: pink;
-    font-weight: bold;
-    margin-bottom: 7px;
-    font-size: 17px;
+    font-size: 15px;
+    font-weight: 700;
 }
 
-.cafeAddress {
-    background-color: green;
-    font-size: 15px; 
+.filtering, .cafeAddress {
+    font-size: 13px;
+}
+
+.filter {
+    display: inline-block;
+    background-color: rgb(241, 241, 203);
+    border-radius: 20px;
+    margin: 5px 3px;
+    padding: 3px 10px;
+}
+
+.cafe_area {
+    font-size: 18px;
+    font-weight: 700;
+    padding-left: 30px;
+    padding-top: 15px;
+    margin: 5px;
+}
+
+.view {
+    width: 110px;
+}
+
+.viewLocation {
+    width: 100px; height: 50px;
+    background-color: rgb(228, 228, 228);
+    border-radius: 20px;
+    padding: 10px;
+    
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.viewLocation:hover {
+    background-color: rgb(158, 162, 164);
 }
 
 .cafe_title { 
-    width: 200px;
-    height: 40px;
+    width: 220px; height: 40px;
     background-color: white;
     border: 1px solid black;
     padding: 8px 10px 5px 10px;
     text-align: center;
+    font-size: 15px;
     font-weight: bold; 
 }

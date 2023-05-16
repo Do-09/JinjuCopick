@@ -40,9 +40,8 @@
         </div>  
     </div>
 
+
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9d1355c19666c5197b4f39cb9f886798"></script>
-
-
 
     <form id="list_container">
         <div id="map">
@@ -54,23 +53,40 @@
                 const positions = []
             </script>
             <% var map = [] %>
-            <% for(var i = 0; i<cafe.length; i++){%>
+            <% for(var i = 0; i < cafe.length; i++){%>
                 <% map.push(cafe[i]) %>
             <%}%>    
-                    
-            <% for(let i = 0; i < cafe.length; i++) { %>
-                <% var cafelist = cafe[i] %>
-                <table class="cafe_list">
-                  <div class="cafe_area"><%= cafelist.area %></div>
-                  <tr onclick="location.href='/cafe_info/<%= cafelist.cafename %>'">
-                    <td class="info_box">
-                      <div class="cafeName"><%= cafelist.cafename %></div> 
-                      <div class="cafeAddress"><%= cafelist.location %></div>
-                    </td>
-                  </tr>
-                </table>
-              
 
+            <!-- area 고유값 찾기 -->
+            <% var set1 = [] %>
+            <% for(let i = 0; i < cafe.length; i++) { %>
+                <% var cafelist = cafe[i] %> 
+                <% set1.push(cafelist.area) %>
+            <%}%>
+            <% var set2 = new Set(set1) %>
+            <% var uniqueArea = [...set2] %>
+
+            <% for(var j = 0; j < uniqueArea.length; j++) { %>
+                <div class="cafe_area"> · <%= uniqueArea[j]%></div>
+                <% for(var i = 0; i < cafe.length; i++) { %>
+                    <% var cafelist = cafe[i] %>
+                    <% if(uniqueArea[j] == cafelist.area) { %>
+                    <table class="cafe_list">
+                        <tr>
+                            <td class="info_box" onclick="location.href='/cafe_info/<%= cafelist.cafename %>'">
+                                <div class="cafeName"><%= cafelist.cafename %></div> 
+                                <div class="filtering">
+                                    <div class="filter">테이크아웃</div>
+                                    <div class="filter">애견동반</div>
+                                    <div class="filter">단체석</div>
+                                </div>
+                                <div class="cafeAddress"><%= cafelist.location %></div>
+                            </td>
+                            <td class="view" onclick="location.href='/cafe_info/<%= cafelist.cafename %>'">
+                                <div class="viewLocation" onclick="event.stopPropagation()">위치 보기</div>
+                            </td>
+                        </tr>
+                    </table>
             <script>
                 positions.push({
                     title: "<%= cafelist.cafename %>",
@@ -84,54 +100,68 @@
                     // alert(markerPosition); 
                     // alert(positions[i].latlng);
                 }
-        </script>
+            </script>
       
-      <% } %>
+            <% }}} %>
             
-      <script>
-        var mapContainer = document.getElementById('map'),
-            mapOption = { 
-                center: new kakao.maps.LatLng(positions[0].latlng.getLat(), positions[0].latlng.getLng()), // 지도의 중심좌표
-                level: 4 // 지도의 확대 레벨
-            };
+            <script>
+                var mapContainer = document.getElementById('map'),
+                    mapOption = { 
+                        center: new kakao.maps.LatLng(positions[0].latlng.getLat(), positions[0].latlng.getLng()), // 지도의 중심좌표
+                        level: 4 // 지도의 확대 레벨
+                    };
 
-        var kakaomap = new kakao.maps.Map(mapContainer, mapOption);
+                var kakaomap = new kakao.maps.Map(mapContainer, mapOption);     // 지도 생성
 
-        // 마커 추가
-        var currentInfowindow = null;
+                // 마커 추가
+                var currentInfowindow = null;
 
-        for (var i = 0; i < positions.length; i++) {
-        var marker = new kakao.maps.Marker({
-            map: kakaomap,
-            position: positions[i].latlng
-        });
+                for (var i = 0; i < positions.length; i++) {
+                    var marker = new kakao.maps.Marker({
+                        map: kakaomap,
+                        position: positions[i].latlng
+                    });
  
-        var iwContent = '<div class="cafe_title">' + positions[i].title + '</div>',
-            iwPosition = positions[i].latlng;
+                    var iwContent = '<div class="cafe_title">' + positions[i].title + '</div>',
+                        iwPosition = positions[i].latlng;           //인포윈도우 표시할 위치
+                        iwRemoveable = true;                        //닫을 수 있는 x버튼이 표시
 
-        var infowindow = new kakao.maps.InfoWindow({
-            position: iwPosition,
-            content: iwContent
-        });
+                    var infowindow = new kakao.maps.InfoWindow({
+                        position: iwPosition,
+                        content: iwContent,
+                        removable : iwRemoveable
+                    });
 
-        kakao.maps.event.addListener(marker, 'click', (function(marker, infowindow) {
-            return function() {
-            // 열려있는 인포윈도우가 있으면 닫습니다.
-            if (currentInfowindow) {
-                currentInfowindow.close();
-            }
+                    kakao.maps.event.addListener(marker, 'click', (function(marker, infowindow) {
+                        return function() {
+                            // 열려있는 인포윈도우가 있으면 닫습니다.
+                            if (currentInfowindow) {
+                                currentInfowindow.close();
+                            }
 
-            // 클릭한 마커의 인포윈도우를 엽니다.
-            infowindow.open(kakaomap, marker);
+                            // 클릭한 마커의 인포윈도우를 엽니다.
+                            infowindow.open(kakaomap, marker);
 
-            // 현재 열려있는 인포윈도우를 업데이트합니다.
-            currentInfowindow = infowindow;
-            };
-        })(marker, infowindow));
-        }
+                            // 현재 열려있는 인포윈도우를 업데이트합니다.
+                            currentInfowindow = infowindow;
+                        };
+                    })(marker, infowindow));
+                }
 
-      </script>
-    </div>
+
+                // 지도 중심 좌표 변경
+                var viewLocations = document.querySelectorAll('.viewLocation');
+                for (var i = 0; i < viewLocations.length; i++) {
+                    (function(index) {        
+                        var viewLocation = viewLocations[index];
+                        viewLocation.addEventListener('click', function() {
+                            var position = positions[index].latlng;
+                            kakaomap.setCenter(position);           // 지도의 중심 좌표를 해당 위치로 설정
+                        });
+                    })(i);
+                }
+            </script>
+        </div>
     </form>
 </body>
 </html>
