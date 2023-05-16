@@ -77,7 +77,7 @@
                     <% if(info.parking == 1){%>
                         <a href="#">#주차장</a>
                     <%}%>
-                    </div>
+                </div>
                     
                     <% var score = 0 %> <!--입력받은 별점 평균 값 계산-->
                     <% for(i = 0; i< data2.length; i++){%>
@@ -85,10 +85,7 @@
                     <%}%>
                     <% score = parseInt((score/data2.length)/2) %>
                     
-                    <div class="star-ratings-base space-x-2 text-lg">
-                        <span>★★★★★</span>
-                        <span>(<%= score %>)</span>
-                    </div>
+                <div class="star-ratings">
                     <% if(score == 0){%> <!--평균 별점 출력-->
                         <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(0/5 * 80px);">
                     <%}else if(score==0.5){%>
@@ -110,10 +107,22 @@
                         <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(4.5/5 * 80px);">
                     <%}else if(score==5){%>
                         <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(5/5 * 80px);">
+                    <%}else{%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: 0px;">
                     <%}%>
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>           
+                    <div class="star-ratings-base space-x-2 text-lg">
+                        <span>★★★★★</span>
+                            <%if(!score){%>
+                                <span>0</span>
+                            <%} else{%>
+                                <span>(<%= score %>)</span>
+                            <%}%>
                     </div>
-                    
+                </div>
+                <br>
+
                 <div class="info_items"><i class="fa-solid fa-clock"></i> 영업시간:&nbsp;<%=info.time%></div>
                 <div class="info_items"><i class="fa-solid fa-dollar-sign"></i> 가격:&nbsp;<%=info.price%></div>
                 <div class="info_items"><i class="fas fa-parking"></i> 주차장 여부:&nbsp;
@@ -122,7 +131,7 @@
                     <%}else{%>
                         주차불가능
                     <%}%>
-                    </div>
+                </div>
             </div>
             <div id="review">
                 <ul id="review_lists">
