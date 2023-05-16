@@ -134,8 +134,6 @@
                 </div>
             </div>
             <div id="review">
-                <ul id="review_lists">
-                </ul>
                 <p><i class="fa fa-plus-circle" aria-hidden="true"></i> 매장에 대한 후기를 남겨주세요.</p>
                 <div id="review_input">
                     <form onsubmit="return comment_write()" method="post" action="/cafe_info/<%= info.cafe %>" >
@@ -181,7 +179,7 @@
         <script>
             function text_load(btn) {
                 const text = btn.value;
-                document.getElementById("text_area").innerText = text;
+                document.getElementById("text_area").value += text;
             }
 
             function comment_write() {
