@@ -46,26 +46,20 @@
             <h2>기프티콘</h2>
             <form action="/gifticon_upload/submit" id="myForm" method="post" enctype="multipart/form-data">
                 <table id="inputContainer">
-                <input type="file" id="gifticonImg" name="gifticonImg" accept="image/*" aria-required="true" required oninvalid="this.setCustomValidity('기프티콘 이미지를 선택해주세요.')" oninput="this.setCustomValidity('')">
-                    <!--<tr>
-                        <td colspan="2"><label for="gifticonImg" class="upload_input" id="fileName" style="width: 92%; color:gray">사진을 등록하세요.</label></td>
-                    </tr>-->
-                    
+                <input type="file" id="gifticonImg" name="gifticonImg" accept="image/*" aria-required="true" required oninvalid="this.setCustomValidity('기프티콘 이미지를 선택해주세요.')" oninput="this.setCustomValidity('')">               
                     <tr>
-                        <td>
-                            <span>
-                                <label for="gifticonImg" class="fileInput">사진 등록</label>
-                            </span>
+                        <td colspan="2" class="td_input"><input type="text" class="upload_input" id="fileName" value="" autocomplete="off" required oninvalid="this.setCustomValidity('사진을 등록해주세요.')" oninput="this.setCustomValidity('')" placeholder="사진을 등록하세요."></td>
+                        <td class="td_items">
+                            <label for="gifticonImg"><span class="fileInput">사진 등록</span></label>
                         </td>
-                        <td><input type="text" class="upload_input" id="fileName" value="" autocomplete="off" required oninvalid="this.setCustomValidity('사진을 등록해주세요.')" oninput="this.setCustomValidity('')" placeholder="사진을 등록하세요."></td>
                     </tr>
                     <tr>
-                        <td class="form_items">카페명</td>
-                        <td><input type="text" class="upload_input" id="cafeName" name="cafeName" maxlength="30" autocomplete="off" required oninvalid="this.setCustomValidity('카페명을 입력해주세요.')" oninput="this.setCustomValidity('')" placeholder="카페명을 입력하세요." required></td>
+                        <td class="td_items">카페명</td>
+                        <td colspan="2" class="td_input"><input type="text" class="upload_input" id="cafeName" name="cafeName" maxlength="30" autocomplete="off" required oninvalid="this.setCustomValidity('카페명을 입력해주세요.')" oninput="this.setCustomValidity('')" placeholder="카페명을 입력하세요." required></td>
                     </tr>
                     <tr>
-                        <td class="form_items"><label>유효기간</td>
-                        <td><input type="date" class="upload_input" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity('유효기간을 선택해주세요.')" oninput="this.setCustomValidity('')"></label></td>
+                        <td class="td_items"><label>유효기간</td>
+                        <td colspan="2" class="td_input"><input type="date" class="upload_input" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity('유효기간을 선택해주세요.')" oninput="this.setCustomValidity('')"></label></td>
                     </tr>
                 </table>
                 <input type="reset" class="form_btn" id="reset_btn" value="초기화" onclick="document.getElementById('fileName').textContent = '&nbsp;'">
