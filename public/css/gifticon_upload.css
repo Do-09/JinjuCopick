@@ -17,10 +17,31 @@
   body::-webkit-scrollbar{display:none}
   
   .list_section {
-      margin : 20px;
+      margin : auto;
       padding: 20px;
+      width: 90%;
       background-color: #EAECEF;
+      margin-top: 20px;
+      margin-bottom: 40px;
   }
+
+  .gifticon_lists {
+    width: 100%;
+    display: flex;
+    /*justify-content: center;
+    align-items: center;*/
+    flex-wrap: wrap;
+    gap: 40px;
+    opacity: 1;
+    transition: all ease-out 0.3s;
+}
+
+.no_upload {
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
   
   .check_section, .del_btn {
       display: inline-block;
@@ -41,29 +62,27 @@
       text-align: center;
       box-sizing: border-box;
       width: 100%;
+      padding: 10px;
   }
   
   .upload h2 {
-      text-align: center;
-      color: #6690E3;
-      margin-bottom: 20px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
   }
   
   #inputContainer {
-      margin-left:auto;
-      margin-right:auto; 
-      width: 90%;
+    margin:auto;
+    width: 600px;
   }
-  
-  #upload_form {
-      background-color: white;
-      display: inline-block;
-      width: 80%;
-      flex-direction: column;
-      columns: 1;
-      padding: 2vw 4vw;
-      border: 1px solid royalblue;
-  }
+
+.td_items {
+    width: 80px;
+}
+
+.td_input {
+    width: 520px;
+}
   
   .upload_input {
       border: 0;
@@ -75,7 +94,20 @@
       font-size: 16px;
       border-radius: 10px;
       resize: none;
-      width: 100%;
+      width: 90%;
+  }
+
+  /*#fileName {
+    width: 92%;
+    color:gray;
+  }*/
+
+  .fileInput {
+    cursor: pointer;
+    background-color: #6690E3;
+    color: white;
+    border-radius: 30px;
+    padding: 8px 8px;
   }
   
   .form_btn {
@@ -86,7 +118,7 @@
       font-size: 1rem;
       outline: none;
       cursor: pointer;
-      width: 15%;
+      width: 150px;
       font-weight: bold;
       margin: 20px auto 0;
       border-radius: 30px;
@@ -99,11 +131,12 @@
       color: white;
   }
   
-  @media screen and (max-width: 667px) {
-      #upload_form {
-          width:100%
-      }
-      .form_btn {
-          width: 30%;
-      }
-  }
+@media screen and (max-width: 667px) {
+    #inputContainer {
+        width: 100%;
+    }
+
+    #upload_form {
+        width:100%
+    }
+}
