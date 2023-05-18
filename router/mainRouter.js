@@ -547,7 +547,7 @@ router.post("/community/:nickname/:writeTime/:num/delete", function(req, res) { 
 });
 
 router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아아 가격
-    var study = req.body.study ? 1 : 0;
+    var dessert = req.body.dessert ? 1 : 0;
     var pet = req.body.pet ? 1 : 0;
     var nokids = req.body.nokids ? 1 : 0;
     var takeout = req.body.takeout ? 1 : 0;
@@ -555,6 +555,7 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
     var meeting = req.body.meeting ? 1 : 0;
     var franchise = req.body.franchise ? 1 : 0;
     var parking = req.body.parking ? 1 : 0;
+    var nothing = req.body.nothing ? 1 : 0;
 
     var area1 = req.body.selectMap1;
     var area2 = req.body.selectMap2;
@@ -569,9 +570,9 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
     }
 
     var price = req.body.price ? req.body.price : 0;  
-    var sum = study + pet + nokids + takeout + hours + meeting + franchise + parking;
+    var sum = dessert + pet + nokids + takeout + hours + meeting + franchise + parking;
 
-    if(sum === 0) {// 필터가 선택되지 않은 경우
+    if(sum === 0 && nothing === 0 ) {// 필터가 선택되지 않은 경우
         res.send(`<script type="text/javascript">alert("찾으시는 조건을 1개 이상 선택해주세요."); history.back();</script>`);
     }
     else if(area1=="" || area1 === 'undefined') { //지도 선택되지 않은 경우
@@ -581,7 +582,7 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
         res.send(`<script type="text/javascript">alert("가격대를 선택해주세요."); history.back();</script>`);
     }  
     else { // 필터, 지역, 가격대 선택된 경우
-        db.query('INSERT INTO filtering (study, pet, nokids, takeout, hours, meeting, franchise, parking, price, area1, area2, area3) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)', [study, pet, nokids, takeout, hours, meeting, franchise, parking,price,area1,area2,area3], function (error, filter) {
+        db.query('INSERT INTO filtering (dessert, pet, nokids, takeout, hours, meeting, franchise, parking, nothing, price, area1, area2, area3) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)', [dessert, pet, nokids, takeout, hours, meeting, franchise, parking, nothing, price,area1,area2,area3], function (error, filter) {
             if (error) throw error;
             res.send(`<script type="text/javascript">alert("필터링 성공");  
             document.location.href="/cafe";</script>`); //최종본에서 alert 삭제
