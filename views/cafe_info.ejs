@@ -51,68 +51,79 @@
         <div id="info_section">
             <div id="simple_info">
                 <img id="cafe_image" src="<%=info.image%>">
-                <div class="info_items"><i class="fa fa-map-marker" aria-hidden="true"></i> <%=info.cafe%></div>
+                <div class="info_items"><i class="fa fa-map-marker" aria-hidden="true"></i> <%=info.cafename%></div>
                 <div class="info_tag">
-                    <% if(info.study == 1){%> <!--카페 정보 DB에서 값 가져와서 키워드 출력-->
-                        #스터디
+                    <% if(info.dessert == 1){%> <!--카페 정보 DB에서 값 가져와서 키워드 출력-->
+                        <a href="#"></a>#디저트
                     <%}%>
                     <% if(info.pet == 1){%>
-                        #애견동반
+                        <a href="#">#애견동반</a>
                     <%}%>
                     <% if(info.nokids == 1){%>
-                        #노키즈존
+                        <a href="#">#노키즈존</a>
                     <%}%>
                     <% if(info.takout == 1){%>
-                        #테이크아웃
+                        <a href="#">#테이크아웃</a>
                     <%}%>
                     <% if(info.hours == 1){%>
-                        #24시
+                        <a href="#">#24시</a>
                     <%}%>
                     <% if(info.meeting == 1){%>
-                        #단체석(6인이상)
+                        <a href="#">#단체석(6인이상)</a>
                     <%}%>
                     <% if(info.franchise == 1){%>
-                        #프랜차이즈
+                        <a href="#">#프랜차이즈</a>
                     <%}%>
                     <% if(info.parking == 1){%>
-                        #주차장
+                        <a href="#">#주차장</a>
                     <%}%>
-                    </div>
+                </div>
                     
                     <% var score = 0 %> <!--입력받은 별점 평균 값 계산-->
                     <% for(i = 0; i< data2.length; i++){%>
                         <% score = score + data2[i].score %>
                     <%}%>
                     <% score = parseInt((score/data2.length)/2) %>
-                <div class="star-ratings-base space-x-2 text-lg">
-                    <span>★★★★★</span>
-                    <span>(<%= score %>)</span>
+                    
+                <div class="star-ratings">
+                    <% if(score == 0){%> <!--평균 별점 출력-->
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(0/5 * 80px);">
+                    <%}else if(score==0.5){%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(0.5/5 * 80px);">
+                    <%}else if(score==1){%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(1/5 * 80px);">
+                    <%}else if(score==1.5){%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(1.5/5 * 80px);">
+                    <%}else if(score==2){%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(2/5 * 80px);">
+                    <%}else if(score==2.5){%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(2.5/5 * 80px);">
+                    <%}else if(score==3){%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(3/5 * 80px);">
+                    <%}else if(score==3.5){%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(3.5/5 * 80px);">
+                    <%}else if(score==4){%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(4/5 * 80px);">
+                    <%}else if(score==4.5){%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(4.5/5 * 80px);">
+                    <%}else if(score==5){%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(5/5 * 80px);">
+                    <%}else{%>
+                        <div class="star-ratings-fill space-x-2 text-lg" style="width: 0px;">
+                    <%}%>
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>           
+                    <div class="star-ratings-base space-x-2 text-lg">
+                        <span>★★★★★</span>
+                            <%if(!score){%>
+                                <span>0</span>
+                            <%} else{%>
+                                <span>(<%= score %>)</span>
+                            <%}%>
+                    </div>
                 </div>
-                <% if(score == 0){%> <!--평균 별점 출력-->
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(0/5 * 80px);">
-                <%}else if(score==0.5){%>
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(0.5/5 * 80px);">
-                <%}else if(score==1){%>
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(1/5 * 80px);">
-                <%}else if(score==1.5){%>
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(1.5/5 * 80px);">
-                <%}else if(score==2){%>
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(2/5 * 80px);">
-                <%}else if(score==2.5){%>
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(2.5/5 * 80px);">
-                <%}else if(score==3){%>
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(3/5 * 80px);">
-                <%}else if(score==3.5){%>
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(3.5/5 * 80px);">
-                <%}else if(score==4){%>
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(4/5 * 80px);">
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(4.5/5 * 80px);">
-                <%}else if(score==5){%>
-                    <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(5/5 * 80px);">
-                <%}%>
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                </div>
-                
+                <br>
+
                 <div class="info_items"><i class="fa-solid fa-clock"></i> 영업시간:&nbsp;<%=info.time%></div>
                 <div class="info_items"><i class="fa-solid fa-dollar-sign"></i> 가격:&nbsp;<%=info.price%></div>
                 <div class="info_items"><i class="fas fa-parking"></i> 주차장 여부:&nbsp;
@@ -121,45 +132,85 @@
                     <%}else{%>
                         주차불가능
                     <%}%>
-                    </div>
+                </div>
             </div>
             <div id="review">
-                <ul id="review_lists">
-                </ul>
                 <p><i class="fa fa-plus-circle" aria-hidden="true"></i> 매장에 대한 후기를 남겨주세요.</p>
                 <div id="review_input">
-                    <form onsubmit="return comment_write()" method="post" action="/cafe_info/<%= info.cafe %>" >
+                    <form onsubmit="return comment_write()" method="post" action="/cafe_info/<%= info.cafename %>" >
                     <span class="star">
                         ★★★★★
                         <span>★★★★★</span>
-                        <input type="range" id = "score" name = "score" oninput="drawStar(this)" value="0" step="1" min="0" max="10">
+                        <input type="range" id = "score" name ="score" oninput="drawStar(this)" value="" step="1" min="0" max="10">
                     </span>
-                        <textarea id="text_area" rows="4" name = review placeholder="매장에 대한 후기를 남겨주세요."></textarea>
+                        <textarea id="text_area" rows="4" name ="review" maxlength="45" placeholder="매장에 대한 후기를 남겨주세요."></textarea>
                         <input type="submit" id="review_submit" value="등록" >
                         <input type="button" class="text_button" value="콘센트가 있어요" onclick="text_load(this)">
                         <input type="button" class="text_button" value="시그니처 메뉴가 있어요" onclick="text_load(this)">
+                        <input type="button" class="text_button" value="디저트가 맛있어요" onclick="text_load(this)">
                         <input type="button" class="text_button" value="매장이 넓어요" onclick="text_load(this)">
                         <input type="button" class="text_button" value="사진 찍기 좋아요" onclick="text_load(this)">
+                        <input type="button" class="text_button" value="가성비가 좋아요" onclick="text_load(this)">
+                        <input type="button" class="text_button" value="화장실이 깨끗해요" onclick="text_load(this)">
                     </form> 
 
                 </div>
-                <% var check = data3[0] %> <!--리뷰(닉네임, 글, 작성 시간)-->
-
-                <% for(var i = 0; i<data2.length; i++){%>
-                    <% var rev = data2[i] %>
-                    <%=rev.nickname%>
-                    <%=rev.review%>
-                    <%=rev.writeTime%>
-                    <form name="review_delete" action = "/review/<%=info.cafe%>/<%=rev.num%>" method="post" onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
-                        <% if(login.login==1){%>
-                            <% if (rev.nickname == check.nickname) { %>
-                            <span><button type="submit">삭제</button></span>
-                            <% } %> 
-                        <%}%>   
-                    </form>
-                <%}%>
             </div>
         </div>
+        <ul id="review_lists">
+            <% var check = data3[0] %> <!--리뷰(닉네임, 글, 작성 시간)-->
+
+                <% for(var i = 0; i<data2.length; i++){%>
+                    <li class="reviews">
+                        <% var rev = data2[i] %>
+                        <i class="fas fa-comment" style="color: #b8e4ff;"></i>
+                        <%=rev.nickname%>
+                        <span class="user-star-ratings">
+                            <% var score = parseInt(rev.score/2) %>
+                            <% if(score == 0){%> <!--평균 별점 출력-->
+                                <span class="user-star-ratings-fill" style="width: calc(0/5 * 80px);">
+                            <%}else if(score==0.5){%>
+                                <span class="user-star-ratings-fill" style="width: calc(0.5/5 * 80px);">
+                            <%}else if(score==1){%>
+                                <span class="user-star-ratings-fill" style="width: calc(1/5 * 80px);">
+                            <%}else if(score==1.5){%>
+                                <span class="user-star-ratings-fill" style="width: calc(1.5/5 * 80px);">
+                            <%}else if(score==2){%>
+                                <span class="user-star-ratings-fill" style="width: calc(2/5 * 80px);">
+                            <%}else if(score==2.5){%>
+                                <span class="user-star-ratings-fill" style="width: calc(2.5/5 * 80px);">
+                            <%}else if(score==3){%>
+                                <span class="user-star-ratings-fill" style="width: calc(3/5 * 80px);">
+                            <%}else if(score==3.5){%>
+                                <span class="user-star-ratings-fill" style="width: calc(3.5/5 * 80px);">
+                            <%}else if(score==4){%>
+                                <span class="user-star-ratings-fill" style="width: calc(4/5 * 80px);">
+                            <%}else if(score==4.5){%>
+                                <span class="user-star-ratings-fill" style="width: calc(4.5/5 * 80px);">
+                            <%}else if(score==5){%>
+                                <span class="user-star-ratings-fill" style="width: calc(5/5 * 80px);">
+                            <%}%>
+                                <span>★★★★★</span> 
+                            </span>
+                            <span class="user-star-ratings-base">
+                                <span>★★★★★</span> 
+                            </span>
+                        </span>
+                        <%=rev.writeTime%>
+                        <form style="display:inline" name="review_delete" action = "/review/<%=info.cafename%>/<%=rev.num%>" method="post" onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
+                            <% if(login.login==1){%>
+                                <% if (rev.nickname == check.nickname) { %>
+                                <span><button type="submit" id="review_del_btn">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button></span>
+                                <% } %> 
+                            <%}%>   
+                        </form>
+                        <div><%=rev.review%></div>
+                    </li>
+                <%}%>
+        </ul>
+
         <script>
             const drawStar = (target) => {
                 document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
@@ -169,12 +220,13 @@
         <script>
             function text_load(btn) {
                 const text = btn.value;
-                document.getElementById("text_area").innerText = text;
+                document.getElementById("text_area").value += text;
             }
 
             function comment_write() {
                 // textarea에서 값을 가져옴
                 var text = document.getElementById("text_area").value;
+                
                 
                 if (text == "") {
                     alert('내용을 입력하세요!');
