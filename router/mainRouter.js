@@ -593,21 +593,70 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
 router.get("/cafe", function(req,res){ //카페 페이지
     var email = req.session.email;
     if(email){
-        result1={"login":1}
+        result={"login":1}
+        db.query('select * from cafelist', function(err, cafe) { 
+            res.render('cafe_list',{cafe:cafe, data1:result})  
+        });
     }else{
-        result1={"login":0}
-    }
-    res.render('cafe_list',{data1:result1})
+        result={"login":0}
+        db.query('select * from cafelist', function(err, cafe) { 
+            res.render('cafe_list',{cafe:cafe, data1:result})  
+        });
+    } 
 })
 
-router.get("/cafe_info", function(req,res){ //카페 페이지
+
+router.get("/cafe_info/:cafename", function(req,res){ //카페 페이지
     var email = req.session.email;
-    if(email){
-        result1={"login":1}
-    }else{
-        result1={"login":0}
-    }
-    res.render('cafe_info',{data1:result1})
+    var cafe = req.params.cafename;
+    db.query('SELECT * FROM cafeinfo where cafe = ?',[cafe], function(err, result){
+        db.query('SELECT * FROM cafereview where cafe = ?',[cafe], function(err, result2){
+            db.query('SELECT * FROM information where email = ?',[email], function(err, result3){
+                if(email){
+                    result1={"login":1}
+                }else{
+                    result1={"login":0}
+                }
+                res.render('cafe_info',{data:result, data1:result1, data2:result2, data3:result3})
+            })
+        })
+    })
 })
 
-module.exports = router
+router.post("/cafe_info/:cafe", function(req,res){ //카페 리뷰 등록
+    var email = req.session.email; // 로그인된 세션에서 이메일 정보 불러오기
+    var cafe = req.params.cafe;
+    var review = req.body.review;
+    var score = req.body.score;
+    var writeTime = new Date();
+
+    if(authCheck.isOwner(req,res)){
+        if(review){
+            db.query('SELECT nickname FROM information WHERE email = ?', [email], function (err, result) {
+                var nickname = result[0].nickname; // 결과에서 nickname 값을 가져옴
+                db.query('INSERT INTO cafereview (cafe, email, nickname, score, review, writeTime) VALUES(?,?,?,?,?,?)',[cafe, email, nickname, score, review, writeTime], function (error, result) {
+                    if (error) throw error;
+                    res.send(`<script type="text/javascript">alert("리뷰가 등록되었습니다.");
+                    location.href = "/cafe_info/${cafe}";</script>`);             
+                });
+            })
+        }
+    }else{res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다.");
+    document.location.href="javascript:history.back();";</script>`);
+        
+    }
+})
+
+router.post("/review/:cafe/:num", function(req,res){ //카페 리뷰 삭제
+    var num = req.params.num;
+    var cafe = req.params.cafe;
+
+    db.query('DELETE FROM cafereview WHERE num=?', [num], function (err, result) {
+        if (err) throw err; 
+        res.send(`<script type="text/javascript">alert("글이 삭제되었습니다.");
+        document.location.href="/cafe_info/${cafe}";</script>`); 
+    });
+})
+
+
+module.exports = router;
