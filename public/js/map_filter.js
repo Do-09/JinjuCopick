@@ -41,10 +41,8 @@ function displayArea(area) {
         var content = '<div class="area_title">' + area.name + '</div>';
         
         var areaName = area.name;
-      
 
         var latlng = mouseEvent.latLng; //클릭한 곳 위도, 경도
-
 
         // 선택한 영역의 수가 3개 이하인 경우에만 처리
         if (document.querySelectorAll('.area_name div').length < 3) {
@@ -101,12 +99,64 @@ function displayArea(area) {
             }
             } else {
             // 선택한 영역의 수가 3개 이상인 경우 alert 출력
-            alert('최대 3개 구역을 선택 가능합니다.');
+              alert('최대 3개 구역을 선택 가능합니다.');
             }
         }
             document.filtering.selectMap1.value=selectedAreas[0];  
             document.filtering.selectMap2.value=selectedAreas[1];  
             document.filtering.selectMap3.value=selectedAreas[2];         
       });
- 
 }
+
+// 버튼 요소
+const btn1 = document.querySelector('#btn1');
+const btn2 = document.querySelector('#btn2');
+const btn3 = document.querySelector('#btn3');
+const btn4 = document.querySelector('#btn4');
+const btn5 = document.querySelector('#btn5');
+const btn6 = document.querySelector('#btn6');
+const btn7 = document.querySelector('#btn7');
+const btn8 = document.querySelector('#btn8');
+const btn9 = document.querySelector('#btn9');
+
+// btn1~btn8 버튼 중 하나라도 선택되면 btn9를 비활성화 
+const disableBtn9 = () => {
+  if (btn1.checked || btn2.checked || btn3.checked || btn4.checked || btn5.checked || btn6.checked || btn7.checked || btn8.checked) {
+    btn9.disabled = true;
+  } else {
+    btn9.disabled = false;
+  }
+};
+
+// btn9 버튼이 선택되면 btn1~btn8 비활성화 
+const disableBtns = () => {
+  if (btn9.checked) {
+    btn1.disabled = true;
+    btn2.disabled = true;
+    btn3.disabled = true;
+    btn4.disabled = true;
+    btn5.disabled = true;
+    btn6.disabled = true;
+    btn7.disabled = true;
+    btn8.disabled = true; 
+  } else {
+    btn1.disabled = false;
+    btn2.disabled = false;
+    btn3.disabled = false;
+    btn4.disabled = false;
+    btn5.disabled = false;
+    btn6.disabled = false;
+    btn7.disabled = false;
+    btn8.disabled = false;
+  }
+};
+
+btn1.addEventListener('change', disableBtn9);
+btn2.addEventListener('change', disableBtn9);
+btn3.addEventListener('change', disableBtn9);
+btn4.addEventListener('change', disableBtn9);
+btn5.addEventListener('change', disableBtn9);
+btn6.addEventListener('change', disableBtn9);
+btn7.addEventListener('change', disableBtn9);
+btn8.addEventListener('change', disableBtn9);
+btn9.addEventListener('change', disableBtns);
