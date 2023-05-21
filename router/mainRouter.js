@@ -604,111 +604,90 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
 
 router.get("/cafe", function(req,res){ //카페 페이지
     var email = req.session.email;
-    if(email){
-        result={"login":1}
-        db.query('select * from filtering', function(err, filter){
-            var filter = filter[0]
-            var area1 = filter.area1
-            var area2 = filter.area2
-            var area3 = filter.area3
-            var price = filter.price
-            var filter1 = filter.filter1
-            var filter2 = filter.filter2
-            var filter3 = filter.filter3
-            if(filter1 == 'nothing'){ // 아무 조건이 없을 경우
-                db.query('select * from cafe where (area = ? or area =? or area = ?) and price <= ?',[area1,area2,area3, price], function(err, results){
-                    if(results.length<=0){ // 해당하는 카페가 없을 경우
-                        res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                        document.location.href="javascript:history.back();";</script>`); 
-                    } else{
-                        res.render('cafe_list',{data1:result, cafe:results}) 
+    db.query('select * from filtering', function(err, cfilter){   
+        var filter = cfilter[0]
+        var area1 = filter.area1
+        var area2 = filter.area2
+        var area3 = filter.area3
+        var price = filter.price
+        var filter1 = filter.filter1
+        var filter2 = filter.filter2
+        var filter3 = filter.filter3 
+
+        if(filter.filter1 !== 'nothing') { 
+            db.query('select * from cafe where (' + filter1 + ' = 1 or ' + filter2 + ' = 1 or ' + filter3 + ' = 1) and (area = ? or area =? or area = ?) and price <= ?', [area1,area2,area3, price], function(err, results) {
+                var correct = {
+                    cafes: [] // 카페 데이터를 저장할 배열
+                };
+                var filterMapping = {
+                    dessert: '디저트',
+                    pet: '애견동반',
+                    nokids: '노키즈존',
+                    takeout: '테이크아웃',
+                    hours: '24시',
+                    meeting: '단체석',
+                    franchise: '프랜차이즈',
+                    parking: '주차장' 
+                };
+
+                if (err) throw err;  
+
+                for (var i = 0; i < results.length; i++) {
+                    var cafe = results[i];
+                    var correctfilter = []; // 각 카페의 일치 조건 저장
+            
+                    // 카페가 어떤 조건을 만족했는지 확인하여 조건 저장
+                    if (cafe[filter1] === 1) {
+                        // correctfilter.push(filter1);
+                        correctfilter.push(filterMapping[filter1]);
                     }
-                })
-            } else{
-                if (filter2 === null && filter3 === null) {
-                    db.query('select * from cafe where ' + filter1 + ' = 1 and (area = ? or area =? or area = ?) and price <= ?',[area1,area2,area3, price], function(err, results){
-                        if(results.length<=0){
-                            res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                            document.location.href="javascript:history.back();";</script>`); 
-                        } else{
-                            res.render('cafe_list',{data1:result, cafe:results}) 
-                        }
-                    })
-                }
-                else if (filter3 === null) {
-                    db.query('select * from cafe where ' + filter1 + ' = 1 and ' + filter2 + ' = 1 and (area = ? or area =? or area = ?) and price <= ?',[area1,area2,area3, price], function(err, results){
-                        if(results.length<=0){
-                            res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                            document.location.href="javascript:history.back();";</script>`); 
-                        } else{
-                            res.render('cafe_list',{data1:result, cafe:results}) 
-                        }
-                    })
-                } else{
-                    db.query('select * from cafe where ' + filter1 + ' = 1 and ' + filter2 + ' = 1 and ' + filter3 + ' = 1 and (area = ? or area =? or area = ?) and price <= ?',[area1,area2,area3, price], function(err, results){
-                        if(results.length<=0){
-                            res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                            document.location.href="javascript:history.back();";</script>`); 
-                        } else{
-                            res.render('cafe_list',{data1:result, cafe:results}) 
-                        }
-                    })
-                }
-            }
-        })
-    }else{
-        result={"login":0}
-        db.query('select * from filtering', function(err, filter){
-            var filter = filter[0]
-            var area1 = filter.area1
-            var area2 = filter.area2
-            var area3 = filter.area3
-            var price = filter.price
-            var filter1 = filter.filter1
-            var filter2 = filter.filter2
-            var filter3 = filter.filter3
-            if(filter1 == 'nothing'){ // 아무 조건이 없을 경우
-                db.query('select * from cafe where (area = ? or area =? or area = ?) and price <= ?',[area1,area2,area3, price], function(err, results){
-                    if(results.length<=0){ // 해당하는 카페가 없을 경우
-                        res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                        document.location.href="javascript:history.back();";</script>`); 
-                    } else{
-                        res.render('cafe_list',{data1:result, cafe:results}) 
+                    if (cafe[filter2] === 1) {
+                        // correctfilter.push(filter2);
+                        correctfilter.push(filterMapping[filter2]);
                     }
-                })
-            } else{
-                if (filter2 === null && filter3 === null) {
-                    db.query('select * from cafe where ' + filter1 + ' = 1 and (area = ? or area =? or area = ?) and price <= ?',[area1,area2,area3, price], function(err, results){
-                        if(results.length<=0){
-                            res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                            document.location.href="javascript:history.back();";</script>`); 
-                        } else{
-                            res.render('cafe_list',{data1:result, cafe:results}) 
-                        }
-                    })
-                }
-                else if (filter3 === null) {
-                    db.query('select * from cafe where ' + filter1 + ' = 1 and ' + filter2 + ' = 1 and (area = ? or area =? or area = ?) and price <= ?',[area1,area2,area3, price], function(err, results){
-                        if(results.length<=0){
-                            res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                            document.location.href="javascript:history.back();";</script>`); 
-                        } else{
-                            res.render('cafe_list',{data1:result, cafe:results}) 
-                        }
-                    })
+                    if (cafe[filter3] === 1) {
+                        // correctfilter.push(filter3);
+                        correctfilter.push(filterMapping[filter3]);
+                    }
+            
+                    // 해당 카페의 조건 배열을 카페 데이터에 추가
+                    cafe.correct = correctfilter;
+                    // 카페 데이터를 correct 객체의 배열에 추가
+                    correct.cafes.push(cafe);
+                    }
+                //   console.log(correct.cafes);   
+                if(email){
+                    result={"login":1}
                 } else{
-                    db.query('select * from cafe where ' + filter1 + ' = 1 and ' + filter2 + ' = 1 and ' + filter3 + ' = 1 and (area = ? or area =? or area = ?) and price <= ?',[area1,area2,area3, price], function(err, results){
-                        if(results.length<=0){
-                            res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                            document.location.href="javascript:history.back();";</script>`); 
-                        } else{
-                            res.render('cafe_list',{data1:result, cafe:results}) 
-                        }
-                    })
+                    result={"login":0}
                 }
-            }
-        })
-    } 
+                res.render('cafe_list',{data1:result, cafe:results, filter:cfilter}) 
+            });
+        } else if(filter1 == 'nothing'){
+            db.query('select * from cafe where (area = ? or area =? or area = ?) and price <= ?',[area1,area2,area3, price], function(err, results){
+                //nothing인 경우 조건 배열 비우기
+                var correct = {
+                    cafes: []  
+                };
+                for (var i = 0; i < results.length; i++) {
+                    var cafe = results[i]; 
+                    cafe.correct = ""; 
+                    correct.cafes.push(cafe);
+                }
+                if(results.length<=0){ // 해당하는 카페가 없을 경우
+                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
+                    document.location.href="javascript:history.back();";</script>`); 
+                } else{
+                    if(email){
+                        result={"login":1}
+                    } else{
+                        result={"login":0}
+                    }
+                    res.render('cafe_list',{data1:result, cafe:results, filter:cfilter}) 
+                }
+            })
+        }
+    })
 })
 
 

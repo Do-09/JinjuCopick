@@ -79,18 +79,19 @@
                     <% var cafelist = cafe[i] %>
                     <% if(uniqueArea[j] == cafelist.area) { %>
                     <table class="cafe_list">
-                        <tr>
+                        <tr> 
                             <td class="info_box" onclick="location.href='/cafe_info/<%= cafelist.cafename %>'">
                                 <div class="cafeName"><%= cafelist.cafename %></div> 
-                                <div class="filtering">
-                                    <div class="filter">테이크아웃</div>
-                                    <div class="filter">애견동반</div>
-                                    <div class="filter">단체석</div>
+                                <div class="filtering"> 
+                                    <% for (let c = 0; c < cafelist.correct.length; c++) { %>                         
+                                        <div class="filter"><%= cafelist.correct[c] %></div>
+                                    <% } %>     
                                 </div>
+                                
                                 <div class="cafeAddress"><%= cafelist.location %></div>
                             </td>
-                            <td class="view" onclick="location.href='/cafe_info/<%= cafelist.cafename %>'">
-                                <div class="viewLocation" onclick="event.stopPropagation()">위치 보기</div>
+                            <td class="view">
+                                <div class="viewLocation" onclick="event.stopPropagation()">위치<br>보기</div>
                             </td>
                         </tr>
                     </table>
@@ -141,20 +142,19 @@
 
                     kakao.maps.event.addListener(marker, 'click', (function(marker, infowindow) {
                         return function() {
-                            // 열려있는 인포윈도우가 있으면 닫습니다.
+                            // 열려있는 인포윈도우가 있으면 닫음
                             if (currentInfowindow) {
                                 currentInfowindow.close();
                             }
 
-                            // 클릭한 마커의 인포윈도우를 엽니다.
+                            // 클릭한 마커 인포윈도우를 열기
                             infowindow.open(kakaomap, marker);
 
-                            // 현재 열려있는 인포윈도우를 업데이트합니다.
+                            // 현재 열려있는 인포윈도우 업데이트
                             currentInfowindow = infowindow;
                         };
                     })(marker, infowindow));
                 }
-
 
                 // 지도 중심 좌표 변경
                 var viewLocations = document.querySelectorAll('.viewLocation');
@@ -164,6 +164,27 @@
                         viewLocation.addEventListener('click', function() {
                             var position = positions[index].latlng;
                             kakaomap.setCenter(position);           // 지도의 중심 좌표를 해당 위치로 설정
+                            kakaomap.setLevel(2);       //확대
+
+                            //해당 위치 인포윈도우 열기
+                            if (currentInfowindow) {
+                                currentInfowindow.close();
+                            }
+                            var marker = new kakao.maps.Marker({
+                                position: position
+                            });
+
+                            var iwContent = '<div class="cafe_title">' + positions[index].title + '</div>',
+                            iwRemoveable = true; 
+
+                            var infowindow = new kakao.maps.InfoWindow({
+                                position: position,
+                                content: iwContent,
+                                removable : iwRemoveable
+                            });
+
+                            infowindow.open(kakaomap, marker);
+                            currentInfowindow = infowindow;
                         });
                     })(i);
                 }
