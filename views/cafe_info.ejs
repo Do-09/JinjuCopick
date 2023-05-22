@@ -52,30 +52,31 @@
             <div id="simple_info">
                 <img id="cafe_image" src="<%=info.image%>">
                 <div class="info_items"><i class="fa fa-map-marker" aria-hidden="true"></i> <%=info.cafe%></div>
-                <div class="info_tag">
+                <div class="info_tags">
+                    <i class="fas fa-tags"></i>
                     <% if(info.study == 1){%> <!--카페 정보 DB에서 값 가져와서 키워드 출력-->
-                        <a href="#"></a>#스터디
+                        <a href="#" class="info_tag">#스터디</a>
                     <%}%>
                     <% if(info.pet == 1){%>
-                        <a href="#">#애견동반</a>
+                        <a href="#" class="info_tag">#애견동반</a>
                     <%}%>
                     <% if(info.nokids == 1){%>
-                        <a href="#">#노키즈존</a>
+                        <a href="#" class="info_tag">#노키즈존</a>
                     <%}%>
                     <% if(info.takout == 1){%>
-                        <a href="#">#테이크아웃</a>
+                        <a href="#" class="info_tag">#테이크아웃</a>
                     <%}%>
                     <% if(info.hours == 1){%>
-                        <a href="#">#24시</a>
+                        <a href="#" class="info_tag">#24시</a>
                     <%}%>
                     <% if(info.meeting == 1){%>
-                        <a href="#">#단체석(6인이상)</a>
+                        <a href="#" class="info_tag">#단체석(6인이상)</a>
                     <%}%>
                     <% if(info.franchise == 1){%>
-                        <a href="#">#프랜차이즈</a>
+                        <a href="#" class="info_tag">#프랜차이즈</a>
                     <%}%>
                     <% if(info.parking == 1){%>
-                        <a href="#">#주차장</a>
+                        <a href="#" class="info_tag">#주차장</a>
                     <%}%>
                 </div>
                     
