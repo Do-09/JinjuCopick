@@ -142,7 +142,7 @@
                     <span class="star">
                         ★★★★★
                         <span>★★★★★</span>
-                        <input type="range" id = "score" name ="score" oninput="drawStar(this)" value="" step="1" min="0" max="10">
+                        <input type="range" id = "score" name ="score" oninput="drawStar(this)" value="10" step="1" min="0" max="10">
                     </span>
                         <textarea id="text_area" rows="4" name ="review" maxlength="45" placeholder="매장에 대한 후기를 남겨주세요."></textarea>
                         <input type="submit" id="review_submit" value="등록" >
@@ -212,6 +212,7 @@
         </ul>
 
         <script>
+            document.querySelector('.star span').style.width = '100%';
             const drawStar = (target) => {
                 document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
             }
