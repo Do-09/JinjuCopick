@@ -35,7 +35,7 @@ body::-webkit-scrollbar{display:none}
 }
 
 .star-ratings {
-    position: absolute;
+    position: relative;
 }
    
 .star-ratings-fill {
@@ -136,12 +136,14 @@ body::-webkit-scrollbar{display:none}
 }
 
 .user-star-ratings {
-    position: relative;
+    position:relative; 
+    display: inline-block;
 }
 
 .user-star-ratings-fill {
-    position:absolute;
+    position: absolute;
     top:0;
+    left: 0;
     color:gold;
     z-index: 1; 
     margin:0; 
@@ -149,8 +151,9 @@ body::-webkit-scrollbar{display:none}
 }
 
 .user-star-ratings-base {
-    z-index: 0; 
-    color: white;
+    z-index: 0;
+    padding: 0;
+    color: lightgray;
 }
 
 #review_del_btn {

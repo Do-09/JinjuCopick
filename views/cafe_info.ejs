@@ -165,14 +165,36 @@
                         <% var rev = data2[i] %>
                         <i class="fas fa-comment" style="color: #b8e4ff;"></i>
                         <%=rev.nickname%>
-                        <span class="user-star-ratings">
-                            <span class="user-star-ratings-fill" style="width: calc(3/5 * 80px);">
-                                <span>★★★★★</span> 
-                            </span>
-                            <span class="user-star-ratings-base">
-                                <span>★★★★★</span> 
-                            </span>
-                        </span>
+                        <div class="user-star-ratings">
+                            <% if(rev.score == 0){%> <!--평균 별점 출력-->
+                                <span class="user-star-ratings-fill" style="width: calc(0/10 * 80px);">
+                            <%}else if(rev.score==1){%>
+                                <span class="user-star-ratings-fill" style="width: calc(1/10 * 80px);">
+                            <%}else if(rev.score==2){%>
+                                <span class="user-star-ratings-fill" style="width: calc(2/10 * 80px);">
+                            <%}else if(rev.score==3){%>
+                                <span class="user-star-ratings-fill" style="width: calc(3/10 * 80px);">
+                            <%}else if(rev.score==4){%>
+                                <span class="user-star-ratings-fill" style="width: calc(4/10 * 80px);">
+                            <%}else if(rev.score==5){%>
+                                <span class="user-star-ratings-fill" style="width: calc(5/10 * 80px);">
+                            <%}else if(rev.score==6){%>
+                                <span class="user-star-ratings-fill" style="width: calc(6/10 * 80px);">
+                            <%}else if(rev.score==7){%>
+                                <span class="user-star-ratings-fill" style="width: calc(7/10 * 80px);">
+                            <%}else if(rev.score==8){%>
+                                <span class="user-star-ratings-fill" style="width: calc(8/10 * 80px);">
+                            <%}else if(rev.score==9){%>
+                                <span class="user-star-ratings-fill" style="width: calc(9/10 * 80px);">
+                            <%}else if(rev.score==10){%>
+                                <span class="user-star-ratings-fill" style="width: calc(10/10 * 80px);">
+                            <%}else{%>
+                                <span class="user-star-ratings-fill" style="width: 0px;">
+                            <%}%>
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span> 
+                                </span>
+                            <span class="user-star-ratings-base">★★★★★</span>
+                        </div>
                         <%=rev.writeTime%>
                         <form style="display:inline" name="review_delete" action = "/review/<%=info.cafe%>/<%=rev.num%>" method="post" onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
                             <% if(login.login==1){%>
@@ -181,7 +203,7 @@
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button></span>
                                 <% } %> 
-                            <%}%>   
+                            <%}%>
                         </form>
                         <div><%=rev.review%></div>
                     </li>
