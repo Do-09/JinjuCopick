@@ -117,7 +117,9 @@ body::-webkit-scrollbar{display:none}
 }
 
 .text_button {
-    background-color: #b8e4ff;
+    background: #fff;
+    color: #7BA2EE;
+    border: 1px solid #7BA2EE;
     border-radius: 15px;
     padding: 5px;
     margin: 3px;
@@ -125,7 +127,8 @@ body::-webkit-scrollbar{display:none}
 }
 
 .text_button:hover {
-    background: #72CBFF;
+    background-color: #7BA2EE;
+    color: #fff;
 }
 
 #review_lists {
