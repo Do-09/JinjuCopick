@@ -24,10 +24,17 @@
             <section class="side_section">
                 <ul class="bookmark-lists">
                     <li class="bookmark" id="main_home"><a href="/"><div id="main_name">진주커Pick</div></a></li><hr>
-                    <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/login">로그인</span></a></li>
+                    <% var login = data1%>
+                    <% if(login.login==1){%>
+                        <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/mypage">마이페이지</span></a></li>
+                    <%} else {%>
+                        <li class="material-symbols-outlined" id="login">account_circle<span id="name"><a href="/login">로그인</span></a></li>
+                    <%}%>
                     <li class="material-symbols-outlined" id="gifticon">barcode<span id="name"><a href="/gifticon_upload">기프티콘</span></a></li>
                     <li class="material-symbols-outlined" id="commu">chat<span id="name"><a href="/community">커뮤니티</span></a></li>
-        
+                    <% if(login.login==1){%>
+                        <li class="material-symbols-outlined" id="out">logout<span id="name"><a href="/logout">로그아웃</span></a></li> 
+                    <%}%>
                 </ul>
                 <div class="info"><hr>경상국립대학교 얼죽아
                     <div id="info_1">수학과&emsp;&emsp;&emsp;&emsp;강수연<br>정보통계학과&emsp;정인영<br>정보통계학과&emsp;정혜주<br>컴퓨터과학과&emsp;서혜원<br>컴퓨터과학과&emsp;이도현<hr></div>
@@ -72,22 +79,20 @@
                     <% var cafelist = cafe[i] %>
                     <% if(uniqueArea[j] == cafelist.area) { %>
                     <table class="cafe_list">
-                        <tr>
+                        <tr> 
                             <td class="info_box" onclick="location.href='/cafe_info/<%= cafelist.cafename %>'">
                                 <div class="cafeName"><%= cafelist.cafename %></div> 
-                                <div class="filtering">
-                                    <div class="filter">테이크아웃</div>
-                                    <div class="filter">애견동반</div>
-                                    <div class="filter">단체석</div>
+                                <div class="filtering"> 
+                                    <% for (let c = 0; c < cafelist.correct.length; c++) { %>                         
+                                        <div class="filter"><%= cafelist.correct[c] %></div>
+                                    <% } %>     
                                 </div>
+                                
                                 <div class="cafeAddress"><%= cafelist.location %></div>
                             </td>
                             <td class="view">
-                                <div class="viewLocation">위치 보기</div>
-                            </td>
-                            <!--<td class="view" onclick="location.href='/cafe_info/<%= cafelist.cafename %>'">
                                 <div class="viewLocation" onclick="event.stopPropagation()">위치 보기</div>
-                            </td>-->
+                            </td>
                         </tr>
                     </table>
             <script>
@@ -137,20 +142,19 @@
 
                     kakao.maps.event.addListener(marker, 'click', (function(marker, infowindow) {
                         return function() {
-                            // 열려있는 인포윈도우가 있으면 닫습니다.
+                            // 열려있는 인포윈도우가 있으면 닫음
                             if (currentInfowindow) {
                                 currentInfowindow.close();
                             }
 
-                            // 클릭한 마커의 인포윈도우를 엽니다.
+                            // 클릭한 마커 인포윈도우를 열기
                             infowindow.open(kakaomap, marker);
 
-                            // 현재 열려있는 인포윈도우를 업데이트합니다.
+                            // 현재 열려있는 인포윈도우 업데이트
                             currentInfowindow = infowindow;
                         };
                     })(marker, infowindow));
                 }
-
 
                 // 지도 중심 좌표 변경
                 var viewLocations = document.querySelectorAll('.viewLocation');
@@ -160,6 +164,28 @@
                         viewLocation.addEventListener('click', function() {
                             var position = positions[index].latlng;
                             kakaomap.setCenter(position);           // 지도의 중심 좌표를 해당 위치로 설정
+                            kakaomap.setLevel(2);       //확대
+
+                            //해당 위치 인포윈도우 열기
+                            if (currentInfowindow) {
+                                currentInfowindow.close();
+                            }
+                            var marker = new kakao.maps.Marker({
+                                position: position
+                            });
+
+                            var iwContent = '<div class="cafe_title">' + positions[index].title + '</div>',
+                            iwRemoveable = true; 
+
+                            var infowindow = new kakao.maps.InfoWindow({
+                                position: position,
+                                content: iwContent,
+                                removable : iwRemoveable
+                            });
+
+                            infowindow.open(kakaomap, marker);
+                            currentInfowindow = infowindow;
+                            
                         });
                     })(i);
                 }
