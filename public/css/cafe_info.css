@@ -45,7 +45,7 @@ body::-webkit-scrollbar{display:none}
     position: relative;
 }
    
-.star-ratings-fill {
+#star-ratings-fill {
     color: gold;
     position: absolute;
     z-index: 1;
@@ -54,7 +54,7 @@ body::-webkit-scrollbar{display:none}
     overflow: hidden;
 }
 
-.star-ratings-base {
+#star-ratings-base {
     color: #fff;
     z-index: 0;
     padding: 0;
