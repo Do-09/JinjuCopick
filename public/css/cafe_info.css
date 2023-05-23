@@ -72,7 +72,7 @@ body::-webkit-scrollbar{display:none}
 
 #review_input {
     border: 2px solid lightgray;
-    padding: 5px;
+    padding: 8px;
 }
 
 .star {
@@ -139,7 +139,7 @@ body::-webkit-scrollbar{display:none}
 }
 
 .reviews {
-    border: 1px solid skyblue;
+    border: 1px solid #7BA2EE;
     border-radius: 15px;
     margin: 5px;
     padding: 5px;
