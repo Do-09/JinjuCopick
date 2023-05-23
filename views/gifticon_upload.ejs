@@ -160,6 +160,39 @@
             dateElement.setAttribute("min", date);
         </script>
 
+        <!--<script>
+            document.getElementById("upload_btn").addEventListener("click", function(event) {
+            event.preventDefault(); // form 제출 막음
+
+            var fileInput = document.getElementById("gifticonImg");
+
+            if (fileInput.files.length > 0) {
+                // 파일이 선택된 경우
+                var fileSize = fileInput.files[0].size; // 첫 번째 파일의 크기 확인
+                if (fileSize > 0) {
+                // 업로드 파일명
+                var file = fileInput.files[0];
+                }
+            } else {
+                // 파일이 선택되지 않은 경우
+                alert("파일을 선택하세요.");
+                return;
+            }
+
+            var cafeName = document.getElementById("cafeName").value;
+            var expirationDate = document.getElementById("expirationDate").value;
+
+            if (!cafeName) {
+                alert("카페명을 입력해주세요.");
+                return;
+            }
+            
+            if (!expirationDate) {
+                alert("유효기간을 선택해주세요.");
+                return;
+            }
+            });
+        </script>-->
     </body>
 </html>
 
