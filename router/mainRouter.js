@@ -9,6 +9,7 @@ const path = require('path');
 const fs = require('fs')
 
 var authCheck = require('../public/js/authCheck.js');
+const f = require('session-file-store');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended:false}));
@@ -224,6 +225,7 @@ router.post("/mypage/password", function(req,res){ //마이페이지 패스워�
     var email = req.session.email;
     var password = req.body.password;
     if(authCheck.isOwner(req,res)){
+        
         db.query('SELECT * FROM information where email = ? and password = ?', [email, password], function (error, result) {
             if (error) throw error;
             if (result.length > 0) {
@@ -325,9 +327,7 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
     var del = req.body.check;
     if(authCheck.isOwner(req,res)){
             if(!del){
-                res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
-                document.location.href="/gifticon_upload";</script>`);
-            } else if(del[0]!='p'){ 
+            } else if(del[0]!='p'){ // 
                 for(i=0; i<del.length; i++){
                     if (fs.existsSync(del[i])) {
                         try {
@@ -348,6 +348,7 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
                     }
                 db.query('delete from gifticon where gifticon = ?',[del], function(err, result){})
         }
+        res.redirect('/gifticon_upload');
         return false;
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
@@ -547,19 +548,31 @@ router.post("/community/:nickname/:writeTime/:num/delete", function(req, res) { 
 });
 
 router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아아 가격
-    var dessert = req.body.dessert ? 1 : 0;
-    var pet = req.body.pet ? 1 : 0;
-    var nokids = req.body.nokids ? 1 : 0;
-    var takeout = req.body.takeout ? 1 : 0;
-    var hours = req.body.hours ? 1 : 0;
-    var meeting = req.body.meeting ? 1 : 0;
-    var franchise = req.body.franchise ? 1 : 0;
-    var parking = req.body.parking ? 1 : 0;
-    var nothing = req.body.nothing ? 1 : 0;
+    // var dessert = req.body.dessert ? 1 : 0;
+    // var pet = req.body.pet ? 1 : 0;
+    // var nokids = req.body.nokids ? 1 : 0;
+    // var takeout = req.body.takeout ? 1 : 0;
+    // var hours = req.body.hours ? 1 : 0;
+    // var meeting = req.body.meeting ? 1 : 0;
+    // var franchise = req.body.franchise ? 1 : 0;
+    // var parking = req.body.parking ? 1 : 0;
+    // var nothing = req.body.nothing ? 1 : 0;
+
+    var filter1 = req.body.selectfilter1;
+    var filter2 = req.body.selectfilter2;
+    var filter3 = req.body.selectfilter3;
 
     var area1 = req.body.selectMap1;
     var area2 = req.body.selectMap2;
     var area3 = req.body.selectMap3;
+
+    if (filter2 === '' && filter3 === '') {
+        filter2 = null;
+        filter3 = null;
+    }
+    else if (filter3 === '') {
+        filter3 = null;
+    }
 
     if (area2 === 'undefined' && area3 === 'undefined') {
         area2 = null;
@@ -569,10 +582,9 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
         area3 = null;
     }
 
-    var price = req.body.price ? req.body.price : 0;  
-    var sum = dessert + pet + nokids + takeout + hours + meeting + franchise + parking;
+    var price = req.body.price ? req.body.price : 0;   
 
-    if(sum === 0 && nothing === 0 ) {// 필터가 선택되지 않은 경우
+    if(filter1=="" || filter1 === 'undefined') {// 필터가 선택되지 않은 경우
         res.send(`<script type="text/javascript">alert("찾으시는 조건을 1개 이상 선택해주세요."); history.back();</script>`);
     }
     else if(area1=="" || area1 === 'undefined') { //지도 선택되지 않은 경우
@@ -582,42 +594,124 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
         res.send(`<script type="text/javascript">alert("가격대를 선택해주세요."); history.back();</script>`);
     }  
     else { // 필터, 지역, 가격대 선택된 경우
-        db.query('INSERT INTO filtering (dessert, pet, nokids, takeout, hours, meeting, franchise, parking, nothing, price, area1, area2, area3) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)', [dessert, pet, nokids, takeout, hours, meeting, franchise, parking, nothing, price,area1,area2,area3], function (error, filter) {
+        db.query('UPDATE filtering SET filter1 = ?, filter2 = ?, filter3 = ?, price =?, area1 =?, area2 =?, area3 =? WHERE num = 1',
+        [filter1, filter2, filter3, price,area1,area2,area3], function (error, filter) {
             if (error) throw error;
             res.send(`<script type="text/javascript">alert("필터링 성공");  
             document.location.href="/cafe";</script>`); //최종본에서 alert 삭제
         });
     }
-});
+}); 
+
 
 router.get("/cafe", function(req,res){ //카페 페이지
     var email = req.session.email;
-    if(email){
-        result={"login":1}
-        db.query('select * from cafelist', function(err, cafe) { 
-            res.render('cafe_list',{cafe:cafe, data1:result})  
-        });
-    }else{
-        result={"login":0}
-        db.query('select * from cafelist', function(err, cafe) { 
-            res.render('cafe_list',{cafe:cafe, data1:result})  
-        });
-    } 
+    db.query('select * from filtering', function(err, cfilter){   
+        var filter = cfilter[0]
+        var area1 = filter.area1
+        var area2 = filter.area2
+        var area3 = filter.area3
+        var price = filter.price
+        var filter1 = filter.filter1
+        var filter2 = filter.filter2
+        var filter3 = filter.filter3 
+
+        if(filter.filter1 !== 'nothing') { 
+            db.query('select * from cafe where (' + filter1 + ' = 1 or ' + filter2 + ' = 1 or ' + filter3 + ' = 1) and (area = ? or area =? or area = ?) and price <= ?', [area1,area2,area3, price], function(err, results) {
+                var correct = {
+                    cafes: [] // 카페 데이터를 저장할 배열
+                };
+                var filterMapping = {
+                    dessert: '디저트',
+                    pet: '애견동반',
+                    nokids: '노키즈존',
+                    takeout: '테이크아웃',
+                    hours: '24시',
+                    meeting: '단체석',
+                    franchise: '프랜차이즈',
+                    parking: '주차장' 
+                };
+
+                if (err) throw err;  
+
+                for (var i = 0; i < results.length; i++) {
+                    var cafe = results[i];
+                    var correctfilter = []; // 각 카페의 일치 조건 저장
+            
+                    // 카페가 어떤 조건을 만족했는지 확인하여 조건 저장
+                    if (cafe[filter1] === 1) {
+                        // correctfilter.push(filter1);
+                        correctfilter.push(filterMapping[filter1]);
+                    }
+                    if (cafe[filter2] === 1) {
+                        // correctfilter.push(filter2);
+                        correctfilter.push(filterMapping[filter2]);
+                    }
+                    if (cafe[filter3] === 1) {
+                        // correctfilter.push(filter3);
+                        correctfilter.push(filterMapping[filter3]);
+                    }
+            
+                    // 해당 카페의 조건 배열을 카페 데이터에 추가
+                    cafe.correct = correctfilter;
+                    // 카페 데이터를 correct 객체의 배열에 추가
+                    correct.cafes.push(cafe);
+                    }
+                //   console.log(correct.cafes);   
+                if(results.length<=0){ // 해당하는 카페가 없을 경우
+                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
+                    document.location.href="javascript:history.back();";</script>`); 
+                } else{
+                    if(email){
+                        result={"login":1}
+                    } else{
+                        result={"login":0}
+                    }
+                    res.render('cafe_list',{data1:result, cafe:results, filter:cfilter}) 
+                }
+            });
+        } else if(filter1 == 'nothing'){
+            db.query('select * from cafe where (area = ? or area =? or area = ?) and price <= ?',[area1,area2,area3, price], function(err, results){
+                //nothing인 경우 조건 배열 비우기
+                var correct = {
+                    cafes: []  
+                };
+                for (var i = 0; i < results.length; i++) {
+                    var cafe = results[i]; 
+                    cafe.correct = ""; 
+                    correct.cafes.push(cafe);
+                }
+                if(results.length<=0){ // 해당하는 카페가 없을 경우
+                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
+                    document.location.href="javascript:history.back();";</script>`); 
+                } else{
+                    if(email){
+                        result={"login":1}
+                    } else{
+                        result={"login":0}
+                    }
+                    res.render('cafe_list',{data1:result, cafe:results, filter:cfilter}) 
+                }
+            })
+        }
+    })
 })
 
 
-router.get("/cafe_info/:cafename", function(req,res){ //카페 페이지
+router.get("/cafe_info/:cafename", function(req,res){ //카페 상세 페이지
     var email = req.session.email;
     var cafe = req.params.cafename;
-    db.query('SELECT * FROM cafeinfo where cafe = ?',[cafe], function(err, result){
+    db.query('SELECT * FROM cafe where cafename = ?',[cafe], function(err, result){
         db.query('SELECT * FROM cafereview where cafe = ?',[cafe], function(err, result2){
+            db.query('SELECT * FROM cafescore where cafename = ?',[cafe], function(err, score){
             db.query('SELECT * FROM information where email = ?',[email], function(err, result3){
                 if(email){
                     result1={"login":1}
                 }else{
                     result1={"login":0}
                 }
-                res.render('cafe_info',{data:result, data1:result1, data2:result2, data3:result3})
+                res.render('cafe_info',{data:result, data1:result1, data2:result2, data3:result3, total:score})
+            })
             })
         })
     })
@@ -628,17 +722,23 @@ router.post("/cafe_info/:cafe", function(req,res){ //카페 리뷰 등록
     var cafe = req.params.cafe;
     var review = req.body.review;
     var score = req.body.score;
+    var count = req.body.count;
     var writeTime = new Date();
 
     if(authCheck.isOwner(req,res)){
         if(review){
             db.query('SELECT nickname FROM information WHERE email = ?', [email], function (err, result) {
                 var nickname = result[0].nickname; // 결과에서 nickname 값을 가져옴
-                db.query('INSERT INTO cafereview (cafe, email, nickname, score, review, writeTime) VALUES(?,?,?,?,?,?)',[cafe, email, nickname, score, review, writeTime], function (error, result) {
+                db.query('INSERT INTO cafereview (cafe, email, nickname, score, review, writeTime) VALUES(?,?,?,?,?,?)',[cafe, email, nickname, score/2, review, writeTime], function (error, result) {
+                    db.query('UPDATE cafescore SET score = score + ?, count = count + 1 WHERE cafename = ?', [score/2, cafe], function(error, score) {
+ 
                     if (error) throw error;
                     res.send(`<script type="text/javascript">alert("리뷰가 등록되었습니다.");
-                    location.href = "/cafe_info/${cafe}";</script>`);             
+                    location.href = "/cafe_info/${cafe}";</script>`);  
+
+                    })           
                 });
+                
             })
         }
     }else{res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다.");
@@ -647,16 +747,29 @@ router.post("/cafe_info/:cafe", function(req,res){ //카페 리뷰 등록
     }
 })
 
-router.post("/review/:cafe/:num", function(req,res){ //카페 리뷰 삭제
+router.post("/review/:cafe/:num", function(req, res) { //카페 리뷰 삭제
     var num = req.params.num;
     var cafe = req.params.cafe;
-
-    db.query('DELETE FROM cafereview WHERE num=?', [num], function (err, result) {
-        if (err) throw err; 
-        res.send(`<script type="text/javascript">alert("글이 삭제되었습니다.");
-        document.location.href="/cafe_info/${cafe}";</script>`); 
+  
+    db.query('SELECT score FROM cafereview WHERE num = ?', [num], function(err, rows) {
+      if (err) throw err;
+  
+      if (rows.length > 0) {
+        var score = rows[0].score;
+  
+        db.query('DELETE FROM cafereview WHERE num = ?', [num], function(err, result) {
+          if (err) throw err;
+  
+          db.query('UPDATE cafescore SET score = score - ?, count = count - 1 WHERE cafename = ?', [score, cafe], function(error, score) {
+            if (error) throw error;
+  
+            res.send(`<script type="text/javascript">alert("글이 삭제되었습니다.");
+            document.location.href="/cafe_info/${cafe}";</script>`); 
+          });
+        });
+      } 
     });
-})
+  });
 
 
 module.exports = router;
