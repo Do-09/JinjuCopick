@@ -55,50 +55,56 @@
         <form name="filtering" class="filter-group" action="/filter" method="post">
             <div class="question_button">
               <div class="form-element"> 
-                <input type="checkbox" class="btn-check" id="btn1" name="study" value="1">
-                <label class="btn-label" for="btn1"><img src="public\static\study.png" id="image1"/>스터디</label> 
+                <input type="checkbox" class="btn-check" id="btn1" name="dessert" value="1" onchange="togglefilter()" >
+                <label class="btn-label" for="btn1"><img src="public\static\dessert.png" id="image1"/>디저트</label> 
               </div>
               <div class="form-element"> 
-                <input type="checkbox" class="btn-check" id="btn2" name="pet" value="1">
+                <input type="checkbox" class="btn-check" id="btn2" name="pet" value="1" onchange="togglefilter()">
                 <label class="btn-label" for="btn2"><img src="public\static\pet2.png" id="image1"/>애견동반</label>
-            </div>
-            <div class="form-element"> 
-                <input type="checkbox" class="btn-check" id="btn3" name="nokids" value="1">
-                <label class="btn-label" for="btn3"><img src="public\static\nokids.png" id="image1"/>노키즈존</label>
-            </div>
-            <div class="form-element"> 
-                <input type="checkbox" class="btn-check" id="btn4" name="takeout" value="1">
+              </div>
+              <div class="form-element"> 
+                <input type="checkbox" class="btn-check" id="btn3" name="nokids" value="1" onchange="togglefilter()">
+                <label class="btn-label" for="btn3"><img src="public\static\nokids2.png" id="image1"/>노키즈존</label>
+              </div>
+              <div class="form-element"> 
+                <input type="checkbox" class="btn-check" id="btn4" name="takeout" value="1" onchange="togglefilter()">
                 <label class="btn-label" for="btn4"><img src="public\static\takeout2.png" id="image1"/>테이크아웃</label>
-            </div>
-            <div class="form-element"> 
-                <input type="checkbox" class="btn-check" id="btn5" name="hours" value="1">
-                <label class="btn-label" for="btn5"><img src="public\static\24h3.png" id="image1"/>24시</label>
-            </div>
-            <div class="form-element"> 
-                <input type="checkbox" class="btn-check" id="btn6" name="meeting" value="1">
+              </div>
+              <div class="form-element"> 
+                <input type="checkbox" class="btn-check" id="btn5" name="hours" value="1" onchange="togglefilter()">
+                <label class="btn-label" for="btn5"><img src="public\static\24h2.png" id="image1"/>24시</label>
+              </div>
+              <div class="form-element"> 
+                <input type="checkbox" class="btn-check" id="btn6" name="meeting" value="1" onchange="togglefilter()">
                 <label class="btn-label" for="btn6"><img src="public\static\meeting3.png" id="image1"/>단체석(6인 이상)</label>
-            </div>
-            <div class="form-element"> 
-                <input type="checkbox" class="btn-check" id="btn7" name="franchise" value="1">
+              </div>
+              <div class="form-element"> 
+                <input type="checkbox" class="btn-check" id="btn7" name="franchise" value="1" onchange="togglefilter()">
                 <label class="btn-label" for="btn7"><img src="public\static\franchise2.png" id="image1"/>프랜차이즈</label>
+              </div>
+              <div class="form-element"> 
+                <input type="checkbox" class="btn-check" id="btn8" name="parking" value="1" onchange="togglefilter()">
+                <label class="btn-label" for="btn8"><img src="public\static\parking.png" id="image1"/>주차장</label>
             </div>
             <div class="form-element"> 
-                <input type="checkbox" class="btn-check" id="btn8" name="parking" value="1">
-                <label class="btn-label" for="btn8"><img src="public\static\parking.png" id="image1"/>주차장</label>
+                <input type="checkbox" class="btn-check" id="btn9" name="nothing" value="1">
+                <label class="btn-label" for="btn9">원하는 조건이 없어요.</label>
             </div>
             </div>           
     </div>   
 
+    <div class="map_areas">
     <span class="notice_text">지도에서 구역을 최대 3개 선택해주세요.</span>
 
             <div class="map_area">
                 <div id="map"></div>
             </div>
+
             <div class="area_name"></div>
             <input type="hidden" name="selectMap1" value="">
             <input type="hidden" name="selectMap2" value="">
             <input type="hidden" name="selectMap3" value="">
-
+    </div>
     <span class="notice_text">아이스 아메리카노의 최대 가격을 선택해주세요.</span>        
         <div class="range_box">
             <span class="ice">아이스 아메리카노</span>
@@ -112,13 +118,43 @@
     </div>
     
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9d1355c19666c5197b4f39cb9f886798"></script>
-    <script src="/public\js\kakaomap.js"></script> 
+    <script src="/public\js\kakaomap.js"></script>
+    <script src="/public\js\map_filter.js"></script>
     <script>
+        //가격 출력
         function rangeSlider(value){
             document.getElementById("rangeValue").innerHTML = value;
             rangeValue.innerHTML = value + "원";
         }
 
+        //조건버튼 최대 3개 지정
+        var checkboxes = document.querySelectorAll('.btn-check');  // 모든 체크박스 요소 선택
+        var maxLimit = 3;  // 최대 선택 가능한 개수
+
+        // 체크박스 상태 변경 시
+        function togglefilter() {
+            var checkedCount = 0;  // 선택된 체크박스 개수
+
+            // 선택된 체크박스 개수 계산
+            for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkedCount++;
+            }
+            }
+
+           // 선택된 체크박스 개수가 최대 개수를 초과시 메세지 출력
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].onclick = function() {
+                    if (this.checked && checkedCount >= maxLimit) {
+                    alert('최대 3개까지 선택 가능합니다.');
+                        this.checked = false;
+                    }
+                    else if (!this.checked && checkedCount > maxLimit) {
+                        this.checked = true;
+                    } 
+                };
+            }
+        }
     </script>
 </body>
 </html>
