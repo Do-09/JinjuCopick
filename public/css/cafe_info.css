@@ -29,16 +29,23 @@ body::-webkit-scrollbar{display:none}
     width: 50%;
 }
 
+.info_tag {
+    color: black;
+    text-decoration: none;
+}
+.info_tag:visited { color: black; text-decoration: none;}
+.info_tag:hover { color: black; text-decoration: none;}
+
 #cafe_image {
-    width: 100%;
+    width: 80%;
     overflow: hidden;
 }
 
 .star-ratings {
-    position: absolute;
+    position: relative;
 }
    
-.star-ratings-fill {
+#star-ratings-fill {
     color: gold;
     position: absolute;
     z-index: 1;
@@ -47,7 +54,7 @@ body::-webkit-scrollbar{display:none}
     overflow: hidden;
 }
 
-.star-ratings-base {
+#star-ratings-base {
     color: #fff;
     z-index: 0;
     padding: 0;
@@ -65,7 +72,7 @@ body::-webkit-scrollbar{display:none}
 
 #review_input {
     border: 2px solid lightgray;
-    padding: 5px;
+    padding: 8px;
 }
 
 .star {
@@ -110,7 +117,9 @@ body::-webkit-scrollbar{display:none}
 }
 
 .text_button {
-    background-color: #b8e4ff;
+    background: #fff;
+    color: #7BA2EE;
+    border: 1px solid #7BA2EE;
     border-radius: 15px;
     padding: 5px;
     margin: 3px;
@@ -118,7 +127,8 @@ body::-webkit-scrollbar{display:none}
 }
 
 .text_button:hover {
-    background: #72CBFF;
+    background-color: #7BA2EE;
+    color: #fff;
 }
 
 #review_lists {
@@ -129,19 +139,21 @@ body::-webkit-scrollbar{display:none}
 }
 
 .reviews {
-    border: 1px solid skyblue;
+    border: 1px solid #7BA2EE;
     border-radius: 15px;
     margin: 5px;
     padding: 5px;
 }
 
 .user-star-ratings {
-    position: relative;
+    position:relative; 
+    display: inline-block;
 }
 
 .user-star-ratings-fill {
-    position:absolute;
+    position: absolute;
     top:0;
+    left: 0;
     color:gold;
     z-index: 1; 
     margin:0; 
@@ -149,8 +161,9 @@ body::-webkit-scrollbar{display:none}
 }
 
 .user-star-ratings-base {
-    z-index: 0; 
-    color: white;
+    z-index: 0;
+    padding: 0;
+    color: lightgray;
 }
 
 #review_del_btn {

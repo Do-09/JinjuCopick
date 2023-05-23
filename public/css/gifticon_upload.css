@@ -84,18 +84,19 @@
     width: 520px;
 }
   
-  .upload_input {
+.upload_input {
       border: 0;
       margin: 10px 0px;
       padding: 5px;
       text-align: center;
       outline: none;
       background: #f5f5f5;
+      color: black;
       font-size: 16px;
       border-radius: 10px;
       resize: none;
       width: 90%;
-  }
+}
 
   /*#fileName {
     width: 92%;
