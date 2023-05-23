@@ -139,4 +139,7 @@
     #upload_form {
         width:100%
     }
+    .form_btn {
+        width: 30%;
+    }
 }

@@ -1,5 +1,9 @@
 body::-webkit-scrollbar{display:none}
 
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
 #list_container {
     display: flex;
     justify-content: center;
@@ -12,23 +16,86 @@ body::-webkit-scrollbar{display:none}
     
 }
 
-#cafe_lists {
+/* 전체 리스트 */
+#list_box {
     width:600px; height:600px;
-    background-color: rgba(186, 193, 198, 0.42);
+    background-color: rgba(225,231,235, 0.7);
     float: left;
     margin: 30px;
+    overflow: scroll;
 }
 
+/* 리스트 하나 */
 .cafe_list {
-    width:560px; height:70px;
-    background-color: rgba(194, 194, 194, 0.865);
-    margin: 20px;
-    padding: 10px;
+    width:550px; height:70px;
+    background-color: rgb(192, 203, 215, 0.6);
+    margin: 15px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
-.cafe_list > input {
-    border: 0;
-    background-color: transparent;
-    color: black;
+.info_box {
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+
+.cafeName {
+    font-size: 16px;
+    font-weight:700;
+}
+
+.filtering, .cafeAddress {
+    font-size: 13px;
+}
+
+/* 필터링 */
+.filter {
+    display: inline-block;
+    background-color: rgb(167, 186, 223);
+    border-radius: 20px;
+    margin: 5px 3px;
+    padding: 3px 10px;
+    color: rgb(250, 250, 250);
+    font-weight: 600;
+}
+
+.cafe_area {
+    font-size: 19px;
+    font-weight: 700;
+    padding-left: 30px;
+    padding-top: 15px;
+    margin: 5px;
+}
+
+.view {
+    width: 110px;
+}
+
+/* 위치 보기 */
+.viewLocation {
+    width: 100px; height: 50px;
+    background-color: rgb(160, 175, 209);
+    color: white;
+    border-radius: 20px;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.viewLocation:hover {
+    background-color: rgb(143, 146, 147);
+}
+
+.cafe_title { 
+    width: 220px; height: 40px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 8px 10px 5px 10px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold; 
 }
