@@ -85,9 +85,10 @@
                         <% score = score + data2[i].score %>
                     <%}%>
                     <% score = ((score/2)/data2.length).toFixed(2)  %>
-                    
+                
+                <!--평균 별점 출력-->
                 <div class="star-ratings">
-                    <% if(0 <= score && score < 0.5){%> <!--평균 별점 출력-->
+                    <% if(0 <= score && score < 0.5){%> 
                         <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(0/5 * 80px);">
                     <%}else if(0.5 <= score && score < 1){%>
                         <div class="star-ratings-fill space-x-2 text-lg" style="width: calc(0.5/5 * 80px);">
@@ -116,11 +117,13 @@
                         </div>           
                     <div class="star-ratings-base space-x-2 text-lg">
                         <span>★★★★★</span>
-                            <%if(score == 0 || score == 1 || score == 2 || score == 3 || score == 4 || score == 5){%>
-                                <span>(<%= parseInt(score) %>)</span>
+                        <span style="color: black">
+                            <%if(score % 1 == 0){%>
+                                (<%= parseInt(score) %>)
                             <%} else{%>
-                                <span>(<%= score %>)</span>
+                                (<%= score %>)
                             <%}%>
+                        </span>
                     </div>
                 </div>
                 <br>
