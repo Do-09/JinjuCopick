@@ -207,12 +207,17 @@
             function comment_write() {
                 // textarea에서 값을 가져옴
                 var text = document.getElementById("text_area").value;
-                
-                
+                          
                 if (text == "") {
                     alert('내용을 입력하세요!');
                     return false;
                 }
+
+                if (text.length>45) {
+                    alert('45자 내로 입력해 주세요!');
+                    return false;
+                }
+
                 else{
                     return true;
                 }
