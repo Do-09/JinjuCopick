@@ -46,7 +46,7 @@
             <h2>기프티콘</h2>
             <form action="/gifticon_upload/submit" id="myForm" method="post" enctype="multipart/form-data">
                 <table id="inputContainer">
-                <input type="file" id="gifticonImg" name="gifticonImg" accept="image/*" aria-required="true" required oninvalid="this.setCustomValidity('기프티콘 이미지를 선택해주세요.')" oninput="this.setCustomValidity('')">               
+                <input type="file" id="gifticonImg" name="gifticonImg" accept="image/*" aria-required="true">               
                     <tr>
                         <td colspan="2" class="td_input"><input type="text" class="upload_input" id="fileName" value="" placeholder="사진을 등록하세요." disabled></td>
                         <td class="td_items">
@@ -133,14 +133,23 @@
 
         <script>
             document.getElementById('gifticonImg').onchange = function(){
-                // 만들어둔 text input에 파일명 출력
-                var file = this.files[0];
+                var file_path = this.value;
+                var reg = /(.*?)\.(jpg|bmp|jpeg|png)$/;
+                
+                if (file_path != "" && (file_path.match(reg) == null || reg.test(file_path) == false)) {
+                    // 허용되지 않은 확장자일 경우
+                    alert("이미지 파일만 업로드 가능합니다.");
+                }
+                else {
+                    // 만들어둔 text input에 파일명 출력
+                    var file = this.files[0];
 
-                if (file) {
-                    document.getElementById('fileName').value = file.name;
-                    document.getElementById('fileName').oninvalid = "";
-                } else {
-                    document.getElementById('fileName').value = "";
+                    if (file) {
+                        document.getElementById('fileName').value = file.name;
+                        document.getElementById('fileName').oninvalid = "";
+                    } else {
+                        document.getElementById('fileName').value = "";
+                    }
                 }
             }
         </script>
@@ -150,6 +159,39 @@
             let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -14);
             dateElement.setAttribute("min", date);
         </script>
+
+<script>
+    document.getElementById("upload_btn").addEventListener("click", function(event) {
+
+    var fileInput = document.getElementById("gifticonImg");
+
+    if (fileInput.files.length > 0) {
+        // 파일이 선택된 경우
+        var fileSize = fileInput.files[0].size; // 첫 번째 파일의 크기 확인
+        if (fileSize > 0) {
+        // 업로드 파일명
+        var file = fileInput.files[0];
+        }
+    } else {
+        // 파일이 선택되지 않은 경우
+        alert("파일을 선택하세요.");
+        return;
+    }
+
+    var cafeName = document.getElementById("cafeName").value;
+    var expirationDate = document.getElementById("expirationDate").value;
+
+    if (!cafeName) {
+        alert("카페명을 입력해주세요.");
+        return;
+    }
+    
+    if (!expirationDate) {
+        alert("유효기간을 선택해주세요.");
+        return;
+    }
+    });
+</script>
 
     </body>
 </html>

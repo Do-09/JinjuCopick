@@ -82,6 +82,7 @@
                         <tr> 
                             <td class="info_box" onclick="location.href='/cafe_info/<%= cafelist.cafename %>'">
                                 <div class="cafeName"><%= cafelist.cafename %></div> 
+                                <div class="cafeAverage">★<%= cafelist.average.toFixed(1) %></div> 
                                 <div class="filtering"> 
                                     <% for (let c = 0; c < cafelist.correct.length; c++) { %>                         
                                         <div class="filter"><%= cafelist.correct[c] %></div>
@@ -91,7 +92,7 @@
                                 <div class="cafeAddress"><%= cafelist.location %></div>
                             </td>
                             <td class="view">
-                                <div class="viewLocation" onclick="event.stopPropagation()">위치<br>보기</div>
+                                <div class="viewLocation" onclick="event.stopPropagation()">위치 보기</div>
                             </td>
                         </tr>
                     </table>
@@ -185,6 +186,7 @@
 
                             infowindow.open(kakaomap, marker);
                             currentInfowindow = infowindow;
+                            
                         });
                     })(i);
                 }
