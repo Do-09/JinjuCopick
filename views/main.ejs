@@ -50,7 +50,7 @@
     <div class="question">
         <!-- <h2 class="question_text">원하는 키워드를 선택하세요.</h2> -->
         <h2 class="question_text">어떤 카페를 찾으시나요?</h2>
-        <span class="notice_text">찾으시는 조건을 1개 ~ 8개 선택해주세요.</span>
+        <span class="notice_text">찾으시는 조건을 1개 ~ 3개 선택해주세요.</span>
 
         <form name="filtering" class="filter-group" action="/filter" method="post">
             <div class="question_button">
@@ -71,8 +71,8 @@
                 <label class="btn-label" for="btn4"><img src="public\static\takeout2.png" id="image1"/>테이크아웃</label>
               </div>
               <div class="form-element"> 
-                <input type="checkbox" class="btn-check" id="btn5" name="hours" value="hours" onchange="togglefilter()">
-                <label class="btn-label" for="btn5"><img src="public\static\24h2.png" id="image1"/>24시</label>
+                <input type="checkbox" class="btn-check" id="btn5" name="delivery" value="delivery" onchange="togglefilter()">
+                <label class="btn-label" for="btn5"><img src="public\static\delivery2.png" id="image1"/>배달</label>
               </div>
               <div class="form-element"> 
                 <input type="checkbox" class="btn-check" id="btn6" name="meeting" value="meeting" onchange="togglefilter()">

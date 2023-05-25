@@ -80,12 +80,11 @@
                     <%}%>
                 </div>
                     
-                <div class="star-ratings">
-                    <% var mean = total[0] %>
+                <div class="star-ratings"> 
                     <script>
                         var average = [];
                         average.push({
-                            starwidth: "<%= (mean.score !== 0 ? (mean.score/mean.count).toFixed(1) : 0) %>"
+                            starwidth: "<%= (info.score !== 0 ? (info.score/info.count).toFixed(1) : 0) %>"
                         });
                         console.log(average);
 
@@ -104,10 +103,10 @@
                     <div id="star-ratings-base">
                         <span>★★★★★</span>
                         <span style="color: black">
-                            <%if(!mean.score){%>
+                            <%if(!info.score){%>
                                 (0)
                             <%} else {%>
-                                (<%= (mean.score/mean.count).toFixed(1) %>)
+                                (<%= (info.score/info.count).toFixed(1) %>)
                             <%}%>
                         </span>
                     </div>
@@ -150,7 +149,6 @@
         </div>
         <ul id="review_lists">
             <% var check = data3[0] %> <!--리뷰(닉네임, 글, 작성 시간)-->
-
                 <% for(var i = 0; i<data2.length; i++){%>
                     <li class="reviews">
                         <% var rev = data2[i] %>
