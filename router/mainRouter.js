@@ -629,7 +629,7 @@ router.get("/cafe", function(req,res){ //카페 페이지
                     pet: '애견동반',
                     nokids: '노키즈존',
                     takeout: '테이크아웃',
-                    hours: '24시',
+                    delivery: '배달',
                     meeting: '단체석',
                     franchise: '프랜차이즈',
                     parking: '주차장' 
