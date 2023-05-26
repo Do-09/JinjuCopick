@@ -7,21 +7,24 @@ body {
 
 .map_area {
     text-align: center;
-    width: 900px;
+    width: 75%;
     height: 600px;
     margin: auto;
     margin-bottom: 120px; 
+    position: relative;
+    left: 50%;
+    transform: translateX(-54%);
 }
 
 .map_area #map {
-    width: 900px;
+    width: 75%;
     height: 600px; 
 }
 
 .question {
     /* background-color: #EAECEF;
            width: 900px;
-           height: 200px;
+           height: 200px;s
            text-align: center;
            position:relative; 
            left: 50%;
@@ -32,7 +35,7 @@ body {
 
     text-align: center;
     background-color: #EAECEF;
-    width: 900px;
+    width: 56%;
     padding-bottom: 40px;
     margin: auto;
     margin-bottom: 20px;
@@ -71,21 +74,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 48px;
 
 }
 
 .btn-check:hover+.btn-label {
     background: #B8CEFB;
     border-color: white;
-    color: white;
+    color: white; 
 }
 
 .btn-check:checked+.btn-label {
     background-color: #B8CEFB;
     color: black;
 }
-
-
+ 
 #image1 {
     height: 30px;
     width: 30px;
@@ -138,84 +141,6 @@ body {
     font-size: 15px;
     font-weight: bold;
 }
-
-
-@media screen and (max-width: 768px) {
-    .question_button {
-        padding: 1rem
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .form-element {
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 0rem .8rem;
-        top: -50px;
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .logo_back {
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 0 .8rem
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .question .question_text {
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 2rem 0rem;
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .question {
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 1rem .5rem;
-        width: 70%;
-        margin: 1rem 5rem;
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .map_area{
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 0 .8rem;
-        text-align: center;
-        width: 100%; 
-        margin-bottom: 100px;
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .map_area #map{
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 0 .8rem;
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .area_name{
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 2rem 2rem; 
-        width: 80%; 
-    }
-} 
 
 .range {
     width: 400px; 
@@ -287,4 +212,59 @@ body {
     margin-left: 50px;
     font-weight: bold;
     font-size: 15px; 
+} 
+
+@media screen and (max-width: 768px) {
+    .question_button {
+        padding: 1rem
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .form-element {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 0rem .8rem;
+        top: -50px;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .logo_back {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 0 .8rem
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .question .question_text {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 2rem 0rem;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .question, .map_area {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 1rem .5rem;
+        width: 70%;
+        margin: 1rem 5rem;
+    }
+}
+ 
+@media screen and (max-width: 667px) {
+    .area_name{
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 2rem 2rem; 
+        width: 80%; 
+    }
 } 
