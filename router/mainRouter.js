@@ -210,7 +210,6 @@ router.post('/mypage/nickname/change', function(req,res){ //마이페이지 닉�
     }
 })
 
-
 router.get("/mypage/password", function(req,res){ //마이페이지 패스워드 변경 버튼 선택 시 -> password_check2
     if(authCheck.isOwner(req,res)){
         res.render('password_check2')
