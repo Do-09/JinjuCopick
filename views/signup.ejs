@@ -47,7 +47,6 @@
         </div>
 
         <script>
-            
             function check(){
                 let email = document.getElementById("email").value
                 let password1 = document.getElementById("password1").value
@@ -104,38 +103,38 @@
                 } else {
                     document.getElementById("nicknameError").innerHTML = "&nbsp"
                 }
-
-            }
-            
+            }   
         </script>
 
         <form onsubmit="return check()" action="/signup/submit" method="post">
             <div class="container">
                 <div class="title">
-                    <p><strong>회원가입</strong></p>
-                </div>
+                     회원가입
+                </div> 
                 <div class="email">
-                    <input class="input" id="email" name ="email" type="text" placeholder="이메일을 입력해주세요.">
+                    <div class="input_title">이메일</div>
+                    <input class="input" id="email" name ="email" type="text" placeholder="jinju@copick">
                     <div id="emailError" class="error">&nbsp</div>
                 </div>
                 <div class="password1">
-                    <input class="input" id="password1" name ="password1" type="password" placeholder="비밀번호를 입력해주세요. (영문+숫자+특수문자 8~15자)">
+                    <div class="input_title">비밀번호</div>
+                    <input class="input" id="password1" name ="password1" type="password" placeholder="비밀번호 (8-15자 / 영문자+숫자+특수문자)">
                     <div id="password1Error" class="error">&nbsp</div>
                 </div>
                 <div class="password2">
-                    <input class="input" id="password2" name ="password2" type="password" placeholder="비밀번호를 다시 입력해주세요.">
+                    <div class="input_title">비밀번호 확인</div>
+                    <input class="input" id="password2" name ="password2" type="password" placeholder="비밀번호 일치 확인">
                     <div id="password2Error" class="error">&nbsp</div>
                 </div>
                 <div class="nickname">
-                    <input class="input" id="nickname" name ="nickname" type="text" placeholder="닉네임을 입력해주세요. (2~8자)">
+                    <div class="input_title">닉네임</div>
+                    <input class="input" id="nickname" name ="nickname" type="text" placeholder="닉네임 (2-8자 / 영문,숫자,한글,특수문자)">
                     <div id="nicknameError" class="error">&nbsp</div>
                 </div>
                 <div class="signup">
                     <input type="submit" id ="signup" value="가입하기">
                 </div>
             </div>
-
         </form>
-
     </body>
 </html>
