@@ -660,16 +660,7 @@ router.get("/cafe", function(req,res){ //카페 페이지
                     // 카페 데이터를 correct 객체의 배열에 추가
                     correct.cafes.push(cafe);
                     }
-                //   console.log(correct.cafes); 
-                
-                
-                // // 별점순 정렬 함수
-                // function compareAverage(a, b) {
-                //     return b.average - a.average;
-                // }
-                
-                // // 정렬된 배열 저장
-                // var cafesorted = correct.cafes.sort(compareAverage);
+                //   console.log(correct.cafes);  
 
                 if(results.length<=0){ // 해당하는 카페가 없을 경우
                     res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
@@ -684,11 +675,11 @@ router.get("/cafe", function(req,res){ //카페 페이지
                 }
             });
         } else if(filter1 == 'nothing'){
-            db.query('(SELECT * FROM cafe WHERE area = ? AND price <= ? LIMIT 10)' +
+            db.query('(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY average DESC LIMIT 10)' +
             'UNION ' +
-            '(SELECT * FROM cafe WHERE area = ? AND price <= ? LIMIT 10)' +
+            '(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY average DESC LIMIT 10)' +
             'UNION ' +
-            '(SELECT * FROM cafe WHERE area = ? AND price <= ? LIMIT 10)',[area1, price, area2, price, area3, price], function(err, results){
+            '(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY average DESC LIMIT 10)',[area1, price, area2, price, area3, price], function(err, results){
                 //nothing인 경우 조건 배열 비우기
                 var correct = {
                     cafes: []  
@@ -697,15 +688,7 @@ router.get("/cafe", function(req,res){ //카페 페이지
                     var cafe = results[i]; 
                     cafe.correct = ""; 
                     correct.cafes.push(cafe);
-                }
-
-                // 별점순 정렬 함수
-                function compareAverage(a, b) {
-                    return b.average - a.average;
-                }
-                
-                // 정렬된 배열 저장
-                var cafesorted = correct.cafes.sort(compareAverage);
+                } 
                 
                 if(results.length<=0){ // 해당하는 카페가 없을 경우
                     res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
@@ -716,7 +699,7 @@ router.get("/cafe", function(req,res){ //카페 페이지
                     } else{
                         result={"login":0}
                     }
-                    res.render('cafe_list',{data1:result, cafe:cafesorted, filter:cfilter}) 
+                    res.render('cafe_list',{data1:result, cafe:results, filter:cfilter}) 
                 }
             })
         }
