@@ -114,7 +114,7 @@ router.post("/signup/submit", function(req,res){ //회원가입 제출
                     if (results.length <= 0) {
                         db.query('INSERT INTO information (nickname, password, email) VALUES(?,?,?)', [nickname, password1, email], function (error, data) {
                             if (error) throw error2;
-                            res.send(`<script type="text/javascript">alert("회원가입이 완료되었습니다!");
+                            res.send(`<script type="text/javascript">alert("가입을 환영합니다!");
                             document.location.href="/";</script>`);
                         });
                     } 
@@ -209,6 +209,7 @@ router.post('/mypage/nickname/change', function(req,res){ //마이페이지 닉�
                 document.location.href="/login";</script>`);
     }
 })
+
 
 router.get("/mypage/password", function(req,res){ //마이페이지 패스워드 변경 버튼 선택 시 -> password_check2
     if(authCheck.isOwner(req,res)){
@@ -702,6 +703,25 @@ router.get("/cafe", function(req,res){ //카페 페이지
                 }
             })
         }
+    })
+})
+
+router.get("/cafe_info/:cafename", function(req,res){ //카페 상세 페이지
+    var email = req.session.email;
+    var cafe = req.params.cafename;
+    db.query('SELECT * FROM cafe where cafename = ?',[cafe], function(err, result){
+        db.query('SELECT * FROM cafereview where cafe = ?',[cafe], function(err, result2){
+            db.query('SELECT * FROM cafescore where cafename = ?',[cafe], function(err, score){
+            db.query('SELECT * FROM information where email = ?',[email], function(err, result3){
+                if(email){
+                    result1={"login":1}
+                }else{
+                    result1={"login":0}
+                }
+                res.render('cafe_info',{data:result, data1:result1, data2:result2, data3:result3, total:score})
+            })
+            })
+        })
     })
 })
 
