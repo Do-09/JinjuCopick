@@ -17,7 +17,7 @@ body::-webkit-scrollbar{display:none}
     transition: all ease-out 0.3s;
     margin : auto;
     padding: 20px;
-    width: 90%;
+    width: 85%;
 }
 
 #simple_info {
@@ -29,9 +29,21 @@ body::-webkit-scrollbar{display:none}
     width: 50%;
 }
 
+#img_wrapper {
+    position: relative;
+    width: 250px;
+    height: 250px;
+}
+
 #cafe_image {
-    width: 80%;
-    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
 }
 
 .star-ratings {
@@ -170,7 +182,7 @@ body::-webkit-scrollbar{display:none}
     cursor: pointer;
 }
 
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 768px) {
     #info_section {
         justify-content: center;
         align-items: center;
@@ -188,7 +200,10 @@ body::-webkit-scrollbar{display:none}
         width: 100%;
     }
 
-    #cafe_image {
-        width: 100%;
+    #img_wrapper {
+        position: relative;
+        width: 380px;
+        height: 380px;
     }
+    
 }
