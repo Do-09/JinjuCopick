@@ -29,13 +29,6 @@ body::-webkit-scrollbar{display:none}
     width: 50%;
 }
 
-.info_tag {
-    color: black;
-    text-decoration: none;
-}
-.info_tag:visited { color: black; text-decoration: none;}
-.info_tag:hover { color: black; text-decoration: none;}
-
 #cafe_image {
     width: 80%;
     overflow: hidden;
@@ -58,6 +51,12 @@ body::-webkit-scrollbar{display:none}
     color: #fff;
     z-index: 0;
     padding: 0;
+}
+
+.info_items {
+    display: inline-block;
+    width:20px;
+    text-align: center;
 }
 
 #review {

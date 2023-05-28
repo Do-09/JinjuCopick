@@ -51,10 +51,13 @@
         <div id="info_section">
             <div id="simple_info">
                 <img id="cafe_image" src="<%=info.image%>">
-                <div class="info_items"><i class="fa fa-map-marker" aria-hidden="true"></i> <%=info.cafename%></div>
+                <div><span class="info_items"><i class="fas fa-coffee"></i></i></span> <%=info.cafename%></div>
+                <div><span class="info_items"><i class="fa fa-map-marker" aria-hidden="true"></i></span> <%=info.location%></div>
                 <div class="info_tags">
-                    <i class="fas fa-tags"></i>
-                    <% if(info.dessert == 1){%> <!--카페 정보 DB에서 값 가져와서 키워드 출력-->
+                    <% if(info.dessert != 0 || info.pet != 0 || info.nokids != 0 || info.takeout != 0 || info.delivery != 0 || info.meeting != 0 || info.franchise != 0 || info.parking != 0){%><!--카페 정보 DB에서 값 가져와서 키워드 출력-->
+                        <span class="info_items"><i class="fas fa-tags"></i></span>
+                    <%}%>
+                    <% if(info.dessert == 1){%><!--카페 정보 DB에서 값 가져와서 키워드 출력-->
                         #디저트
                     <%}%>
                     <% if(info.pet == 1){%>
@@ -63,11 +66,11 @@
                     <% if(info.nokids == 1){%>
                         #노키즈존
                     <%}%>
-                    <% if(info.takout == 1){%>
+                    <% if(info.takeout == 1){%>
                         #테이크아웃
                     <%}%>
-                    <% if(info.hours == 1){%>
-                        #24시
+                    <% if(info.delivery == 1){%>
+                        #배달
                     <%}%>
                     <% if(info.meeting == 1){%>
                         #단체석(6인이상)
@@ -112,18 +115,23 @@
                     </div>
                 </div>
                 <br>
- 
-
-                <div class="info_items"><i class="fa-solid fa-clock"></i> 영업시간:&nbsp;<%=info.time%></div>
-                <div class="info_items"><i class="fa-solid fa-dollar-sign"></i> 
-                    <% if(info.price==''){%>
+                
+                <% if(info.time!=''){%>
+                    <div><span class="info_items"><i class="fa-solid fa-clock"></i></span> 영업시간:&nbsp;<%=info.time%></div>
+                <%}%>
+                <% if(info.dayoff!=''){%>
+                    <div><span class="info_items"><i class="fa fa-calendar" aria-hidden="true"></i></span> 휴무일:&nbsp;<%=info.dayoff%></div>
+                <%}%>
+                <!--<div><span class="info_items"><i class="fa-solid fa-dollar-sign"></i></span>
+                    <% if(info.price==10000){%>
                         가격 미제공
                     <%} else {%>
                         가격:&nbsp;<%=info.price%>
-                    <%}%>
-                    
-                </div>
-                <div class="info_items"><i class="fas fa-parking"></i> 주차장 여부:&nbsp;
+                    <%}%>-->
+                <% if(info.price < 10000){%>
+                    <div><span class="info_items"><i class="fa-solid fa-dollar-sign"></i></span>가격:&nbsp;<%=info.price%></div>
+                <%}%>
+                <div><span class="info_items"><i class="fas fa-parking"></i></span> 주차장 여부:&nbsp;
                     <% if(info.parking==1){%> <!--주차가능 여부 출력-->
                         주차 가능
                     <%}else{%>
