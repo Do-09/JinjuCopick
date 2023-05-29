@@ -164,47 +164,49 @@
                 </div>
             </div>
         </div>
-        <ul id="review_lists">
-            <% var check = data3[0] %> <!--리뷰(닉네임, 글, 작성 시간)-->
-                <% for(var i = 0; i<data2.length; i++){%>
-                    <li class="reviews">
-                        <% var rev = data2[i] %>
-                        <i class="fas fa-comment" style="color: #B8CEFB;"></i>
-                        <%=rev.nickname%>
-                        <% var starId = "star-ratings-fill2-" + i; %>
-                        <span class="user-star-ratings">
-                            <span class="user-star-ratings-fill" id="<%= starId %>">★★★★★</span> 
-                            <span class="user-star-ratings-base">★★★★★</span>
-                        </span>
-        
-                        <script>
-                            var star = [];
-                            star.push({
-                                starwidth: "<%= rev.score %>"
-                            });
-                            console.log(star);
-                
-                            var perstar = (star[0].starwidth / 5) * 80;
-                            console.log(perstar);
-                
-                            var starRatingsFill = document.getElementById("<%= starId %>");
-                            starRatingsFill.style.width = perstar + "px";
-                        </script>
-                        
-                        <span style="font-size: 13px;">
-                            <%= rev.writeTime.substring(0, 10)%>
-                            <form style="display:inline" name="review_delete" action = "/review/<%=info.cafename%>/<%=rev.num%>" method="post" onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
-                                <% if(login.login==1){%>
-                                    <% if (rev.nickname == check.nickname) { %>
-                                    <button style="float:right" type="submit" id="review_del_btn">삭제</button>
-                                    <% } %> 
-                                <%}%>   
-                            </form>
-                        </span>
-                        <div><%=rev.review%></div>
-                    </li>
-                <%}%>
-        </ul>
+        <% if (data2.length != 0) {%>
+            <ul id="review_lists">
+                <% var check = data3[0] %> <!--리뷰(닉네임, 글, 작성 시간)-->
+                    <% for(var i = 0; i<data2.length; i++){%>
+                        <li class="reviews">
+                            <% var rev = data2[i] %>
+                            <i class="fas fa-comment" style="color: #B8CEFB;"></i>
+                            <%=rev.nickname%>
+                            <% var starId = "star-ratings-fill2-" + i; %>
+                            <span class="user-star-ratings">
+                                <span class="user-star-ratings-fill" id="<%= starId %>">★★★★★</span> 
+                                <span class="user-star-ratings-base">★★★★★</span>
+                            </span>
+            
+                            <script>
+                                var star = [];
+                                star.push({
+                                    starwidth: "<%= rev.score %>"
+                                });
+                                console.log(star);
+                    
+                                var perstar = (star[0].starwidth / 5) * 80;
+                                console.log(perstar);
+                    
+                                var starRatingsFill = document.getElementById("<%= starId %>");
+                                starRatingsFill.style.width = perstar + "px";
+                            </script>
+                            
+                            <span style="font-size: 13px;">
+                                <%= rev.writeTime.substring(0, 10)%>
+                                <form style="display:inline" name="review_delete" action = "/review/<%=info.cafename%>/<%=rev.num%>" method="post" onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
+                                    <% if(login.login==1){%>
+                                        <% if (rev.nickname == check.nickname) { %>
+                                        <button style="float:right" type="submit" id="review_del_btn">삭제</button>
+                                        <% } %> 
+                                    <%}%>   
+                                </form>
+                            </span>
+                            <div><%=rev.review%></div>
+                        </li>
+                    <%}%>
+            </ul>
+        <%}%>
 
         <script>
             document.querySelector('.star span').style.width = '100%';
