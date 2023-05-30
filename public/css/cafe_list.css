@@ -100,3 +100,14 @@ body::-webkit-scrollbar{display:none}
     font-size: 15px;
     font-weight: bold; 
 }
+
+.cafeAverage {
+    color: gold;
+    
+    
+}
+
+.cafeAverageNumber {
+    color: black;
+     
+}

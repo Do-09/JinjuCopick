@@ -17,28 +17,32 @@ body::-webkit-scrollbar{display:none}
     transition: all ease-out 0.3s;
     margin : auto;
     padding: 20px;
-    width: 90%;
+    width: 85%;
 }
 
 #simple_info {
     position: relative;
     display: inline-block;
-    margin: 10px 10px;
+    margin: 10px 20px;
     padding: 10px 10px;
-    display: inline;
-    width: 50%;
+    width: 40%;
 }
 
-.info_tag {
-    color: black;
-    text-decoration: none;
+#img_wrapper {
+    position: relative;
+    width: 250px;
+    height: 250px;
 }
-.info_tag:visited { color: black; text-decoration: none;}
-.info_tag:hover { color: black; text-decoration: none;}
 
 #cafe_image {
-    width: 80%;
-    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
 }
 
 .star-ratings {
@@ -60,6 +64,12 @@ body::-webkit-scrollbar{display:none}
     padding: 0;
 }
 
+.info_items {
+    display: inline-block;
+    width:20px;
+    text-align: center;
+}
+
 #review {
     background-color: #fff;
     display: inline;
@@ -67,7 +77,7 @@ body::-webkit-scrollbar{display:none}
     margin: 10px;
     padding: 20px;
     border-radius: 10px;
-    width: 50%;
+    width: 60%;
 }
 
 #review_input {
@@ -171,7 +181,7 @@ body::-webkit-scrollbar{display:none}
     cursor: pointer;
 }
 
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 768px) {
     #info_section {
         justify-content: center;
         align-items: center;
@@ -189,7 +199,10 @@ body::-webkit-scrollbar{display:none}
         width: 100%;
     }
 
-    #cafe_image {
-        width: 100%;
+    #img_wrapper {
+        position: relative;
+        width: 350px;
+        height: 350px;
     }
+    
 }
