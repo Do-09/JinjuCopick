@@ -148,7 +148,7 @@ router.get("/mypage", function(req,res){ //마이페이지
         });
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -158,7 +158,7 @@ router.get("/mypage/nickname", function(req,res){ //마이페이지 닉네임 �
         res.render('password_check1')
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -178,7 +178,7 @@ router.post("/mypage/nickname", function(req,res){ // 닉네임 password_check1 
             });
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -205,7 +205,7 @@ router.post('/mypage/nickname/change', function(req,res){ //마이페이지 닉�
         })
         return false; 
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -216,7 +216,7 @@ router.get("/mypage/password", function(req,res){ //마이페이지 패스워드
         res.render('password_check2')
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -237,7 +237,7 @@ router.post("/mypage/password", function(req,res){ //마이페이지 패스워�
             });
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -266,7 +266,7 @@ router.post('/mypage/password/change', function(req,res){ //마이페이지 패�
 
         return false; 
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -284,7 +284,7 @@ router.get("/gifticon_upload", function(req,res){ //기프티콘 업로드 화�
         });
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -351,7 +351,7 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
         res.redirect('/gifticon_upload');
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -379,7 +379,7 @@ router.get("/community", function(req,res){ //커뮤니티 게시판 목록 화�
             });
         });
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 });
@@ -408,7 +408,7 @@ router.get("/community/:nickname/:writeTime/:num", function(req,res){ //커뮤�
         })
         });
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 
@@ -420,7 +420,7 @@ router.get("/community/write", function(req,res){ //커뮤니티 게시판 작�
         res.render('community')
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -468,7 +468,7 @@ router.get("/community/:nickname/:writeTime/:num/modify", function(req,res){ //�
             }
         });
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
     
@@ -663,8 +663,8 @@ router.get("/cafe", function(req,res){ //카페 페이지
                 //   console.log(correct.cafes);  
 
                 if(results.length<=0){ // 해당하는 카페가 없을 경우
-                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                    document.location.href="javascript:history.back();";</script>`); 
+                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다.");  
+                    document.location.href="/";</script>`); 
                 } else{
                     if(email){
                         result={"login":1}
@@ -691,8 +691,8 @@ router.get("/cafe", function(req,res){ //카페 페이지
                 } 
                 
                 if(results.length<=0){ // 해당하는 카페가 없을 경우
-                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                    document.location.href="javascript:history.back();";</script>`); 
+                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다.");  
+                    document.location.href="/";</script>`); 
                 } else{
                     if(email){
                         result={"login":1}
@@ -749,7 +749,7 @@ router.post("/cafe_info/:cafe", function(req,res){ //카페 리뷰 등록
                 
             })
         }
-    }else{res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다.");
+    }else{res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
     document.location.href="javascript:history.back();";</script>`);
         
     }
