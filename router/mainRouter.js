@@ -172,7 +172,7 @@ router.post("/mypage/nickname", function(req,res){ // 닉네임 password_check1 
             if (result.length > 0) {
                 res.render('nickname_change',{data:result})
             }else{
-                res.send(`<script type="text/javascript">alert("비밀번호를 다시 확인하세요");
+                res.send(`<script type="text/javascript">alert("비밀번호를 다시 확인하세요.");
                 document.location.href="/mypage/nickname";</script>`);
             }
             });
@@ -231,7 +231,7 @@ router.post("/mypage/password", function(req,res){ //마이페이지 패스워�
             if (result.length > 0) {
                 res.render('password_change',{data:result})
             }else{
-                res.send(`<script type="text/javascript">alert("비밀번호를 다시 확인하세요");
+                res.send(`<script type="text/javascript">alert("비밀번호를 다시 확인하세요.");
                 document.location.href="/mypage/password";</script>`);
             }
             });
