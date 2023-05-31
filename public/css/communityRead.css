@@ -43,6 +43,7 @@
 .change_bt,
 .del_bt, 
 .list_bt { 
+    cursor: pointer;
     padding: 8px;
     width: 50px;
     font-size: 13px;  
@@ -62,6 +63,7 @@
 }
   
 .detail_box { 
+    width: 100%;  
     padding: 10px 0px 0px 0px;
     margin-top: 10px;
     margin-left: 10px;
@@ -70,7 +72,7 @@
 .detail1, 
 .detail2, 
 .detail3 { 
-    width: 150px;
+    width: 100%;
     margin-left: 10px;
     margin-right: 30px;
 }
@@ -94,16 +96,15 @@
     float: right;  
 }
 .nickname_data{ 
-    width: 200px;
+    width: 100%; 
     margin-right: 10px;
-    vertical-align: middle;
-    display: inline-block;
+    vertical-align: middle; 
     text-align: right;  
 }
 .writedate{
+    width: 100%; 
     padding: 0px 10px; 
-    vertical-align: middle;
-    display: inline-block;  
+    vertical-align: middle; 
     color: rgb(102, 102, 102);
 }
 
@@ -172,6 +173,7 @@
     font-size: 15px;  
 }
 .comment_delete_bt { 
+    cursor: pointer;
     padding: 5px 0px;
     width: 40px;
     font-size: 13px; 
@@ -189,9 +191,10 @@
 }
 
 .comment_plus {
+    cursor: pointer;
     background-color: white;
-    width: 930px;
-    padding: 10px 10px;
+    width: 92%;
+    padding: 10px 20px;
     border-radius: 12px; 
     border-width: 0px;
     margin-top: 50px;
@@ -200,6 +203,7 @@
 }
 
 .plus_bt { 
+    cursor: pointer;
     padding: 11px 10px;
     width: 60px;
     font-size: 15px;  
@@ -225,4 +229,41 @@
     font-size: medium;
     background-color: rgba(234, 236, 239, 0.5);
 
+}
+ 
+
+@media screen and (max-width: 1000px) {
+    .detail_box { 
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 0 .7rem; 
+        height: 50px; 
+    } 
+    .detail4{ 
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem; 
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .detail3 {   
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;  
+        margin-top: 10px;   
+        float: left;
+        width: 49%;
+    }   
+}
+
+@media screen and (max-width: 550px) {
+    .detail4{  
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem; 
+        margin-top: -25px;
+    } 
 }
