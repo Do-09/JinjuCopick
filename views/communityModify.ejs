@@ -96,6 +96,7 @@
                     <% if (list.date === '미정') { %>
                         <input type="date" class="date_pick"
                             id="date_input" 
+                            data-placeholder="연도-월-일"
                             value="<%= list.date %>"
                             name="date"
                             disabled
@@ -114,6 +115,7 @@
                     <% } else { %>
                         <input type="date" class="date_pick"
                             id="date_input" 
+                            data-placeholder="연도-월-일"
                             value="<%= list.date %>"
                             name="date"
                             onchange="toggleCheckbox()" 
