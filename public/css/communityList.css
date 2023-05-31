@@ -98,6 +98,7 @@ body::-webkit-scrollbar{display:none}
 
 }
 .write_bt {
+    cursor: pointer;
     width: 100px;
     height: 35px;
     margin-top: 20px;
