@@ -102,12 +102,9 @@ body::-webkit-scrollbar{display:none}
 }
 
 .cafeAverage {
-    color: gold;
-    
-    
+    color: orange;
 }
 
 .cafeAverageNumber {
-    color: black;
-     
+    color: black; 
 }
