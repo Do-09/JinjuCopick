@@ -36,19 +36,23 @@ body::-webkit-scrollbar{display:none}
 }
 
 .info_box {
-    padding-top: 5px;
-    padding-right: 10px;
-    padding-bottom: 5px;
-    padding-left: 10px;
+    padding: 10px; 
 }
 
 .cafeName {
     font-size: 16px;
     font-weight:700;
+    margin-left: 5px; 
 }
 
-.filtering, .cafeAddress {
-    font-size: 13px;
+.cafeAddress {
+    font-size: 14px;
+    margin-left: 5px; 
+    margin-top: 5px;
+}
+
+.filtering{
+    font-size: 12px; 
 }
 
 /* 필터링 */
@@ -102,9 +106,12 @@ body::-webkit-scrollbar{display:none}
 }
 
 .cafeAverage {
+    margin-left: 10px;
     color: orange;
+    font-size: 18px;
+    margin-right: 4px; 
 }
 
 .cafeAverageNumber {
-    color: black; 
+    color: black;   
 }
