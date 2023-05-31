@@ -1,14 +1,8 @@
 .container{ 
     padding: 50px;    
     font-family: 'Nanum Gothic', sans-serif;
-}
-/* .write_box {
-    width: 100%;
-    padding: 50px 50px;
-    background-color: #EAECEF; 
-    border: solid 1px gray;
-    border-radius: 10px;
-} */
+} 
+
 .title_box {
     background-color: rgb(234, 236, 239, 0.7);
     padding: 10px 10px;
@@ -19,21 +13,6 @@
 .title_data{
     margin: 15px;  
 }
-
-/* .change_bt { 
-    padding: 12px 10px;
-    width: 60px;
-    font-size: 15px;  
-    margin-left: 10px;
-    margin-top: -10px; 
-    background-color: rgba(184, 206, 251);
-    color: black;
-    border: none;
-    border-radius: 10px; 
-    display: inline-block;
-    vertical-align: top;
-    text-align: center;
-} */
 
 .bt_group{    
     float: right;
@@ -138,8 +117,7 @@
 .under_box {
     width: 100%;
     padding: 50px 50px;
-    background-color: #EAECEF;
-    margin-top: 50px;
+    background-color: #EAECEF; 
     margin-top: 20px;
     border: solid 1px gray;
     border-radius: 10px;
@@ -231,6 +209,29 @@
 
 }
  
+body::-webkit-scrollbar {
+    width: 17px;  
+    height: 0px;
+}
+
+body::-webkit-scrollbar-thumb {
+    height: 30%; 
+    background: #6092f6; 
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 5px solid transparent;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);   
+}
+
+@media screen and (max-width: 1200px) {
+    .plus_bt { 
+        margin-left: 2px; 
+        margin-top: 15px;
+    }
+}
 
 @media screen and (max-width: 1000px) {
     .detail_box { 
