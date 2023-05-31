@@ -153,18 +153,14 @@
 
             <div id="no_list" <% if (comm.length > 0) { %>style="display:none"<% } %>>작성된 댓글이 없습니다.</div>
 
-            <form name="plus_comment" action = "/community/<%= list.nickname %>/<%= list.writeTime %>/<%= list.num %>" method="post">
+            <form name="plus_comment" action = "/community/<%= list.nickname %>/<%= list.writeTime %>/<%= list.num %>" method="post" autocomplete=off>
                 
                 <input type="text" class="comment_plus" id="comment" name="commentdata" required="required"></textarea>
                 <!-- <button onclick="plus_comment()" class="plus_bt" id="plus_bt">댓글</button> -->
                 <input type="submit" class="plus_bt" value="등록" id="plus_bt">
             </form>
           </div>
-          
-  
         </div>
     </div>
-
-
 </body>
 </html>
