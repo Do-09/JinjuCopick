@@ -20,7 +20,7 @@ body{
     padding-bottom: 10px;
 }
 
-#nickname {
+#password1 {
     text-align:center;
     width: 210px;
     height: 30px;
@@ -30,12 +30,15 @@ body{
     border-bottom: 1px solid black;
 }
 
-#nicknameError {
-    font-size: 13px;
-    font-weight: 700;
-    color:red;
-    padding: 3px;
-    margin-bottom: 8px;
+#password2 {
+    text-align:center;
+    width: 210px;
+    height: 30px;
+    font-size: 15px;
+    border: 0;
+    outline: none;
+    border-bottom: 1px solid black;
+    margin-top: 10px;
 }
 
 #check {
@@ -48,6 +51,7 @@ body{
     font-weight: bold;
     color: white;
     cursor: pointer;
+    margin-top: 15px;
 }
 
 #check:hover {
@@ -55,8 +59,15 @@ body{
     color: black;
 }
 
+#password1Error, #password2Error {
+    color: red;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
 @media screen and (max-width: 200px) {
-    #nickname, #check{
-        width: 100px;
+    #password1, #password2, #check{
+        width: 120px;
     }
 }

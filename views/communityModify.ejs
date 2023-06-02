@@ -20,7 +20,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-    <title>커뮤니티</title>
+    <title>진주커pick</title>
 
     <link rel="stylesheet"  type="text/css" href="/public\css\community.css" />
     <link rel="stylesheet"  type="text/css" href="/public\css\header.css" />
@@ -35,7 +35,6 @@
 </head>
 
 <body>
-    
     <div class="logo_back">
         <div class="side_menu">
             <label> <span class="material-symbols-outlined" id="menu">menu</span>
@@ -96,6 +95,7 @@
                     <% if (list.date === '미정') { %>
                         <input type="date" class="date_pick"
                             id="date_input" 
+                            data-placeholder="연도-월-일"
                             value="<%= list.date %>"
                             name="date"
                             disabled
@@ -114,6 +114,7 @@
                     <% } else { %>
                         <input type="date" class="date_pick"
                             id="date_input" 
+                            data-placeholder="연도-월-일"
                             value="<%= list.date %>"
                             name="date"
                             onchange="toggleCheckbox()" 
@@ -137,7 +138,7 @@
             <div class="final_bt">
                 <input type="submit" class="save" value="수정" id="submit_button">
                 <!-- <input type="reset" class="reset" value="취소" href="/community" onclick="alert('취소')">       -->
-                <a href="/community" class="reset">취소</a>
+                <a href="/community/<%= list.nickname %>/<%= list.writeTime %>/<%= list.num %>" class="reset">취소</a>
             </div>
             
         </form>

@@ -1,4 +1,4 @@
-body::-webkit-scrollbar{display:none}
+/* body::-webkit-scrollbar{display:none} */
 
 body {
     margin: 0;
@@ -7,21 +7,24 @@ body {
 
 .map_area {
     text-align: center;
-    width: 900px;
+    width: 75%;
     height: 600px;
     margin: auto;
     margin-bottom: 120px; 
+    position: relative;
+    left: 50%;
+    transform: translateX(-54%);
 }
 
 .map_area #map {
-    width: 900px;
+    width: 75%;
     height: 600px; 
 }
 
 .question {
     /* background-color: #EAECEF;
            width: 900px;
-           height: 200px;
+           height: 200px;s
            text-align: center;
            position:relative; 
            left: 50%;
@@ -32,7 +35,7 @@ body {
 
     text-align: center;
     background-color: #EAECEF;
-    width: 900px;
+    width: 56%;
     padding-bottom: 40px;
     margin: auto;
     margin-bottom: 20px;
@@ -120,102 +123,28 @@ body {
     padding: 2px;
 }
 
-.area_name {  
-    width: 900px;
-    /* margin-left: 475px;  */
+.area_name {    
+    width: 60%; 
     display: flex;
     margin: auto; 
     margin-top: -100px;  
     margin-bottom: 40px;  
     text-align: center;
+    justify-content: center;
 }
  
 .area_name > div {
     background-color: rgb(135, 135, 135, 0.2);
-    margin-left: 150px;
+    margin-right: 20%;
     padding: 5px 20px; 
     border-radius: 25px;
     font-size: 15px;
     font-weight: bold;
 }
 
-
-@media screen and (max-width: 768px) {
-    .question_button {
-        padding: 1rem
-    }
+.area_name > div:last-child {
+    margin-right: 0;  
 }
-
-@media screen and (max-width: 667px) {
-    .form-element {
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 0rem .8rem;
-        top: -50px;
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .logo_back {
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 0 .8rem
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .question .question_text {
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 2rem 0rem;
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .question {
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 1rem .5rem;
-        width: 70%;
-        margin: 1rem 5rem;
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .map_area{
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 0 .8rem;
-        text-align: center;
-        width: 100%; 
-        margin-bottom: 100px;
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .map_area #map{
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 0 .8rem;
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 667px) {
-    .area_name{
-        flex-direction: column;
-        align-items: flex-start;
-        row-gap: 1rem;
-        padding: 2rem 2rem; 
-        width: 80%; 
-    }
-} 
 
 .range {
     width: 400px; 
@@ -286,5 +215,58 @@ body {
 .area_title {  
     margin-left: 50px;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 15px; 
+} 
+
+body::-webkit-scrollbar {
+    width: 17px;  
+    height: 0px;
+}
+
+body::-webkit-scrollbar-thumb {
+    height: 30%; 
+    background: #6092f6; 
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 5px solid transparent;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);   
+}
+
+@media screen and (max-width: 768px) {
+    .question_button {
+        padding: 1rem
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .form-element {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 0rem .8rem;
+        top: -50px;
+    }
+    .logo_back {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 0 .8rem
+    }
+    .question .question_text {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 2rem 0rem;
+    }
+    .question  {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+        padding: 1rem .5rem;
+        width: 70%;
+        margin: 1rem 5rem;
+    }
 }

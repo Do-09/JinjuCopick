@@ -35,7 +35,7 @@ router.get("/", function(req,res){ //메인화면
         for(let i =0; i<result.length;i++){
             var gifticon = result[i];
             var date = new Date(gifticon.date);
-            if(date<=new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)){
+            if(date<=new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000) && date>= today){
                 expiringCount++;
             }
         }
@@ -114,7 +114,7 @@ router.post("/signup/submit", function(req,res){ //회원가입 제출
                     if (results.length <= 0) {
                         db.query('INSERT INTO information (nickname, password, email) VALUES(?,?,?)', [nickname, password1, email], function (error, data) {
                             if (error) throw error2;
-                            res.send(`<script type="text/javascript">alert("회원가입이 완료되었습니다!");
+                            res.send(`<script type="text/javascript">alert("가입을 환영합니다!");
                             document.location.href="/";</script>`);
                         });
                     } 
@@ -148,7 +148,7 @@ router.get("/mypage", function(req,res){ //마이페이지
         });
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -158,7 +158,7 @@ router.get("/mypage/nickname", function(req,res){ //마이페이지 닉네임 �
         res.render('password_check1')
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -172,13 +172,13 @@ router.post("/mypage/nickname", function(req,res){ // 닉네임 password_check1 
             if (result.length > 0) {
                 res.render('nickname_change',{data:result})
             }else{
-                res.send(`<script type="text/javascript">alert("비밀번호를 다시 확인하세요");
+                res.send(`<script type="text/javascript">alert("비밀번호를 다시 확인하세요.");
                 document.location.href="/mypage/nickname";</script>`);
             }
             });
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -205,7 +205,7 @@ router.post('/mypage/nickname/change', function(req,res){ //마이페이지 닉�
         })
         return false; 
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -216,7 +216,7 @@ router.get("/mypage/password", function(req,res){ //마이페이지 패스워드
         res.render('password_check2')
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -231,13 +231,13 @@ router.post("/mypage/password", function(req,res){ //마이페이지 패스워�
             if (result.length > 0) {
                 res.render('password_change',{data:result})
             }else{
-                res.send(`<script type="text/javascript">alert("비밀번호를 다시 확인하세요");
+                res.send(`<script type="text/javascript">alert("비밀번호를 다시 확인하세요.");
                 document.location.href="/mypage/password";</script>`);
             }
             });
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -266,7 +266,7 @@ router.post('/mypage/password/change', function(req,res){ //마이페이지 패�
 
         return false; 
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -284,7 +284,7 @@ router.get("/gifticon_upload", function(req,res){ //기프티콘 업로드 화�
         });
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -351,7 +351,7 @@ router.post("/gifticon_upload/delete", function(req,res){ //기프티콘 삭제
         res.redirect('/gifticon_upload');
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -379,7 +379,7 @@ router.get("/community", function(req,res){ //커뮤니티 게시판 목록 화�
             });
         });
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 });
@@ -408,7 +408,7 @@ router.get("/community/:nickname/:writeTime/:num", function(req,res){ //커뮤�
         })
         });
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 
@@ -420,7 +420,7 @@ router.get("/community/write", function(req,res){ //커뮤니티 게시판 작�
         res.render('community')
         return false;
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
 })
@@ -468,7 +468,7 @@ router.get("/community/:nickname/:writeTime/:num/modify", function(req,res){ //�
             }
         });
     } else{
-        res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다");
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
     
@@ -629,7 +629,7 @@ router.get("/cafe", function(req,res){ //카페 페이지
                     pet: '애견동반',
                     nokids: '노키즈존',
                     takeout: '테이크아웃',
-                    hours: '24시',
+                    delivery: '배달',
                     meeting: '단체석',
                     franchise: '프랜차이즈',
                     parking: '주차장' 
@@ -660,20 +660,11 @@ router.get("/cafe", function(req,res){ //카페 페이지
                     // 카페 데이터를 correct 객체의 배열에 추가
                     correct.cafes.push(cafe);
                     }
-                //   console.log(correct.cafes); 
-                
-                
-                // // 별점순 정렬 함수
-                // function compareAverage(a, b) {
-                //     return b.average - a.average;
-                // }
-                
-                // // 정렬된 배열 저장
-                // var cafesorted = correct.cafes.sort(compareAverage);
+                //   console.log(correct.cafes);  
 
                 if(results.length<=0){ // 해당하는 카페가 없을 경우
-                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                    document.location.href="javascript:history.back();";</script>`); 
+                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다.");  
+                    document.location.href="/";</script>`); 
                 } else{
                     if(email){
                         result={"login":1}
@@ -684,11 +675,11 @@ router.get("/cafe", function(req,res){ //카페 페이지
                 }
             });
         } else if(filter1 == 'nothing'){
-            db.query('(SELECT * FROM cafe WHERE area = ? AND price <= ? LIMIT 10)' +
+            db.query('(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY average DESC LIMIT 10)' +
             'UNION ' +
-            '(SELECT * FROM cafe WHERE area = ? AND price <= ? LIMIT 10)' +
+            '(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY average DESC LIMIT 10)' +
             'UNION ' +
-            '(SELECT * FROM cafe WHERE area = ? AND price <= ? LIMIT 10)',[area1, price, area2, price, area3, price], function(err, results){
+            '(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY average DESC LIMIT 10)',[area1, price, area2, price, area3, price], function(err, results){
                 //nothing인 경우 조건 배열 비우기
                 var correct = {
                     cafes: []  
@@ -697,26 +688,18 @@ router.get("/cafe", function(req,res){ //카페 페이지
                     var cafe = results[i]; 
                     cafe.correct = ""; 
                     correct.cafes.push(cafe);
-                }
-
-                // 별점순 정렬 함수
-                function compareAverage(a, b) {
-                    return b.average - a.average;
-                }
-                
-                // 정렬된 배열 저장
-                var cafesorted = correct.cafes.sort(compareAverage);
+                } 
                 
                 if(results.length<=0){ // 해당하는 카페가 없을 경우
-                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다");  
-                    document.location.href="javascript:history.back();";</script>`); 
+                    res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다.");  
+                    document.location.href="/";</script>`); 
                 } else{
                     if(email){
                         result={"login":1}
                     } else{
                         result={"login":0}
                     }
-                    res.render('cafe_list',{data1:result, cafe:cafesorted, filter:cfilter}) 
+                    res.render('cafe_list',{data1:result, cafe:results, filter:cfilter}) 
                 }
             })
         }
@@ -727,15 +710,17 @@ router.get("/cafe_info/:cafename", function(req,res){ //카페 상세 페이지
     var email = req.session.email;
     var cafe = req.params.cafename;
     db.query('SELECT * FROM cafe where cafename = ?',[cafe], function(err, result){
-        db.query('SELECT * FROM cafereview where cafe = ?',[cafe], function(err, result2){ 
+        db.query('SELECT * FROM cafereview where cafe = ?',[cafe], function(err, result2){
+            db.query('SELECT * FROM cafescore where cafename = ?',[cafe], function(err, score){
             db.query('SELECT * FROM information where email = ?',[email], function(err, result3){
                 if(email){
                     result1={"login":1}
                 }else{
                     result1={"login":0}
                 }
-                res.render('cafe_info',{data:result, data1:result1, data2:result2, data3:result3})
-            }) 
+                res.render('cafe_info',{data:result, data1:result1, data2:result2, data3:result3, total:score})
+            })
+            })
         })
     })
 })
@@ -764,7 +749,7 @@ router.post("/cafe_info/:cafe", function(req,res){ //카페 리뷰 등록
                 
             })
         }
-    }else{res.send(`<script type="text/javascript">alert("로그인 후 이용가능합니다.");
+    }else{res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
     document.location.href="javascript:history.back();";</script>`);
         
     }
