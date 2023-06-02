@@ -55,11 +55,11 @@
                     </tr>
                     <tr>
                         <td class="td_items">카페명</td>
-                        <td colspan="2" class="td_input"><input type="text" class="upload_input" id="cafeName" name="cafeName" maxlength="30" autocomplete="off" required oninvalid="this.setCustomValidity('카페명을 입력해주세요.')" oninput="this.setCustomValidity('')" placeholder="카페명을 입력하세요." required></td>
+                        <td colspan="2" class="td_input"><input type="text" class="upload_input" id="cafeName" name="cafeName" maxlength="30" autocomplete="off" required oninvalid="this.setCustomValidity(' ')" oninput="this.setCustomValidity('')" placeholder="카페명을 입력하세요."></td>
                     </tr>
                     <tr>
                         <td class="td_items"><label>유효기간</td>
-                        <td colspan="2" class="td_input"><input type="date" class="upload_input" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity('유효기간을 선택해주세요.')" oninput="this.setCustomValidity('')"></label></td>
+                        <td colspan="2" class="td_input"><input type="date" class="upload_input" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity(' ')" oninput="this.setCustomValidity('')"></label></td>
                     </tr>
                 </table>
                 <input type="reset" class="form_btn" id="reset_btn" value="초기화" onclick="document.getElementById('fileName').textContent = '&nbsp;'">
@@ -175,7 +175,9 @@
             } else {
                 // 파일이 선택되지 않은 경우
                 alert("파일을 선택하세요.");
+                event.preventDefault(); //form 제출 막기
                 return;
+                
             }
 
             var cafeName = document.getElementById("cafeName").value;
@@ -194,4 +196,3 @@
         </script>
     </body>
 </html>
-
