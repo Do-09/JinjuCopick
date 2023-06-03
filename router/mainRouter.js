@@ -196,8 +196,10 @@ router.post('/mypage/nickname/change', function(req,res){ //마이페이지 닉�
                 db.query('UPDATE information SET nickname = ? where email = ?', [nickname, email], function (error, result) {
                     db.query('UPDATE community SET nickname = ? where email = ?', [nickname, email], function (error, result) {
                         db.query('UPDATE comment SET nickname = ? where email = ?', [nickname, email], function (error, result) {
-                            res.send(`<script type="text/javascript">alert("변경되었습니다");
-                            window.close();window.opener.location.reload();</script>`);
+                            db.query('UPDATE cafereview SET nickname = ? where email = ?', [nickname, email], function (error, result) {
+                                res.send(`<script type="text/javascript">alert("변경되었습니다");
+                                window.close();window.opener.location.reload();</script>`);
+                            })
                         })
                     })
                 })
@@ -597,7 +599,7 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
         db.query('UPDATE filtering SET filter1 = ?, filter2 = ?, filter3 = ?, price =?, area1 =?, area2 =?, area3 =? WHERE num = 1',
         [filter1, filter2, filter3, price,area1,area2,area3], function (error, filter) {
             if (error) throw error;
-            res.send(`<script type="text/javascript">alert("필터링 성공");  
+            res.send(`<script type="text/javascript">
             document.location.href="/cafe";</script>`); //최종본에서 alert 삭제
         });
     }
