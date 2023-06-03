@@ -35,7 +35,7 @@ router.get("/", function(req,res){ //메인화면
         for(let i =0; i<result.length;i++){
             var gifticon = result[i];
             var date = new Date(gifticon.date);
-            if(date<=new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)){
+            if(date<=new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000) && date>= today){
                 expiringCount++;
             }
         }
