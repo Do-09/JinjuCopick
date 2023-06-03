@@ -20,7 +20,7 @@ body{
     padding-bottom: 10px;
 }
 
-#password1 {
+#nickname {
     text-align:center;
     width: 210px;
     height: 30px;
@@ -28,17 +28,6 @@ body{
     border: 0;
     outline: none;
     border-bottom: 1px solid black;
-}
-
-#password2 {
-    text-align:center;
-    width: 210px;
-    height: 30px;
-    font-size: 15px;
-    border: 0;
-    outline: none;
-    border-bottom: 1px solid black;
-    margin-top: 10px;
 }
 
 #check {
@@ -59,7 +48,7 @@ body{
     color: black;
 }
 
-#password1Error, #password2Error {
+#nicknameError {
     color: red;
     font-weight: bold;
     font-size: 13px;
@@ -67,7 +56,7 @@ body{
 }
 
 @media screen and (max-width: 200px) {
-    #password1, #password2, #check{
-        width: 120px;
+    #nickname, #check{
+        width: 100px;
     }
 }
