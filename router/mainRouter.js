@@ -125,7 +125,7 @@ router.post("/signup/submit", function(req,res){ //회원가입 제출
                 });
             } 
             else {                                                  
-                res.send(`<script type="text/javascript">alert("이미 존재하는 닉네임 입니다."); 
+                res.send(`<script type="text/javascript">alert("이미 존재하는 닉네임입니다."); 
                 document.location.href="javascript:history.back();";</script>`);    
             }            
         });
