@@ -20,7 +20,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-    <title>진주커pick</title>
+        <title>진주커Pick</title>
 
     <link rel="stylesheet"  type="text/css" href="/public\css\community.css" />
     <link rel="stylesheet"  type="text/css" href="/public\css\header.css" />
@@ -114,7 +114,7 @@
                     <% } else { %>
                         <input type="date" class="date_pick"
                             id="date_input" 
-                            data-placeholder="연도-월-일"
+                            data-placeholder="<%= list.date %>"
                             value="<%= list.date %>"
                             name="date"
                             onchange="toggleCheckbox()" 
