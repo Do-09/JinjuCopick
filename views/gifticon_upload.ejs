@@ -83,7 +83,7 @@
                             <div class="gifticons">
                                 <% var image = data[i] %>  
                                 <p><input type="checkbox" name="check" value="<%=image.gifticon%>" onclick="checkSelectAll()"></p>
-                                <img src="<%= image.gifticon %>" width="100" height="150" onclick="window.open(this.src, '_blank', 'width=800, height=600')">
+                                <img src="<%= image.gifticon %>" width="100" height="150" onclick="openOriginal(this.src)">
                                 <div>카페명 : <%= image.name %></div>
                                 <div>유효기간 : <span class="newDate"><%=image.date%></span></div>
                             </div>
@@ -194,5 +194,17 @@
             }
             });
         </script>
+
+        <script> //원본보기 중앙배치
+            function openOriginal (url) {
+                var width = 800;
+                var height = 600;
+                var top = (window.screen.height - 700) / 2;
+                var left = (window.screen.width - 800) / 2;
+            
+                window.open(url, '_blank', 'width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
+            }
+        </script>
+
     </body>
 </html>
