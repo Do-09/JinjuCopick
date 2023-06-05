@@ -48,6 +48,7 @@ body::-webkit-scrollbar{display:none}
 
 #cafe_image {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .star-ratings {
