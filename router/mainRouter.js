@@ -737,18 +737,25 @@ router.post("/cafe_info/:cafe", function(req,res){ //카페 리뷰 등록
 
     if(authCheck.isOwner(req,res)){
         if(review){
-            db.query('SELECT nickname FROM information WHERE email = ?', [email], function (err, result) {
-                var nickname = result[0].nickname; // 결과에서 nickname 값을 가져옴
-                db.query('INSERT INTO cafereview (cafe, email, nickname, score, review, writeTime) VALUES(?,?,?,?,?,?)',[cafe, email, nickname, score/2, review, writeTime], function (error, result) {
-                    db.query('UPDATE cafe SET score = score + ?, count = count + 1, average = score / count WHERE cafename = ?', [score/2, cafe], function(error, score) {
+            db.query('SELECT * FROM cafereview WHERE email = ? and cafe = ?', [email, cafe], function (err, result) {
+                if(result.length>=3){
+                    res.send(`<script type="text/javascript">alert("최대 3개의 리뷰까지 등록 가능합니다.");
+                    location.href = "/cafe_info/${cafe}";</script>`);
+                } else{
+                    db.query('SELECT nickname FROM information WHERE email = ?', [email], function (err, result) {
+                        var nickname = result[0].nickname; // 결과에서 nickname 값을 가져옴
+                        db.query('INSERT INTO cafereview (cafe, email, nickname, score, review, writeTime) VALUES(?,?,?,?,?,?)',[cafe, email, nickname, score/2, review, writeTime], function (error, result) {
+                            db.query('UPDATE cafe SET score = score + ?, count = count + 1, average = score / count WHERE cafename = ?', [score/2, cafe], function(error, score) {
+                                
+                            if (error) throw error;
+                            res.send(`<script type="text/javascript">alert("리뷰가 등록되었습니다.");
+                            location.href = "/cafe_info/${cafe}";</script>`);  
+        
+                            })           
+                        });
                         
-                    if (error) throw error;
-                    res.send(`<script type="text/javascript">alert("리뷰가 등록되었습니다.");
-                    location.href = "/cafe_info/${cafe}";</script>`);  
-
-                    })           
-                });
-                
+                    })
+                }
             })
         }
     }else{res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
