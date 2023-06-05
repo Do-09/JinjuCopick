@@ -190,14 +190,14 @@ router.post('/mypage/nickname/change', function(req,res){ //마이페이지 닉�
         db.query('SELECT * FROM information where nickname = ?', [nickname], function (error, result) {
             if (error) throw error;
             if (result.length > 0) {
-                res.send(`<script type="text/javascript">alert("다른 닉네임을 입력해주세요");
+                res.send(`<script type="text/javascript">alert("다른 닉네임을 입력해주세요.");
                 document.location.href="javascript:history.back();";</script>`);
             } else{
                 db.query('UPDATE information SET nickname = ? where email = ?', [nickname, email], function (error, result) {
                     db.query('UPDATE community SET nickname = ? where email = ?', [nickname, email], function (error, result) {
                         db.query('UPDATE comment SET nickname = ? where email = ?', [nickname, email], function (error, result) {
                             db.query('UPDATE cafereview SET nickname = ? where email = ?', [nickname, email], function (error, result) {
-                                res.send(`<script type="text/javascript">alert("변경되었습니다");
+                                res.send(`<script type="text/javascript">alert("닉네임이 변경되었습니다.");
                                 window.close();window.opener.location.reload();</script>`);
                             })
                         })
@@ -254,7 +254,7 @@ router.post('/mypage/password/change', function(req,res){ //마이페이지 패�
             if(password1 == password2){
                 db.query('UPDATE information SET password = ? where email = ?', [password1, email], function (error, result) {
                     if (error) throw error;
-                    res.send(`<script type="text/javascript">alert("변경되었습니다");
+                    res.send(`<script type="text/javascript">alert("비밀번호가 변경되었습니다");
                     window.close();</script>`);
                 })
             } else{
@@ -446,7 +446,7 @@ router.post("/community/write/submit", function(req,res){ //게시판 글 작성
             nickname = results[0].nickname; //닉네임 찾기
             db.query('INSERT INTO community (email, nickname, title, people, purpose, date, content, writeTime) VALUES(?,?,?,?,?,?,?,?)', [email, nickname, title, people, purpose, date, content, writeTime], function (error, data) {
                 if (error) throw error;
-                    res.send(`<script type="text/javascript">alert("글이 등록되었습니다");
+                    res.send(`<script type="text/javascript">alert("글이 등록되었습니다.");
                     document.location.href="/community";</script>`);
                 });
     
