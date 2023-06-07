@@ -719,7 +719,7 @@ router.get("/cafe_info/:cafename", function(req,res){ //카페 상세 페이지
                     result1={"login":1}
                 }else{
                     result1={"login":0}
-                }
+                } 
                 res.render('cafe_info',{data:result, data1:result1, data2:result2, data3:result3, total:score})
             })
             })
@@ -777,7 +777,7 @@ router.post("/review/:cafe/:num", function(req, res) { //카페 리뷰 삭제
         db.query('DELETE FROM cafereview WHERE num = ?', [num], function(err, result) {
           if (err) throw err;
   
-          db.query('UPDATE cafe SET score = score - ?, count = count - 1, average = IF(count > 1, score / (count - 1), 0) WHERE cafename = ?', [score, cafe], function(error, score) {
+          db.query('UPDATE cafe SET score = score - ?, count = count - 1, average = IF(count > 0, score / count, 0) WHERE cafename = ?', [score, cafe], function(error, score) {
             if (error) throw error;
   
             res.send(`<script type="text/javascript">alert("글이 삭제되었습니다.");
