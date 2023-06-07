@@ -57,16 +57,16 @@
         <div id="list_box">
 
             <script>
-                const positions = []
+                const positions = []  //마커 추가
             </script>
             <% var map = [] %>
             <% for(var i = 0; i < cafe.length; i++){%>
                 <% map.push(cafe[i]) %>
             <%}%>    
 
-            <!-- area 고유값 찾기 -->
-            <% var set1 = [] %>
-            <% for(let i = 0; i < cafe.length; i++) { %>
+            <!-- area 고유값 찾기/ 구역별 분류 -->
+            <% var set1 = [] %>    
+            <% for(let i = 0; i < cafe.length; i++) { %> 
                 <% var cafelist = cafe[i] %> 
                 <% set1.push(cafelist.area) %>
             <%}%>
@@ -82,7 +82,14 @@
                         <tr> 
                             <td class="info_box" onclick="location.href='/cafe_info/<%= cafelist.cafename %>'">
                                 <span class="cafeName"><%= cafelist.cafename %></span> 
-                                <span class="cafeAverage">★</span><span class="cafeAverageNumber"><%= cafelist.average.toFixed(1) %></span>
+                                <% if (cafelist.count !== 0 && cafelist.average === 0) { %>
+                                    <span class="cafeAverage">★</span>
+                                    <span class="cafeAverageNumber">0</span><span class="slice">/5</span>
+                                <% } else if (cafelist.count !== 0 && cafelist.average !== 0) { %>
+                                    <span class="cafeAverage">★</span>
+                                    <span class="cafeAverageNumber"><%= cafelist.average.toFixed(1) !== '0.0' ? cafelist.average.toFixed(1) : '0' %></span><span class="slice">/5</span>
+                                <% } %>
+                                                                  
                                 <div class="filtering"> 
                                     <% for (let c = 0; c < cafelist.correct.length; c++) { %>                         
                                         <div class="filter"><%= cafelist.correct[c] %></div>
@@ -191,6 +198,7 @@
                     })(i);
                 }
             </script>
+            
         </div>
     </form>
 </body>

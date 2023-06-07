@@ -62,8 +62,7 @@ body::-webkit-scrollbar{display:none}
     border-radius: 20px;
     margin: 5px 3px 0px 5px;
     padding: 3px 10px;
-    color: white;
-    font-weight: 600;
+    color: white; 
 }
 
 .cafe_area {
@@ -105,13 +104,19 @@ body::-webkit-scrollbar{display:none}
     font-weight: bold; 
 }
 
-.cafeAverage {
-    margin-left: 8px;
+.cafeAverage {    
+    font-size: 18px;
+    margin-left: 15px;
     color: orange;
-    margin-right: 4px; 
+    margin-right: -2px;   
 }
 
 .cafeAverageNumber {
     color: black;
-    font-size: 16px;
+    font-size: 16px; 
 }
+
+.slice {
+    color: rgb(108, 108, 108);
+    font-size: 16px; 
+} 
