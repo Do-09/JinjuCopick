@@ -29,26 +29,15 @@ body::-webkit-scrollbar{display:none}
     width: 45%;
 }
 
-/*#img_wrapper {
-    position: relative;
-    width: 250px;
+#img_wrapper {
     height: 250px;
+    overflow: hidden;
 }
 
 #cafe_image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(50, 50);
-    width: 100%;
     height: 100%;
-    object-fit: cover;
-    margin: auto;
-}*/
-
-#cafe_image {
-    width: 100%;
     margin-bottom: 10px;
+
 }
 
 .star-ratings {
@@ -205,5 +194,9 @@ body::-webkit-scrollbar{display:none}
 
     #review {
         width: 100%;
+    }
+
+    #img_wrapper {
+        height: 300px;
     }
 }
