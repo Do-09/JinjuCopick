@@ -31,13 +31,12 @@ body::-webkit-scrollbar{display:none}
 
 #img_wrapper {
     height: 250px;
+    margin-bottom: 10px;
     overflow: hidden;
 }
 
 #cafe_image {
-    height: 100%;
-    margin-bottom: 10px;
-
+    height: 100%; 
 }
 
 .star-ratings {
@@ -74,6 +73,7 @@ body::-webkit-scrollbar{display:none}
     border-radius: 10px;
     width: 55%;
 }
+
 
 #review_input {
     border: 2px solid lightgray;
@@ -118,7 +118,20 @@ body::-webkit-scrollbar{display:none}
     background-color: inherit;
     float: right;
     color: lightgray;
-    font-weight: bold;
+    font-weight: bold; 
+    padding: 10px;
+    width: 60px;
+    font-size: 13px;  
+    background-color: rgb(211, 211, 211, 0.4);
+    color: black;
+    border: none;
+    border-radius: 10px;   
+}
+
+#review_submit:hover { 
+    background-color: rgb(197, 197, 197);
+    color: black;
+    border: none; 
 }
 
 .text_button {
@@ -176,6 +189,29 @@ body::-webkit-scrollbar{display:none}
 #review_del_btn {
     background-color: inherit;
     cursor: pointer;
+}
+
+.back {  
+    float: right; 
+    cursor: pointer;
+    padding: 10px;
+    width: 60px;
+    font-size: 13px;  
+    font-weight: 600;
+    margin-top: 15px; 
+    margin-left: 10px; 
+    margin-right: 8px;
+    background-color: rgba(184, 206, 251);
+    color: black;
+    border: none;
+    border-radius: 10px;   
+}
+
+.back:hover {  
+    background-color: rgb(104, 152, 247);
+    color: black;
+    border: none;
+    border-radius: 10px; 
 }
 
 @media screen and (max-width: 768px) {
