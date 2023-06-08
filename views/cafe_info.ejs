@@ -160,10 +160,12 @@
                         <input type="button" class="text_button" value="가성비가 좋아요" onclick="text_load(this)">
                         <input type="button" class="text_button" value="화장실이 깨끗해요" onclick="text_load(this)">
                     </form> 
-
                 </div>
-            </div>
+                <a href="/cafe"><button class="back">목록</button><a>
+            </div> 
         </div>
+        
+
         <% if (data2.length != 0) {%>
             <ul id="review_lists">
                 <% var check = data3[0] %> <!--리뷰(닉네임, 글, 작성 시간)-->
