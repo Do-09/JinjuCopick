@@ -21,7 +21,7 @@
         <div class="logo_back">
             <div class="side_menu">
                 <label> <span class="material-symbols-outlined" id="menu">menu</span>
-                    <input type="button" value="" class="bookmark-btt" style="background-color: pink";>
+                    <input type="button" value="" class="bookmark-btt">
                 </label>
                 <section class="side_section">
                     <ul class="bookmark-lists">
@@ -42,24 +42,24 @@
             </div>  
         </div>
 
-        <div class="upload">
+        <div class="form_section">
             <h2>기프티콘</h2>
             <form action="/gifticon_upload/submit" id="myForm" method="post" enctype="multipart/form-data">
+                <input type="file" id="gifticonImg" name="gifticonImg" accept="image/*" aria-required="true">
                 <table id="inputContainer">
-                <input type="file" id="gifticonImg" name="gifticonImg" accept="image/*" aria-required="true">               
                     <tr>
-                        <td colspan="2" class="td_input"><input type="text" class="upload_input" id="fileName" value="" placeholder="사진을 등록하세요." disabled></td>
+                        <td colspan="2" class="td_input"><input type="text" class="form_input" id="fileName" value="" placeholder="사진을 등록하세요." disabled></td>
                         <td class="td_items">
                             <label for="gifticonImg"><span class="fileInput">사진 등록</span></label>
                         </td>
                     </tr>
                     <tr>
                         <td class="td_items">카페명</td>
-                        <td colspan="2" class="td_input"><input type="text" class="upload_input" id="cafeName" name="cafeName" maxlength="30" autocomplete="off" required oninvalid="this.setCustomValidity(' ')" oninput="this.setCustomValidity('')" placeholder="카페명을 입력하세요."></td>
+                        <td colspan="2" class="td_input"><input type="text" class="form_input" id="cafeName" name="cafeName" maxlength="30" autocomplete="off" required oninvalid="this.setCustomValidity(' ')" oninput="this.setCustomValidity('')" placeholder="카페명을 입력하세요."></td>
                     </tr>
                     <tr>
-                        <td class="td_items"><label>유효기간</td>
-                        <td colspan="2" class="td_input"><input type="date" class="upload_input" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity(' ')" oninput="this.setCustomValidity('')"></label></td>
+                        <td class="td_items">유효기간</td>
+                        <td colspan="2" class="td_input"><input type="date" class="form_input" id="expirationDate" name="expirationDate" required oninvalid="this.setCustomValidity(' ')" oninput="this.setCustomValidity('')"></td>
                     </tr>
                 </table>
                 <input type="reset" class="form_btn" id="reset_btn" value="초기화" onclick="document.getElementById('fileName').textContent = '&nbsp;'">
