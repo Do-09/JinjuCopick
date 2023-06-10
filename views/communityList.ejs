@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>진주커pick</title>
+    <title>진주커Pick</title>
     <link rel="stylesheet"  type="text/css" href="public\css\header.css" />
     <link rel="stylesheet"  type="text/css" href="public\css\communityList.css" />
 
@@ -12,13 +12,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
 </head>
 <body>
     <div class="logo_back">
         <div class="side_menu">
             <label> <span class="material-symbols-outlined" id="menu">menu</span>
-                <input type="button" value="" class="bookmark-btt" style="background-color: pink";>
+                <input type="button" value="" class="bookmark-btt">
             </label>
             <section class="side_section">
                 <ul class="bookmark-lists">
@@ -40,7 +39,6 @@
     </div>
 
     <div class="wrap"> 
-
         <div class="board_title">
             <i class="material-symbols-outlined" id="commu_icon">chat</i>
             <span class="commu_title">커뮤니티</span>
@@ -50,11 +48,11 @@
         <div class="board_wrap">
             <table class="board_list">
                 <colgroup>
-                <col width="5%">
-                <col width="50%">
-                <col width="10%">
-                <col width="20%">
-                <col width="15%">
+                    <col width="5%">
+                    <col width="50%">
+                    <col width="10%">
+                    <col width="20%">
+                    <col width="15%">
                 </colgroup>
                 
                 <tr class="list_title">
@@ -68,7 +66,6 @@
                   <% for(let i =0; i<data.length;i++){%>
                     <% var list = data[i] %>  
                     <% var index = totalCount - (5 * (currentPage - 1) + i) %> 
-
                     <% var today = new Date() %>
                     <% var date = new Date(list.date) %>
                     
@@ -97,7 +94,6 @@
                 </tr>
                 <%}%>
             </table>
-
             <div id="no_list" <% if (data.length > 0) { %>style="display:none"<% } %>>작성된 글이 없습니다.</div>
         </div>
 
@@ -119,7 +115,6 @@
         </li>
         <% } %>
     </ul>
-    
         <a href="/community/write"><button class="write_bt">글 쓰기</button></a> 
     </div>   
 </body>
