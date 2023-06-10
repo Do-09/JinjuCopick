@@ -8,15 +8,15 @@ var map = new kakao.maps.Map(mapContainer, mapOption),
     customOverlay = new kakao.maps.CustomOverlay({}),
     infowindow = new kakao.maps.InfoWindow({removable: true});
 
-// 지도에 영역데이터를 폴리곤으로 표시합니다 
+// 지도에 영역데이터를 폴리곤으로 표시 
 for (var i = 0, len = areas.length; i < len; i++) {
     displayArea(areas[i]);
 }
 
-// 다각형을 생성하고 이벤트를 등록하는 함수입니다
+// 다각형 생성 & 이벤트 등록
 function displayArea(area) {
 
-    // 다각형을 생성합니다 
+    // 다각형 생성
     var polygon = new kakao.maps.Polygon({
         map: map, // 다각형을 표시할 지도 객체
         path: area.path,
@@ -27,8 +27,7 @@ function displayArea(area) {
         fillOpacity: 0.7 
     });
 
-    
-    // // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
+    // 지역명을 표시하는 커스텀오버레이를 지도위에 표시
     kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) { 
         customOverlay.setContent('<div class="area">' + area.name + '</div>');
         
