@@ -3,7 +3,7 @@ function toggleCalendar() {
     calendar.disabled = !calendar.disabled;
   }
   
-  function toggleCheckbox() {
+function toggleCheckbox() {
     const checkbox = document.getElementById("no_date");
     const calendar = document.getElementById("date_input");
   
@@ -14,14 +14,14 @@ function toggleCalendar() {
     }
   }
   
-  function disableCheckbox() {
+function disableCheckbox() {
     document.querySelector("#no_date").disabled = true;
-  }
+}
   
-  var now_utc = Date.now()
-  var timeOff = new Date().getTimezoneOffset()*60000;
-  var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
-  document.getElementById("date_input").setAttribute("min", today);
+var now_utc = Date.now()
+var timeOff = new Date().getTimezoneOffset()*60000;
+var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+document.getElementById("date_input").setAttribute("min", today);
 
 const submitButton = document.getElementById("submit_button");
 const titleInput = document.getElementById("title");
@@ -58,5 +58,4 @@ submitButton.addEventListener("click", function() {
   else if (dateInput.value === "" && checkboxInput.checked) {
     errorMessage.style.display = "none";
   }
-
 });
