@@ -12,11 +12,8 @@ var map = new kakao.maps.Map(mapContainer, mapOption),
 for (var i = 0, len = areas.length; i < len; i++) {
     displayArea(areas[i]);
 }
-
-// 다각형 생성 & 이벤트 등록
+ 
 function displayArea(area) {
-
-    // 다각형 생성
     var polygon = new kakao.maps.Polygon({
         map: map, // 다각형을 표시할 지도 객체
         path: area.path,
@@ -27,14 +24,12 @@ function displayArea(area) {
         fillOpacity: 0.7 
     });
 
-    // 지역명을 표시하는 커스텀오버레이를 지도위에 표시
     kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) { 
         customOverlay.setContent('<div class="area">' + area.name + '</div>');
         
         customOverlay.setPosition(mouseEvent.latLng); 
         customOverlay.setMap(map);
     });
-
 
     kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {   
         var content = '<div class="area_title">' + area.name + '</div>';
@@ -64,15 +59,14 @@ function displayArea(area) {
             newAreaNameDiv.textContent = areaName;
             areaNamesDiv.appendChild(newAreaNameDiv);
           }
-          else {// 이미 선택된 영역일 경우 해당 영역을 가지는 div 삭제
-              polygon.setOptions({fillColor: '#ffffff'}); //취소 구역 색상 변경 
+          else { // 이미 선택된 영역일 경우 해당 영역을 가지는 div 삭제
+              polygon.setOptions({fillColor: '#ffffff'}); // 취소 구역 색상 변경 
               var areaNameDivs = document.querySelectorAll('.area_name div');
               areaNameDivs.forEach(function(areaNameDiv) {
                 if (areaNameDiv.textContent === areaName) {
                   areaNameDiv.parentNode.removeChild(areaNameDiv);
                 }
               }); 
-
                // 배열에서 해당 영역 제거
                var index = selectedAreas.indexOf(areaName);
                if (index > -1) {
