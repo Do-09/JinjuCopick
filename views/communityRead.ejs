@@ -1,17 +1,13 @@
 <!doctype html>
 <html>
 
-<head>
-    <!-- Required meta tags -->
+<head> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+ 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -31,11 +27,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
 </head>
 
 <body>
-    
     <div class="logo_back">
         <div class="side_menu">
             <label> <span class="material-symbols-outlined" id="menu">menu</span>
@@ -60,13 +54,6 @@
         </div> 
     </div>
 
-    <!-- <div class="community">
-        <i class="material-symbols-outlined" id="commu_icon">chat</i>
-        커뮤니티
-    </div> -->
-
-
-
     <% var list = data[0] %>
     <div class="container">
         <div class="write_box">
@@ -75,7 +62,6 @@
                     <%= list.title %>
                 </span>
             </div>
-            <!-- <input input type="submit" class="change_bt" value="수정" id="change_bt" style="display: none"> -->
 
             <div class="detail_box">
                 <span class="detail1">
@@ -123,7 +109,6 @@
                 <%}%>              
                 <span><a href="/community"><button class="list_bt">목록</button></a></span>
             </span>
-  
         </div>
 
         <hr id="center_hr">
@@ -154,9 +139,7 @@
             <div id="no_list" <% if (comm.length > 0) { %>style="display:none"<% } %>>작성된 댓글이 없습니다.</div>
 
             <form name="plus_comment" class="com_plus" action = "/community/<%= list.nickname %>/<%= list.writeTime %>/<%= list.num %>" method="post" autocomplete=off>
-                
                 <input type="text" class="comment_plus" id="comment" name="commentdata" required oninvalid="this.setCustomValidity(' ')" maxlength="100"></textarea>
-                <!-- <button onclick="plus_comment()" class="plus_bt" id="plus_bt">댓글</button> -->
                 <input type="submit" class="plus_bt" value="등록" id="plus_bt">
             </form>
           </div>
