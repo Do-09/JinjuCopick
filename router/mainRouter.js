@@ -21,7 +21,6 @@ router.use(session({
     store:new FileStore(),
 }))
 
-
 router.get("/", function(req,res){ //메인화면
     var email = req.session.email;
     if(email){
@@ -212,7 +211,6 @@ router.post('/mypage/nickname/change', function(req,res){ //마이페이지 닉�
     }
 })
 
-
 router.get("/mypage/password", function(req,res){ //마이페이지 패스워드 변경 버튼 선택 시 -> password_check2
     if(authCheck.isOwner(req,res)){
         res.render('password_check2')
@@ -386,7 +384,6 @@ router.get("/community", function(req,res){ //커뮤니티 게시판 목록 화�
     }
 });
 
-
 router.get("/community/:nickname/:writeTime/:num", function(req,res){ //커뮤니티 게시판 상세보기 화면
     var email = req.session.email;
 
@@ -413,9 +410,7 @@ router.get("/community/:nickname/:writeTime/:num", function(req,res){ //커뮤�
         res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
     }
-
 })
-
 
 router.get("/community/write", function(req,res){ //커뮤니티 게시판 작성 화면
     if(authCheck.isOwner(req,res)){
@@ -428,19 +423,15 @@ router.get("/community/write", function(req,res){ //커뮤니티 게시판 작�
 })
 
 router.post("/community/write/submit", function(req,res){ //게시판 글 작성하기
-    var email = req.session.email; // 로그인된 세션에서 이메일 정보 불러오기
+    var email = req.session.email;  
     var title = req.body.title;
     var people = req.body.people;
     var purpose = req.body.purpose;
     var date = req.body.date;
     var content = req.body.content; 
     var writeTime = new Date();
-       
-    // if(date==""){ //date가 미정일 경우 '1111-11-11' 날짜 형식으로
-    //     date = '1111-11-11';
-    // }
-
     var nickname;    
+
     if (email&&title&&people&&purpose&&content&&date) {
         db.query('select * from information where email = ?',[email],function (error, results) { //로그인된 이메일 확인 
             nickname = results[0].nickname; //닉네임 찾기
@@ -449,9 +440,7 @@ router.post("/community/write/submit", function(req,res){ //게시판 글 작성
                     res.send(`<script type="text/javascript">alert("글이 등록되었습니다.");
                     document.location.href="/community";</script>`);
                 });
-    
-        });
-        
+        });       
     } 
 })
 
@@ -472,12 +461,11 @@ router.get("/community/:nickname/:writeTime/:num/modify", function(req,res){ //�
     } else{
         res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
                 document.location.href="/login";</script>`);
-    }
-    
+    }  
 })
 
-router.post("/community/modify/submit", function(req, res) { //게시판 글 수정
-    var email = req.session.email; // 로그인된 세션에서 이메일 정보 불러오기  
+router.post("/community/modify/submit", function(req, res) { //커뮤니티 글 수정
+    var email = req.session.email;    
     var title = req.body.title;
     var people = req.body.people;
     var purpose = req.body.purpose;
@@ -496,10 +484,8 @@ router.post("/community/modify/submit", function(req, res) { //게시판 글 수
     }
   })
 
- 
-
-  router.post("/community/:nickname/:writeTime/:num", function(req, res) { //댓글 작성
-    var email = req.session.email; // 로그인된 세션에서 이메일 정보 불러오기  
+router.post("/community/:nickname/:writeTime/:num", function(req, res) { //커뮤니티 댓글 작성
+    var email = req.session.email;   
     var num = req.params.num;
     var commentdata = req.body.commentdata;
     var writeTime = new Date();
@@ -517,15 +503,12 @@ router.post("/community/modify/submit", function(req, res) { //게시판 글 수
                     res.send(`<script type="text/javascript">alert("댓글이 등록되었습니다.");
                     location.href = location.href;</script>`);             
                 });
-
-                
             });
         });
     }
 });
 
-
-router.post("/community/:num/:no", function(req, res) { //선택 댓글 삭제하기
+router.post("/community/:num/:no", function(req, res) { //커뮤니티 선택 댓글 삭제하기
     var num = req.params.num;
 
     db.query('SELECT * FROM community WHERE num=?', [num], function (err, result) {
@@ -539,7 +522,7 @@ router.post("/community/:num/:no", function(req, res) { //선택 댓글 삭제�
     });
 });
 
-router.post("/community/:nickname/:writeTime/:num/delete", function(req, res) { //선택 글 삭제하기
+router.post("/community/:nickname/:writeTime/:num/delete", function(req, res) { //커뮤니티 선택 게시글 삭제하기
     var num = req.params.num;
 
     db.query('DELETE FROM community WHERE num=?', [num], function (err, result) {
@@ -549,17 +532,7 @@ router.post("/community/:nickname/:writeTime/:num/delete", function(req, res) { 
     });
 });
 
-router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아아 가격
-    // var dessert = req.body.dessert ? 1 : 0;
-    // var pet = req.body.pet ? 1 : 0;
-    // var nokids = req.body.nokids ? 1 : 0;
-    // var takeout = req.body.takeout ? 1 : 0;
-    // var hours = req.body.hours ? 1 : 0;
-    // var meeting = req.body.meeting ? 1 : 0;
-    // var franchise = req.body.franchise ? 1 : 0;
-    // var parking = req.body.parking ? 1 : 0;
-    // var nothing = req.body.nothing ? 1 : 0;
-
+router.post("/filter", function(req, res) { //메인화면 필터링
     var filter1 = req.body.selectfilter1;
     var filter2 = req.body.selectfilter2;
     var filter3 = req.body.selectfilter3;
@@ -605,8 +578,7 @@ router.post("/filter", function(req, res) { //메인화면 8개 필터링, 아�
     }
 }); 
 
-
-router.get("/cafe", function(req,res){ //카페 페이지
+router.get("/cafe", function(req,res){ //필터링 결과 카페 리스트 페이지
     var email = req.session.email;
     db.query('select * from filtering', function(err, cfilter){   
         var filter = cfilter[0]
@@ -662,7 +634,6 @@ router.get("/cafe", function(req,res){ //카페 페이지
                     // 카페 데이터를 correct 객체의 배열에 추가
                     correct.cafes.push(cafe);
                     }
-                //   console.log(correct.cafes);  
 
                 if(results.length<=0){ // 해당하는 카페가 없을 경우
                     res.send(`<script type="text/javascript">alert("해당하는 카페가 없습니다.");  
@@ -712,23 +683,21 @@ router.get("/cafe_info/:cafename", function(req,res){ //카페 상세 페이지
     var email = req.session.email;
     var cafe = req.params.cafename;
     db.query('SELECT * FROM cafe where cafename = ?',[cafe], function(err, result){
-        db.query('SELECT * FROM cafereview where cafe = ?',[cafe], function(err, result2){
-            db.query('SELECT * FROM cafescore where cafename = ?',[cafe], function(err, score){
+        db.query('SELECT * FROM cafereview where cafe = ?',[cafe], function(err, result2){ 
             db.query('SELECT * FROM information where email = ?',[email], function(err, result3){
                 if(email){
                     result1={"login":1}
                 }else{
                     result1={"login":0}
                 } 
-                res.render('cafe_info',{data:result, data1:result1, data2:result2, data3:result3, total:score})
-            })
+                res.render('cafe_info',{data:result, data1:result1, data2:result2, data3:result3})
             })
         })
     })
 })
 
 router.post("/cafe_info/:cafe", function(req,res){ //카페 리뷰 등록
-    var email = req.session.email; // 로그인된 세션에서 이메일 정보 불러오기
+    var email = req.session.email; 
     var cafe = req.params.cafe;
     var review = req.body.review;
     var score = req.body.score;
@@ -750,7 +719,6 @@ router.post("/cafe_info/:cafe", function(req,res){ //카페 리뷰 등록
                             if (error) throw error;
                             res.send(`<script type="text/javascript">alert("리뷰가 등록되었습니다.");
                             location.href = "/cafe_info/${cafe}";</script>`);  
-        
                             })           
                         });
                         
@@ -758,9 +726,9 @@ router.post("/cafe_info/:cafe", function(req,res){ //카페 리뷰 등록
                 }
             })
         }
-    }else{res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
-    document.location.href="javascript:history.back();";</script>`);
-        
+    }else{
+        res.send(`<script type="text/javascript">alert("로그인 후 이용 가능합니다.");
+        document.location.href="javascript:history.back();";</script>`); 
     }
 })
 
@@ -780,13 +748,13 @@ router.post("/review/:cafe/:num", function(req, res) { //카페 리뷰 삭제
           db.query('UPDATE cafe SET score = score - ?, count = count - 1, average = IF(count > 0, score / count, 0) WHERE cafename = ?', [score, cafe], function(error, score) {
             if (error) throw error;
   
-            res.send(`<script type="text/javascript">alert("글이 삭제되었습니다.");
+            res.send(`<script type="text/javascript">alert("리뷰가 삭제되었습니다.");
             document.location.href="/cafe_info/${cafe}";</script>`); 
           });
         });
       } 
     });
-  });
+});
 
 
 module.exports = router;
