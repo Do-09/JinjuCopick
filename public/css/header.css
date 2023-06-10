@@ -9,8 +9,7 @@ body {
 }
 
 .logo_back {
-    text-align: center;
-    /* background-color: #B8CEFB; */
+    text-align: center; 
     background-color: rgba(184, 206, 251, 0.8);
     margin: -10px -10px 20px -10px;
 }
@@ -33,20 +32,6 @@ body {
     font-size: 3rem;
 }
 
-/* section {
-    background-color: #56789a;
-    color: #fff;
-    width: 200px; 
-    height: 100vh;
-    padding-left: 30px;
-    position: fixed;
-    top: 0;
-    left: -200px;
-    bottom: 0;
-    transition: 1s ease;
-    z-index: 9999;
-} */
-
 .side_section {
     background-color: #56789a;
     color: #fff;
@@ -64,6 +49,7 @@ body {
 #name > a:hover {
     color: #000000;
 }
+
 #main_home a:hover {
     color: #000000;
     text-decoration-line: none;
@@ -109,6 +95,7 @@ body {
     padding-bottom: 1px;
     text-decoration-line: none;
 }
+
 #login, #gifticon, #commu, #out{
     display: flex;
     align-items: center;
