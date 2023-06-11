@@ -591,10 +591,10 @@ router.get("/cafe", function(req,res){ //필터링 결과 카페 리스트 페�
         var filter3 = filter.filter3 
 
         if(filter.filter1 !== 'nothing') { 
-            db.query('select * from cafe where (' + filter1 + ' = 1 or ' + filter2 + ' = 1 or ' + filter3 + ' = 1)'+ 
-            'and (area = ? or area =? or area = ?) and price <= ? order by case when '+ filter1 + ' = 1 and ' + filter2 + ' = 1 and ' + filter3 + ' = 1 then 1 '+ 
-            'when (' + filter1 + ' = 1 and ' + filter2 + ' = 1 ) or ( ' + filter1 + ' = 1 and ' + filter3 + ' = 1 ) or ( '+
-            filter2 + ' = 1 and ' + filter3 + ' = 1 ) then 2 else 3 end, average desc', [area1,area2,area3, price], function(err, results) {  
+            db.query('select * from cafe where (' + filter1 + ' = 1 or ' + filter2 + ' = 1 or ' + filter3 + ' = 1) ' + 
+            'and (area = ? or area = ? or area = ?) and price <= ? ' + 'order by case ' + 'when ' + filter1 + ' = 1 and ' + filter2 + ' = 1 and ' + filter3 + ' = 1 then 1 ' +
+            'when (' + filter1 + ' = 1 and ' + filter2 + ' = 1) or (' + filter1 + ' = 1 and ' + filter3 + ' = 1) or (' +
+            filter2 + ' = 1 and ' + filter3 + ' = 1) then 2 ' + 'else 3 end, if(average > 0, average, 0) desc, count desc', [area1,area2,area3, price], function(err, results) {  
                 var correct = {
                     cafes: [] // 카페 데이터를 저장할 배열
                 };
@@ -648,11 +648,11 @@ router.get("/cafe", function(req,res){ //필터링 결과 카페 리스트 페�
                 }
             });
         } else if(filter1 == 'nothing'){
-            db.query('(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY average DESC LIMIT 10)' +
+            db.query('(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY CASE WHEN average > 0 THEN average ELSE 0 END DESC, count DESC LIMIT 10)' +
             'UNION ' +
-            '(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY average DESC LIMIT 10)' +
+            '(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY CASE WHEN average > 0 THEN average ELSE 0 END DESC, count DESC LIMIT 10)' +
             'UNION ' +
-            '(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY average DESC LIMIT 10)',[area1, price, area2, price, area3, price], function(err, results){
+            '(SELECT * FROM cafe WHERE area = ? AND price <= ? ORDER BY CASE WHEN average > 0 THEN average ELSE 0 END DESC, count DESC LIMIT 10)',[area1, price, area2, price, area3, price], function(err, results){
                 //nothing인 경우 조건 배열 비우기
                 var correct = {
                     cafes: []  
