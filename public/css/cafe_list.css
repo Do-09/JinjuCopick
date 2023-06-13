@@ -10,14 +10,14 @@ body::-webkit-scrollbar{display:none}
 }
 
 #map {
-    width:600px; height:600px;
+    width: 600px; height: 600px;
     float: left;
     margin: 30px;
     
 }
  
 #list_box {
-    width:600px; height:600px;
+    width: 600px; height: 600px;
     background-color: rgba(225,231,235, 0.7);
     float: left;
     margin: 30px;
@@ -26,7 +26,7 @@ body::-webkit-scrollbar{display:none}
 }
  
 .cafe_list {
-    width:550px; height:70px;
+    width: 550px; height: 70px;
     background-color: rgb(192, 203, 215, 0.6);
     margin: 15px;
     margin-top: 10px;
@@ -116,3 +116,17 @@ body::-webkit-scrollbar{display:none}
     color: rgb(108, 108, 108);
     font-size: 16px; 
 } 
+
+@media screen and (max-width: 768px) {
+    #list_container {
+        flex-wrap: wrap;
+    }
+
+    #map, #list_box {
+        width: 100%;
+    }
+
+    .cafe_list {
+        width: 95%;
+    }
+}

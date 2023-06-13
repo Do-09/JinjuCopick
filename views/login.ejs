@@ -13,7 +13,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    
 </head>
 <body>
     <div class="logo_back">
@@ -38,25 +37,26 @@
             <a href="/"><img src="/public/static/jinju.textlogo.png" height= "110" alt="로고"></a>
         </div>  
     </div>
-        <form action ="/login/result" method="post" autocomplete=off>
-            <div id="loginForm">
-                <div class="title">
-                    <div class="login"><strong>LOGIN</strong></div>
-                    <div class="login_text">진주 카페를 즐겨보세요!</div>
-                </div>
-                <div class="email">
-                    <input type="text" name="email" class="inputid" placeholder="이메일">
-                </div>
-                <div class="password">
-                    <input type="password" name="password" class="inputpw" placeholder="비밀번호 (영문자+숫자+특수문자 8-15자)">
-                </div>
-                <div class="loginButton">
-                    <input type="submit" id="loginButton" class="input" value="로그인">
-                </div>
-                <div class="signup">
-                    <a href="/signup" id="signup" style="color: rgb(81, 81, 81)">회원가입</a>
-                </div>
+
+    <form action ="/login/result" method="post" autocomplete=off>
+        <div id="loginForm">
+            <div class="title">
+                <div class="login"><strong>LOGIN</strong></div>
+                <div class="login_text">진주 카페를 즐겨보세요!</div>
             </div>
-        </form>
-    </body>
+            <div class="email">
+                <input type="text" name="email" class="inputid" placeholder="이메일">
+            </div>
+            <div class="password">
+                <input type="password" name="password" class="inputpw" placeholder="비밀번호 (영문자+숫자+특수문자 8-15자)">
+            </div>
+            <div class="loginButton">
+                <input type="submit" id="loginButton" class="input" value="로그인">
+            </div>
+            <div class="signup">
+                <a href="/signup" id="signup" style="color: rgb(81, 81, 81)">회원가입</a>
+            </div>
+        </div>
+    </form>
+</body>
 </html>

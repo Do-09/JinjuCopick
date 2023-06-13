@@ -97,3 +97,21 @@ body::-webkit-scrollbar{display:none}
     margin-top: 3px; 
     text-align: left;
 }
+
+@media screen and (max-width: 768px) {
+    .input_title, .error {
+        margin-left: 25px;
+    }
+
+    .email input, .password1 input, .password2 input, .nickname input {
+        width: 85%;
+    }
+
+    #signup {
+        width: 85%;
+    }
+
+    #email::placeholder, #password1::placeholder, #password2::placeholder, #nickname::placeholder {
+        font-size: 10px;
+    }
+}

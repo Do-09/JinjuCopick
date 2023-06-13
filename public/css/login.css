@@ -30,7 +30,6 @@ input::placeholder {
 #loginForm {
     width: 50%;
     padding: 80px 10px;
-    /* border: 2px solid rgba(156, 164, 170, 0.42); */
     background-color: rgb(235, 237, 240, 0.4);
     text-align: center;
     align-items : center;
@@ -86,3 +85,21 @@ input::placeholder {
     font-size: 14px; 
     font-weight: 800;
 }  
+
+@media screen and (max-width: 768px) {
+    .email input, .password input {
+        width: 85%;
+    }
+
+    #loginButton {
+        width: 85%;
+    }
+
+    .email input::placeholder, .password input::placeholder {
+        font-size: 11px;
+    }
+
+    .signup {
+        margin-right: 22px;
+    }
+}

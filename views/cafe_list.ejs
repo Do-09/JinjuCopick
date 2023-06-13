@@ -118,7 +118,7 @@
                 var mapContainer = document.getElementById('map'),
                     mapOption = { 
                         center: new kakao.maps.LatLng(positions[0].latlng.getLat(), positions[0].latlng.getLng()), // 지도의 중심좌표
-                        level: 4 // 지도의 확대 레벨
+                        level: 4            // 지도의 확대 레벨
                     };
 
                 var kakaomap = new kakao.maps.Map(mapContainer, mapOption);     // 지도 생성
@@ -133,8 +133,8 @@
                     });
  
                     var iwContent = '<div class="cafe_title">' + positions[i].title + '</div>',
-                        iwPosition = positions[i].latlng;           //인포윈도우 표시할 위치
-                        iwRemoveable = true;                        //닫을 수 있는 x버튼이 표시
+                        iwPosition = positions[i].latlng;           // 인포윈도우 표시할 위치
+                        iwRemoveable = true;                        // x버튼 표시
 
                     var infowindow = new kakao.maps.InfoWindow({
                         position: iwPosition,
@@ -166,9 +166,9 @@
                         viewLocation.addEventListener('click', function() {
                             var position = positions[index].latlng;
                             kakaomap.setCenter(position);           // 지도의 중심 좌표를 해당 위치로 설정
-                            kakaomap.setLevel(2);       //확대
+                            kakaomap.setLevel(2);                   // 확대
 
-                            //해당 위치 인포윈도우 열기
+                            // 해당 위치 인포윈도우 열기
                             if (currentInfowindow) {
                                 currentInfowindow.close();
                             }
